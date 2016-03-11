@@ -1,0 +1,11 @@
+auto: true
+
+markdown: rdiscount
+pygments: true
+paginate: 8
+permalink: /:title
+
+title: Moonsea's Blog
+url: http://moonsea.github.io
+feed: /atom.xml
+author_info: <a href="http://moonsea.github.io/">Moonsea</a>

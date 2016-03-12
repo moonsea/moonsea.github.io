@@ -19,9 +19,7 @@ layout: home
                 <div class="title-desc">{{ post.description }}</div>
             </li>
         {% endfor %}
-        
         </ul>
-
     </div>
     <div class="aside">
     </div>

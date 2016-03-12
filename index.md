@@ -19,8 +19,15 @@ layout: home
                 <div class="title-desc">{{ post.description }}</div>
             </li>
         {% endfor %}
+        <li>
+                <p><small>Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> | Copyright 2008 - {{site.time | date:"%Y"}} by <a href="http://moonsea.github.io/">Moonsea</a> | <span class="label label-info">{{site.time | date:"%Y-%m-%d %H:%M:%S %Z"}}</span></small></p>               
+            </li>
+        </ul>
+        <ul>
+            
         </ul>
     </div>
     <div class="aside">
     </div>
+
 </div>

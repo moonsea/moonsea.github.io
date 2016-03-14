@@ -119,7 +119,7 @@ $(document).ready(function(){
             };
         })();
 
-        if($('.entry h2').length > 2 && !isMobile.any() && !ie6){
+        if(!isMobile.any() && !ie6){
 
             genIndex();
 

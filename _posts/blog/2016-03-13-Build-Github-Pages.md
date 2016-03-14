@@ -2,10 +2,22 @@
 layout:     post
 title:      使用 Github 搭建自己的博客
 category: blog
-description: Github 作为开源项目的代码托管平台，同时也提供了 GitHub Pages, 这是这篇文章所要依赖的.
+description: Github 作为开源项目的代码托管平台，同时也提供了 GitHub Pages, 这是这篇文章所要依赖的,提供了非常好的写作方式.
 ---
 
 ## 写在前面
+ 
+这篇文章主要介绍如何通过 GitHub 来搭建属于自己的 Blog ,在这次搭建 Blog 的过程中主要会用到以下几种技术：
+
+* [Github Pages][]
+* [Jekyll][]
+* [Disqus][]
+
+其中, [Github Pages][]是[Github](https://github.com)上用来搭建项目展示，做自己 Blog 的一个平台.
+
+[Github Pages]: http://pages.github.com/ "Github Pages"
+[Jekyll]:   https://github.com/mojombo/jekyll
+[Disqus]: http://disqus.com "Disqus"
 
 几乎自己的每一篇 Blog 都会有这么一段“写在前面”的话，总觉得少了这几句话下面的文章就写不下去。同时，自己每新建一个 Blog ,也总是会写一篇 “My First Blog” ,比如[我的Firs博客][],[Cryptsetup加密存储设备之一（Linux篇）][]。还是和原来一样的初衷，用最简单的方式，记录自己的工作，如果能够帮助到其他人，更是一件好事。
 

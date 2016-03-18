@@ -61,6 +61,15 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 最终实现效果如下：
 ![conditiondefaultvalue](/images/WabacusProblems/conditiondefaultvalue.png)
 
+## 固定列宽
+
+需求：固定页面数据中每列显示数据的宽度  
+方案：`<col column="actual_hours" label="实动工时" width="100px"></col>`
+
+效果如下：
+![colwidth](/images/WabacusProblems/colwidth.png)
+
+
 ## 致谢
 
 感谢Adam的热心帮助

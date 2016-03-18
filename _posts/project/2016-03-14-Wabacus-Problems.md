@@ -20,7 +20,7 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
     </report>
 
 其中`fixedcols="2" fixedrows="title"`表示固定标签的前`2`列，同时固定每列的`title`，当然这两个标签不是必须同时使用的.效果如下：
-![Fixcol2](/images/WabacusProblems/fixcol2.png)
+![Fixcol2](/images/WabacusProblems/fixcol2.jpg)
 
 ## 单选1行
 
@@ -59,7 +59,7 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 * `doStart()`在每次查询后会重新加载，如果`7,10`不加入判断，那么用户输入无效，输入框的`value`一直是`9,12`所赋值
 
 最终实现效果如下：
-![conditiondefaultvalue](/images/WabacusProblems/conditiondefaultvalue.png)
+![conditiondefaultvalue](/images/WabacusProblems/conditiondefaultvalue.jpg)
 
 ## 固定列宽
 
@@ -67,7 +67,7 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 方案：`<col column="actual_hours" label="实动工时" width="100px"></col>`
 
 效果如下：
-![colwidth](/images/WabacusProblems/colwidth.png)
+![colwidth](/images/WabacusProblems/colwidth.jpg)
 
 
 ## 致谢

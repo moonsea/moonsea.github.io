@@ -5,7 +5,7 @@
     * Author:         Moonsea
     -->
     <meta charset="utf-8" />
-    <title>胡言乱语说简单 | Moonsea's Blog</title>
+    <title>CentOs 安装多线程下载工具 | Moonsea's Blog</title>
     <meta name="author" content="Moonsea" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Moonsea's Blog" />
@@ -43,48 +43,31 @@
 
 <div id="content">
     <div class="entry">
-        <h1 class="entry-title"><a href="/about-simplify" title="胡言乱语说简单">胡言乱语说简单</a></h1>
-        <p class="entry-date">2013-01-08</p>
-        <p>##最初的简单
-从第一代iPhone出来，简单这个概念，便疯样的传开来。我怀疑过这是否绝对正确，最终还是服了。</p>
+        <h1 class="entry-title"><a href="/CentOs-aria2" title="CentOs 安装多线程下载工具">CentOs 安装多线程下载工具</a></h1>
+        <p class="entry-date">2016-03-16</p>
+        <h2 id="section">写在前面</h2>
 
-<p>碎片化的生活让人类的注意力很难集中3分钟，且有千千万的选择，任何一点负面的感受，会立刻遭到用户唾弃。物质、文化匮乏的时代，故作繁杂，可以脱颖而出，但现在能打动你的肯定是左边。</p>
+<p><a href="http://www.wabacus.org/">Wabacus</a>是目前我接触到的最方便进行进行办公系统，业务管理系统，适合多表单、表格的商务管理系统，同时还具备简单的图表展示，对数据处理、展示不是很复杂的系统也可以考虑使用。其基于Java 的 SSH 框架，在此基础上高度集成化，使用 XML 进行开发组织页面，开发人员可以在不熟悉或者会简单的 Java 编程，就可以迅速掌握并熟练使用的一个框架. 这个系统据学长说他和原作者保持着联系，不过我并没有见过.</p>
 
-<p><img src="http://ww2.sinaimg.cn/bmiddle/5e0bba51gw1dyxy98zixmj.jpg" alt="Apple Remote" /></p>
+<p>这篇文章主要用来记录在开发过程中遇到的问题，以及相应的解决办法，所以本文不介绍如何使用 <a href="http://www.wabacus.org/">Wabacus</a> 系统，以及本地部署过程，具体的方法我会在另外一篇文章中介绍.其中很多问题可能仔细查看文档能够自己独立解决，因为现在正在使用 <a href="http://www.wabacus.org/">Wabacus</a> 进行开发，所以为了自己的方便，同时也方便和团队其他成员交流分享，所以大小问题都会记录下来，每个问题单独一个小节，有相似问题的可以直接跳到相关部分.</p>
 
-<p>##简单才可依赖
-有些句子，看起来懂，也经常说，比如上面标题这句，但当我看到<a href="http://v.youku.com/v_show/id_XNDkwMTg0MDI0.html">《差速器原理》</a>的视频时，才真正懂了这句话：</p>
+<h2 id="section-1">固定前2列</h2>
 
-<p style="text-align:center"><embed src="http://player.youku.com/player.php/sid/XNDkwMTg0MDI0/v.swf" quality="high" width="480" height="400" align="middle" allowscriptaccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash" /></p>
+<pre><code>&lt;report id="epd601_report1" title="" type="editablelist2" 
+dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px" 
+scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
+...
+&lt;/report&gt;
+</code></pre>
 
-<p>##蔓延的简单
-大概是工作的关系，渐渐追求简单的思维蔓延到了生活中，甚至到了本没有标准的艺术范畴。来看下图：</p>
+<p>其中<code>fixedcols="2" fixedrows="title"</code>表示固定标签的前<code>2</code>列，同时固定每列的<code>title</code>，当然这两个标签不是必须同时使用的.效果如下：
+<img src="/images/WabacusProblems/fixcol2.png" alt="Fixcol2" /></p>
 
-<p><img src="http://img1.bitautoimg.com/autoalbum/files/20120319/123/23575912395576_1844692_7.jpg" alt="Focus Inside" /></p>
+<h2 id="section-2">单选1行</h2>
 
-<p>搭朋友的车，这中控系统功能确实强大，但是不得不说这界面的设计师，还活在上个世纪，早该被解雇了。只因这不是选车最值得考虑的部分，不然朋友肯定会选择更好的。</p>
+<p>需求：鼠标点击表格中的记录，只能选择一行</p>
 
-<p>甚至到了没有标准的艺术范畴，简单都成了标准：</p>
-
-<p><img src="http://ww3.sinaimg.cn/large/a74eed94jw1e0mmo1xa2kj.jpg" alt="My Photo" /></p>
-
-<p>也不知是否因为我看娱乐节目太多，导致智商降低，对于文学、电影作品，甚至都不能接受故弄玄虚，我不愿去想，也不愿去猜。比如<a href="http://movie.douban.com/subject/3821067/">《一代宗师》</a>故事支离破碎，台词游离，就连王家卫最拿手的气氛渲染，也比<a href="http://movie.douban.com/subject/1291557/">《花样年华》</a>差远了。复杂了，失焦了，我也没有耐心去思索。</p>
-
-<p><img src="http://ww4.sinaimg.cn/bmiddle/62275834jw1e0mlp67dv4j.jpg" alt="The Grandmasters" /></p>
-
-<p>##简单的背后
-做加法很容易，把所见所想全写上就好，做到简单却要经过谨慎的思考。</p>
-
-<p>简单的背后不应该是简陋。对比<a href="http://douban.fm/">豆瓣FM</a>和<a href="http://xiami.fm/">虾米FM</a>就能理解，豆瓣FM简陋的背后带来了无尽的不安全感，无法控制的挫败感，纵然你能满足大部分用户，但也绝不应该放弃更苛刻的用户，因为作为创造者，你自己也是那些苛求的需要者。</p>
-
-<p>当然，我知道豆瓣FM有他的苦衷，只是举个例子，做减法并不是舍弃，而是合理的隐藏。</p>
-
-<p><img src="http://ww1.sinaimg.cn/large/a74ecc4cjw1e0mnhp3ijtj.jpg" alt="The Next Day" /></p>
-
-<p><a href="https://itunes.apple.com/us/app/next-day/id491352621?mt=8">Next Day</a>就是这样，简单美妙，但是当你想要更多的时候，控制权也完全交到你手中，并且很高效。</p>
-
-<p>##TL;DR
-错过这篇废话而无用的文章，你是赚到啦！</p>
+<p>方案：<code>&lt;report rowselect="single&gt;</code></p>
 
 
         <div id="disqus_thread"></div>

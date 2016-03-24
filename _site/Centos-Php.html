@@ -5,7 +5,7 @@
     * Author:         Moonsea
     -->
     <meta charset="utf-8" />
-    <title>Tabby | Moonsea's Blog</title>
+    <title>CentOs搭建Php开发环境 | Moonsea's Blog</title>
     <meta name="author" content="Moonsea" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Moonsea's Blog" />
@@ -43,48 +43,119 @@
 
 <div id="content">
     <div class="entry">
-        <h1 class="entry-title"><a href="/tabby" title="Tabby">Tabby</a></h1>
-        <p class="entry-date">2013-04-12</p>
-        <p>用<a href="https://chrome.google.com/webstore/detail/tabby/pifnjkdglcfkfpdjdolfacpfdlgpdkhp" title="Tabby">Tabby</a>有一阵子了，最近把细节完善，发布在了Chrome Store。</p>
+        <h1 class="entry-title"><a href="/Centos-Php" title="CentOs搭建Php开发环境">CentOs搭建Php开发环境</a></h1>
+        <p class="entry-date">2016-03-21</p>
+        <h2 id="section">写在前面</h2>
 
-<p>他的功能是，当你打开几十上百个Chrome标签，很占资源，不想加入书签，也不想存入Instapaper等Read It Later的东西，只看一次，但就是不想现在看，这时候只要在页面点击右键，选择“暂存到Tabby”即可。</p>
+<p>今天需要搭建一个WikiMedia，然后找到了一个目前觉得最高大上的Web FTP，叫<a href="http://www.kalcaddle.com/">KODExplorer</a>,是一个在线版的文件管理器，官方说法支持在线解压缩，支持在线预览，在线编辑等等。</p>
 
-<p><a href="https://chrome.google.com/webstore/detail/tabby/pifnjkdglcfkfpdjdolfacpfdlgpdkhp" title="Tabby" target="_blank"><img src="/images/other/Tabby-pro1.png" alt="Tabby" /></a></p>
+<h2 id="section-1">动手搭建</h2>
 
-<p>你可以设置使用快捷键（默认关闭），要打开暂存的标签，只需点击Tabby的图标。因为使用了Chrome的书签，即使你卸载插件，还没来得及看的也不会丢失，也会默认同步到别的设备。</p>
+<h3 id="apache">安装Apache</h3>
 
-<p><a href="https://chrome.google.com/webstore/detail/tabby/pifnjkdglcfkfpdjdolfacpfdlgpdkhp" title="Tabby" target="_blank"><img src="/images/other/Tabby-pro2.png" alt="Tabby" /></a></p>
+<p>使用 <code>yum</code> 进行安装</p>
 
-<p>推荐一本书<a href="http://read.douban.com/ebook/709141/?referral_code=e6acsgl3" title="我是个年轻人，我心情不太好">我是个年轻人，我心情不太好</a>，当时是他的简介让我动心了一下：</p>
+<pre><code>sudo yum install httpd httpd-devel 
+</code></pre>
 
-<blockquote>
-  <p>我25岁，读过一个硕士，但是退学了。我被时间、空间、意义这些事情烦扰着。我知道的东西多得难以置信。我知道名字，年份。数以百计。我知道谁第一个上的珠穆朗玛峰。我知道谁导演了那些美国最蹩脚的肥皂剧。我知道亚里士多德讲的话是啥意思。我知道时间在太阳上会走得慢一点……</p>
-</blockquote>
+<p>安装完成之后，启动<code>apache</code>服务器</p>
 
-<blockquote>
-  <p>但是，我知道这些有什么意义呢？</p>
-</blockquote>
+<pre><code>sudo systemctl start httpd.service
+</code></pre>
 
-<blockquote>
-  <p>我的生活仍旧是一团糟。</p>
-</blockquote>
+<p>除了上面这条命令可以启动<code>apache</code>服务器之外，还可以使用<code>sudo service httpd start</code>,也会重定向到<code>httpd.service</code>.</p>
 
-<blockquote>
-  <p>不，连一团糟都不是，它是一片空白。</p>
-</blockquote>
+<p>启动之后，可以使用浏览器访问服务器的<code>IP</code>地址，<code>apache</code>默认端口为<code>80</code>，所以直接<code>http://$IP$</code>就可以了</p>
 
-<blockquote>
-  <p>我没有女朋友，甚至没有很好很好的朋友。我有一个哥哥，还有一个比我小很多、还在上幼儿园的“伙伴”。可他们也不算是朋友。</p>
-</blockquote>
+<h3 id="mysql">安装Mysql</h3>
 
-<blockquote>
-  <p>要是我能有一种非常靠谱的感觉，觉得一切都会好起来，那该多好。</p>
-</blockquote>
+<p>CentOs 7 系统yum源不自带<code>server</code>端的<code>mysql</code>，所以需要自己从官方下载<a href="http://dev.mysql.com/downloads/repo/yum/">Repository</a>,进入页面之后选择自己相应的版本.我的服务器是<code>CentOs 7</code>,如果和我的机器相同，也可以直接使用下面的命令进行下载安装</p>
 
-<p>不指望这本书能喂你多大一碗鸡汤，就是让你知道这个年纪的共同态，而且或许有解决办法。</p>
+<pre><code>wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm
+sudo rpm -ivh mysql57-community-release-el7-7.noarch.rpm
+sudo yum install mysql-community-server mysql mysql-devel
+</code></pre>
 
-<p>好吧，去下载插件吧：
-<a href="https://chrome.google.com/webstore/detail/tabby/pifnjkdglcfkfpdjdolfacpfdlgpdkhp" title="Tabby" target="_blank"><img src="/images/other/Tabby-440.png" alt="Tabby" width="300" /></a></p>
+<p>启动<code>mysql</code></p>
+
+<pre><code>sudo systemctl start mysqld.service
+</code></pre>
+
+<p>这时候如果你尝试登录<code>mysql -uroot -p</code>的话，会发现无法登录，而且你也不知道密码，因为<code>mysql</code>默认是没有密码的，这时候需要强制修改密码</p>
+
+<p>首先，关闭<code>mysql</code></p>
+
+<pre><code>sudo service mysqld stop
+</code></pre>
+
+<p>刚才说过，和<code>systemctl</code>命令相同，用哪一种方式都行.然后打开<code>my.cnf</code></p>
+
+<pre><code>sudo vi /etc/my.cnf
+</code></pre>
+
+<p>在文件中最后一行添加<code>skip-grant-tables</code>,然后<code>:wq</code>保存并退出.之后重启<code>mysql</code></p>
+
+<pre><code>sudo service mysqld restart
+</code></pre>
+
+<p>强制登录<code>mysql</code></p>
+
+<pre><code>mysql
+</code></pre>
+
+<p>登录之后，分别执行以下命令，修改数据库登录密码为<code>123456</code></p>
+
+<pre><code>use mysql;
+update user set authentication_string=password('123456') where user='root';
+exit;
+</code></pre>
+
+<p>退出之后，再次编辑<code>my.cnf</code>,删除刚才添加的最后一行<code>skip-grant-tables</code>,保存退出，之后重新启动<code>mysql</code></p>
+
+<pre><code>sudo service mysqld restart
+</code></pre>
+
+<p>再次登录,输入密码<code>123456</code>就可以正常登录了</p>
+
+<pre><code>msyql -uroot -p
+</code></pre>
+
+<h3 id="php">安装Php</h3>
+
+<p>使用<code>yum</code>源进行安装</p>
+
+<pre><code> sudo yum install php php-devel
+</code></pre>
+
+<p>重新启动<code>apache</code>，使得<code>php</code>生效</p>
+
+<pre><code>sudo systemctl restart httpd.service
+</code></pre>
+
+<p>进入<code>\var\www\html</code>，新建一个测试文件</p>
+
+<pre><code>cd \var\www\html
+sudo vi test.php
+</code></pre>
+
+<p>文件内容如下：</p>
+
+<pre><code>&lt;?php phpinfo(); ?&gt;
+</code></pre>
+
+<p>通过浏览器访问该文件，会得到php版本信息，说明安装成功</p>
+
+<h3 id="php-1">安装php扩展</h3>
+
+<p>使用<code>yum</code>源进行安装</p>
+
+<pre><code>sudo yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring
+</code></pre>
+
+<p>重新启动<code>apache</code>，使得安装生效</p>
+
+<pre><code>sudo systemctl restart httpd.service
+</code></pre>
 
 
         <div id="disqus_thread"></div>

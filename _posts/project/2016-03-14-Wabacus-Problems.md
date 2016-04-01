@@ -69,6 +69,27 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 效果如下：
 ![colwidth](/images/WabacusProblems/colwidth.jpg)
 
+---
+`2016-04-02`
+
+## 开发环境Stream Closed
+
+在初始搭建Wabacus项目开发环境时，需要配置好本地环境`Tomcat 7`和`Java 1.7`,但是只有这些还是不够，因为在运行程序的时候，会发现系统报错，提示`Stream Closed`,具体原因不知道，可能是因为导入依赖包时，系统无法完全识别，所以需要重新导入.
+
+问题：系统运行报错`Stram Closed`
+方案：项目配置中重新导入资源依赖包
+
+首先，选择项目点击右键，选择"打开模块设置"(Open Module Settings)
+![Open-Module-Settings](/images/WabacusProblems/16-04-02-1-open-module-settings.jpg)
+
+然后，选择“模块”(Modules)
+![Module](/images/WabacusProblems/16-04-02-2-module.JPG)
+
+在右侧区域选择“依赖”(Denpencies)
+![Denpencies](/images/WabacusProblems/16-04-02-3-depencies.JPG)
+
+最后把下面的依赖包全部删除，只留下Java本地资源包，然后重新导入系统资源依赖包.资源依赖包的路径是`/WebRoot/WEB-INF/lib`,把全部`jar`包重新导入就可以了.
+![Add-Jars](/images/WabacusProblems/16-04-02-4-add-jars.JPG)
 
 ## 致谢
 

@@ -5,7 +5,7 @@
     * Author:         Moonsea
     -->
     <meta charset="utf-8" />
-    <title>使用 Github 搭建自己的博客 | Moonsea's Blog</title>
+    <title>English Writing | Moonsea's Blog</title>
     <meta name="author" content="Moonsea" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Moonsea's Blog" />
@@ -43,20 +43,25 @@
 
 <div id="content">
     <div class="entry">
-        <h1 class="entry-title"><a href="/Build-Github-Pages" title="使用 Github 搭建自己的博客">使用 Github 搭建自己的博客</a></h1>
-        <p class="entry-date">2016-03-13</p>
-        <h2 id="section">写在前面</h2>
+        <h1 class="entry-title"><a href="/English-Writing" title="English Writing">English Writing</a></h1>
+        <p class="entry-date">2016-03-25</p>
+        ## 写在前面
+ 
+这篇文章是自己在阅读《英语语法看这本就够了大全集》这本书进行整理的内容.文章内容以及结构按照原书结构进行整理.
 
-<p>这篇文章主要介绍如何通过 GitHub 来搭建属于自己的 Blog ,在这次搭建 Blog 的过程中主要会用到以下几种技术：</p>
+## 书写规则 Rules of Writing
 
-<ul>
-  <li><a href="http://pages.github.com/" title="Github Pages">Github Pages</a></li>
-  <li><a href="https://github.com/mojombo/jekyll">Jekyll</a></li>
-  <li><a href="http://disqus.com" title="Disqus">Disqus</a></li>
-</ul>
+### 移行
 
-<p>其中, <a href="http://pages.github.com/" title="Github Pages">Github Pages</a>是<a href="https://github.com">Github</a>上用来搭建项目展示，做自己 Blog 的一个平台.</p>
+在书写时，尽量不要把一个单词拆开成两行，也就是移行来写，如果不得不移行，必须以**音节**为单位进行拆分移行，且要添加连字符“-”
 
+* 单音节词无论长短都不能拆开移行
+	- book pen sit bird
+	- 
+
+## 致谢
+
+本文所有内容都来自于《英语语法看这本就够了大全集》,ISBN号：`9787543074729`
 
         <div id="disqus_thread"></div>
         <script>

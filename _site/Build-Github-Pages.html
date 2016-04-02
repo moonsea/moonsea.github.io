@@ -55,7 +55,129 @@
   <li><a href="http://disqus.com" title="Disqus">Disqus</a></li>
 </ul>
 
-<p>其中, <a href="http://pages.github.com/" title="Github Pages">Github Pages</a>是<a href="https://github.com">Github</a>上用来搭建项目展示，做自己 Blog 的一个平台.</p>
+<p>其中, <a href="http://pages.github.com/" title="Github Pages">Github Pages</a>是<a href="https://github.com">Github</a>上用来搭建项目展示，做自己 Blog 的一个平台.<a href="https://github.com/mojombo/jekyll">Jekyll</a>是[Github][]上的一个开源项目，是一种博客的解析引擎，[Github][]使用<a href="https://github.com/mojombo/jekyll">Jekyll</a>来实现Github pages的解析.<a href="http://disqus.com" title="Disqus">Disqus</a>是一个评论的插件，用来实现网页的评论功能.</p>
+
+<h2 id="section-1">动手搭建</h2>
+
+<h3 id="github-pages">Github Pages</h3>
+
+<p>GitHub Pages分为两种，一种是个人的页面，这种是和自己的用户名相关的，比如<code>username.github.io</code>；另一种是项目的展示页，是和每个在Github上托管的项目相关的.</p>
+
+<p>在自己Github的主页，建立一个使用自己用户名的，比如我的用户名是<code>moonsea</code>,那么我建立一个<code>moonsea.github.io</code>的项目
+<img src="/images/githubpages/16-04-02-1-create-resposity.JPG" alt="Create-Reposity" />
+在项目的“设置”(Settings)里面，找到“Github Pages”，然后选择“Launch automatic page generator”,然后在里面随便选一个模板创建就行，接下来会把整个项目清空，然后使用Jekyll的模板.
+<img src="/images/githubpages/16-04-02-2-automatic-page-generator.JPG" alt="Automatic-Page-Generator" />
+等待大概10分钟之后，访问<code>http://username.github.io</code>就可以了，这样一个最基本的Github Pages就创建好了.</p>
+
+<ul>
+  <li>在这里说明一下,很多Blog会介绍不使用<code>automatic page generator</code>,而是通过自己新建一个<code>index.html</code>来初始化项目，或者使用<code>gh-pages</code>分支来创建Jekyll.以上两种方法不建议使用，因为在我自己搭建的过程中，使用上述两种方法都没有成功，不是创建更新之后，页面并没有更新，或者是无法访问到<code>username.github.io</code>.相比上述两种方法，直接使用<code>automatic page generator</code>创建页面，不仅能够很快<code>username.github.io</code>访问，而且可以直接使用<code>master</code>分支来更更新项目，减少后续工作的麻烦.</li>
+</ul>
+
+<h3 id="jekyll">Jekyll模板系统</h3>
+
+<blockquote>
+  <p><strong>搭建本地的Jekyll环境</strong></p>
+</blockquote>
+
+<p>下载<a href="http://rubyinstaller.org/downloads/">RubyInstaller</a>,根据自己的系统选择下载，我下载的是<code>Ruby 2.2.4 (x64)</code>,下载到本地之后进行安装，并加入系统的<code>PATH</code>.完成之后运行如下命令验证是否成功</p>
+
+<pre><code>ruby -v
+</code></pre>
+
+<p>更新Ruby的Gem资源</p>
+
+<pre><code>gem update --system
+</code></pre>
+
+<p>这时候系统可能会提示<code>Connection refused</code>之类的错误，这是因为天朝的墙太厚了，可以通过如下方法改成国内江浙沪包邮的源.如果没有提示错误，可以直接略过此步骤，直接跳到“安装Devkit”.</p>
+
+<pre><code>gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+</code></pre>
+
+<p>这个时候，如果没有错误，可以再次略过此步骤，进入“安装Devkit”，如果提示问题<code>server certificate B: certificate verify failed</code>,这是因为要想江浙沪包邮也是需要先提供证明的，那么可以通过如下方法让他相信你</p>
+
+<ul>
+  <li>下载<a href="https://curl.haxx.se/ca/cacert.pem">carcert.pem</a>,将此文件另存为<code>carcert.pem</code>,保存到Ruby安装目录下，当然也可以保存到其他目录下，只要你记住就好</li>
+  <li>在系统“环境变量”中添加<code>SSL_CERT_FILE</code>,路径选择刚才保存<code>carcert.pem</code>的路径</li>
+  <li>
+    <p>重新打开CMD窗口再次添加江浙沪包邮源，就可以成功了</p>
+
+    <p>gem sources -a https://ruby.taobao.org/
+  gem update –system</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>安装Devkit</strong></p>
+</blockquote>
+
+<p>下载最新的<a href="http://rubyinstaller.org/downloads">Devkit</a>,进入页面之后，选择和自己Ruby和系统对应版本的Devkit，比如我的是<code>Ruby-2.2.4</code>,系统是<code>64位</code>，那么我下载的是<code>DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe</code>
+<img src="/images/githubpages/16-04-02-3-devkit.JPG" alt="devkit" />
+运行，选择解压路径。解压完成后，CMD进入Devkit相应解压路径，运行如下命令</p>
+
+<pre><code>ruby dk.rb init
+ruby db.rk install
+</code></pre>
+
+<p>提示完成安装就可以了</p>
+
+<blockquote>
+  <p><strong>Gem安装Jekyll</strong></p>
+</blockquote>
+
+<p>在CMD窗口中运行如下命令</p>
+
+<pre><code>gem install jekyll
+</code></pre>
+
+<p>验证是否安装成功</p>
+
+<pre><code>jekyll --version
+</code></pre>
+
+<p>安装Rdiscount，用来解析Markdown</p>
+
+<pre><code>gem install rdiscount
+</code></pre>
+
+<p>至此，Jekyll就安装完成了.</p>
+
+<blockquote>
+  <p><strong>更新Github Pages</strong></p>
+</blockquote>
+
+<p>使用git命令将项目源码同步到本地</p>
+
+<pre><code>git clone https://github.com/moonsea/moonsea.github.io.git
+</code></pre>
+
+<p>进入项目文件夹，删除所有文件</p>
+
+<p>然后将想要参考的项目源码同步下来，复制到自己项目的文件夹下</p>
+
+<p>使用CMD窗口，进入自己的项目的文件夹，现在本地运行查看效果</p>
+
+<pre><code>jekyll serve
+</code></pre>
+
+<p>根据自己的需要进行修改，修改之后提交到Github查看</p>
+
+<pre><code>git add --all
+git commit -m "Init"
+git push
+</code></pre>
+
+<p>至此，一个Jekyll模板系统就已经搭建完成了.</p>
+
+<h2 id="section-2">致谢</h2>
+
+<p>本文主要参考了以下Blog</p>
+
+<p>[1]<a href="http://www.cnblogs.com/purediy/archive/2013/03/07/2948892.html">[原]通过GitHub Pages建立个人站点（详细步骤）</a><br />
+[2]<a href="http://www.cnblogs.com/moonseazj/p/4821018.html">Ubuntu Install Rbenv &amp; Ruby &amp; Rails (Week I)</a><br />
+[3]<a href="http://beiyuu.com/github-pages/">使用Github Pages建独立博客</a><br />
+[4]<a href="http://stackoverflow.com/questions/4528101/ssl-connect-returned-1-errno-0-state-sslv3-read-server-certificate-b-certificat">server certificate B: certificate verify failed</a></p>
 
 
         <div id="disqus_thread"></div>
@@ -99,14 +221,6 @@
             <li><a href="/CentOs-aria2">CentOs 安装多线程下载工具</a></li>
         
             <li><a href="/Wabacus-Problems">Wabacus 开发问题汇总</a></li>
-        
-            <li><a href="/tabby">Tabby</a></li>
-        
-            <li><a href="/notty-notes">Notty Notes</a></li>
-        
-            <li><a href="/overapi-cheatsheet">OverAPI</a></li>
-        
-            <li><a href="/raining-in-chrome">听雨</a></li>
         
         </ul>
     </div>

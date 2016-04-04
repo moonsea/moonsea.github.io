@@ -11,7 +11,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
 这篇文章主要用来记录在开发过程中遇到的问题，以及相应的解决办法，所以本文不介绍如何使用 [Wabacus][] 系统，以及本地部署过程，具体的方法我会在另外一篇文章中介绍.其中很多问题可能仔细查看文档能够自己独立解决，因为现在正在使用 [Wabacus][] 进行开发，所以为了自己的方便，同时也方便和团队其他成员交流分享，所以大小问题都会记录下来，每个问题单独一个小节，有相似问题的可以直接跳到相关部分.
 
-## 安装时提示：`Strict Standards: Non-static method cls_image::gd_version() should not be called statically `
+## 安装时提示：`gd_version()`
 
 找到install/includes/lib_installer.php中的第31行`return ls_image::gd_version();`然后在找到include/cls_image.php中的678行，发现`gd_version()`方法未声明静态static，所以会出错
 
@@ -26,7 +26,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 >    $p = new cls_image();
 >    return $p->gd_version();
 
-## 环境检测是否支持JEPG时显示不支持
+## JEPG显示不支持
 
 查看发现有libjpeg.lib库，GD2库也有，都加载了，也都正常。查看ecshop源代码发现install/includes/lib_installer.php中第98行,JPEG写成了JPG
 
@@ -37,7 +37,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
     $jpeg_enabled = ($gd_info['JPEG Support']        === true) ? $_LANG['support'] : $_LANG['not_support'];
 
-## 错误警告`Deprecated: preg_replace(): The /e modifier is deprecated`
+## 错误警告`preg_replace()`
 
 安装Ecshop完成之后，访问前台页面，会提示警告信息` Deprecated: preg_replace(): The /e modifier is deprecated`
 
@@ -52,7 +52,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
     return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this->select($r[1]); }, $source);
 重新访问页面就解决了
 
-## 错误警告：`Strict standards: Only variables should be passed by reference`
+## 错误警告：`Only variables`
 
 安装完成之后，访问前台首台，出现警告信息`Strict standards: Only variables should be passed by reference`
 

@@ -51,7 +51,7 @@
 
 <p>这篇文章主要用来记录在开发过程中遇到的问题，以及相应的解决办法，所以本文不介绍如何使用 <a href="http://www.wabacus.org/">Wabacus</a> 系统，以及本地部署过程，具体的方法我会在另外一篇文章中介绍.其中很多问题可能仔细查看文档能够自己独立解决，因为现在正在使用 <a href="http://www.wabacus.org/">Wabacus</a> 进行开发，所以为了自己的方便，同时也方便和团队其他成员交流分享，所以大小问题都会记录下来，每个问题单独一个小节，有相似问题的可以直接跳到相关部分.</p>
 
-<h2 id="strict-standards-non-static-method-clsimagegdversion-should-not-be-called-statically-">安装时提示：<code>Strict Standards: Non-static method cls_image::gd_version() should not be called statically </code></h2>
+<h2 id="gdversion">安装时提示：<code>gd_version()</code></h2>
 
 <p>找到install/includes/lib_installer.php中的第31行<code>return ls_image::gd_version();</code>然后在找到include/cls_image.php中的678行，发现<code>gd_version()</code>方法未声明静态static，所以会出错</p>
 
@@ -70,7 +70,7 @@
    return $p-&gt;gd_version();</p>
 </blockquote>
 
-<h2 id="jepg">环境检测是否支持JEPG时显示不支持</h2>
+<h2 id="jepg">JEPG显示不支持</h2>
 
 <p>查看发现有libjpeg.lib库，GD2库也有，都加载了，也都正常。查看ecshop源代码发现install/includes/lib_installer.php中第98行,JPEG写成了JPG</p>
 
@@ -82,7 +82,7 @@
 <pre><code>$jpeg_enabled = ($gd_info['JPEG Support']        === true) ? $_LANG['support'] : $_LANG['not_support'];
 </code></pre>
 
-<h2 id="deprecated-pregreplace-the-e-modifier-is-deprecated">错误警告<code>Deprecated: preg_replace(): The /e modifier is deprecated</code></h2>
+<h2 id="pregreplace">错误警告<code>preg_replace()</code></h2>
 
 <p>安装Ecshop完成之后，访问前台页面，会提示警告信息<code> Deprecated: preg_replace(): The /e modifier is deprecated</code></p>
 
@@ -96,7 +96,7 @@
 return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this-&gt;select($r[1]); }, $source); 重新访问页面就解决了
 </code></pre>
 
-<h2 id="strict-standards-only-variables-should-be-passed-by-reference">错误警告：<code>Strict standards: Only variables should be passed by reference</code></h2>
+<h2 id="only-variables">错误警告：<code>Only variables</code></h2>
 
 <p>安装完成之后，访问前台首台，出现警告信息<code>Strict standards: Only variables should be passed by reference</code></p>
 

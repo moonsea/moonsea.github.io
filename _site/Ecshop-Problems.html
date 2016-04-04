@@ -5,7 +5,7 @@
     * Author:         Moonsea
     -->
     <meta charset="utf-8" />
-    <title>Wabacus 开发问题汇总 | Moonsea's Blog</title>
+    <title>Ecshop 开发问题汇总 | Moonsea's Blog</title>
     <meta name="author" content="Moonsea" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Moonsea's Blog" />
@@ -43,101 +43,85 @@
 
 <div id="content">
     <div class="entry">
-        <h1 class="entry-title"><a href="/Wabacus-Problems" title="Wabacus 开发问题汇总">Wabacus 开发问题汇总</a></h1>
-        <p class="entry-date">2016-03-14</p>
+        <h1 class="entry-title"><a href="/Ecshop-Problems" title="Ecshop 开发问题汇总">Ecshop 开发问题汇总</a></h1>
+        <p class="entry-date">2016-04-05</p>
         <h2 id="section">写在前面</h2>
 
 <p><a href="http://www.wabacus.org/">Wabacus</a>是目前我接触到的最方便进行进行办公系统，业务管理系统，适合多表单、表格的商务管理系统，同时还具备简单的图表展示，对数据处理、展示不是很复杂的系统也可以考虑使用。其基于Java 的 SSH 框架，在此基础上高度集成化，使用 XML 进行开发组织页面，开发人员可以在不熟悉或者会简单的 Java 编程，就可以迅速掌握并熟练使用的一个框架. 这个系统据学长说他和原作者保持着联系，不过我并没有见过.</p>
 
 <p>这篇文章主要用来记录在开发过程中遇到的问题，以及相应的解决办法，所以本文不介绍如何使用 <a href="http://www.wabacus.org/">Wabacus</a> 系统，以及本地部署过程，具体的方法我会在另外一篇文章中介绍.其中很多问题可能仔细查看文档能够自己独立解决，因为现在正在使用 <a href="http://www.wabacus.org/">Wabacus</a> 进行开发，所以为了自己的方便，同时也方便和团队其他成员交流分享，所以大小问题都会记录下来，每个问题单独一个小节，有相似问题的可以直接跳到相关部分.</p>
 
-<h2 id="section-1">固定前2列</h2>
+<h2 id="strict-standards-non-static-method-clsimagegdversion-should-not-be-called-statically-">安装时提示：<code>Strict Standards: Non-static method cls_image::gd_version() should not be called statically </code></h2>
 
-<pre><code>&lt;report id="epd601_report1" title="" type="editablelist2" 
-dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px" 
-scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
-...
-&lt;/report&gt;
-</code></pre>
+<p>找到install/includes/lib_installer.php中的第31行<code>return ls_image::gd_version();</code>然后在找到include/cls_image.php中的678行，发现<code>gd_version()</code>方法未声明静态static，所以会出错</p>
 
-<p>其中<code>fixedcols="2" fixedrows="title"</code>表示固定标签的前<code>2</code>列，同时固定每列的<code>title</code>，当然这两个标签不是必须同时使用的.效果如下：
-<img src="/images/WabacusProblems/fixcol2.jpg" alt="Fixcol2" /></p>
+<p>问题： 安装Ecshop时，出现错误提示信息<code>Strict Standards: Non-static method cls_image::gd_version() should not be called statically</code>
+<img src="/images/ecshopproblems/16-04-05-1-gd-version.JPG" alt="Gd-Version" /></p>
 
-<h2 id="section-2">单选1行</h2>
-
-<p>需求：鼠标点击表格中的记录，只能选择一行</p>
-
-<p>方案：<code>&lt;report rowselect="single&gt;</code></p>
-
-<h2 id="section-3">查询条件输入框中显示默认值</h2>
-
-<p>一般来说，输入框<code>inputbox</code>都会提供一个标签<code>defaultvalue</code>，当然<a href="http://www.wabacus.org/">Wabacus</a>也不例外，但是在查询条件中设置<code>defaultvalue</code>，却不会在页面中显示出来，而且在后台查询时也不会作为查询条件的默认值进入查询的<code>sql</code>语句，但是页面数据<code>&lt;col&gt;&lt;/col&gt;</code>中<code>&lt;inputbox&gt;&lt;/inputbox&gt;</code>使用<code>defaultvalue</code>能够在页面中显示出来，并作为其默认值。所以需要采取一种新的方法来实现查询条件输入框在页面中显示默认值.</p>
-
-<p>需求：查询条件输入框在页面中显示当前日期<br />
-方案：使用<code>doStart()</code>拦截器，格式化当前日期，并对页面查询条件输入框赋值</p>
-
-<pre><code>public void doStart(ReportRequest rrequest, ReportBean rbean) {
-
-    Format dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    long currentTime = System.currentTimeMillis();
-    Date da = new Date(currentTime);
-
-    String date_s = rrequest.getStringAttribute("date_s");
-    if(date_s == null || date_s.equals(""))
-        rrequest.setAttribute("date_s", dateFormat.format(da));
-    String date_e = rrequest.getStringAttribute("date_e");
-    if(date_e == null || date_e.equals(""))
-        rrequest.setAttribute("date_e", dateFormat.format(da));
-
-}
-</code></pre>
-
-<p>在本段代码中，</p>
+<p>方案： 下面两种方法选择一种即可</p>
 
 <ul>
-  <li><code>3-5</code>行：格式化当前日期</li>
-  <li><code>7-9</code>行：获取页面查询条件<code>date_s</code>输入框的值，如果有数据，则不添加默认值，没有数据，添加默认值.</li>
-  <li><code>10-12</code>行：获取页面查询条件<code>date_e</code>输入框的值，如果有数据，则不添加默认值，没有数据，添加默认值.</li>
-  <li><code>date_s</code>,<code>date_e</code>是页面查询条件输入框的<code>name</code>,例如：<code>&lt;condition name="date_s" label="开始日期:" labelposition="left" right="30" br="true"&gt;</code></li>
-  <li><code>doStart()</code>在每次查询后会重新加载，如果<code>7,10</code>不加入判断，那么用户输入无效，输入框的<code>value</code>一直是<code>9,12</code>所赋值</li>
+  <li>将function gd_version()改成static function gd_version()即可</li>
+  <li>或者将install/includes/lib_installer.php中的第31行return cls_image::gd_version();改成：</li>
 </ul>
 
-<p>最终实现效果如下：
-<img src="/images/WabacusProblems/conditiondefaultvalue.jpg" alt="conditiondefaultvalue" /></p>
+<blockquote>
+  <p>$p = new cls_image();
+   return $p-&gt;gd_version();</p>
+</blockquote>
 
-<h2 id="section-4">固定列宽</h2>
+<h2 id="jepg">环境检测是否支持JEPG时显示不支持</h2>
 
-<p>需求：固定页面数据中每列显示数据的宽度<br />
-方案：<code>&lt;col column="actual_hours" label="实动工时" width="100px"&gt;&lt;/col&gt;</code></p>
+<p>查看发现有libjpeg.lib库，GD2库也有，都加载了，也都正常。查看ecshop源代码发现install/includes/lib_installer.php中第98行,JPEG写成了JPG</p>
 
-<p>效果如下：
-<img src="/images/WabacusProblems/colwidth.jpg" alt="colwidth" /></p>
+<p>问题： 环境检测显示JEPG不支持
+<img src="/images/ecshopproblems/16-04-05-2-jepg-unsuport.JPG" alt="jpeg-unsupport" /></p>
 
-<hr />
-<p><code>2016-04-02</code></p>
+<p>方案：将第98行代码改成如下形式</p>
 
-<h2 id="stream-closed">开发环境Stream Closed</h2>
+<pre><code>$jpeg_enabled = ($gd_info['JPEG Support']        === true) ? $_LANG['support'] : $_LANG['not_support'];
+</code></pre>
 
-<p>在初始搭建Wabacus项目开发环境时，需要配置好本地环境<code>Tomcat 7</code>和<code>Java 1.7</code>,但是只有这些还是不够，因为在运行程序的时候，会发现系统报错，提示<code>Stream Closed</code>,具体原因不知道，可能是因为导入依赖包时，系统无法完全识别，所以需要重新导入.</p>
+<h2 id="deprecated-pregreplace-the-e-modifier-is-deprecated">错误警告<code>Deprecated: preg_replace(): The /e modifier is deprecated</code></h2>
 
-<p>问题：系统运行报错<code>Stram Closed</code>
-方案：项目配置中重新导入资源依赖包</p>
+<p>安装Ecshop完成之后，访问前台页面，会提示警告信息<code> Deprecated: preg_replace(): The /e modifier is deprecated</code></p>
 
-<p>首先，选择项目点击右键，选择”打开模块设置”(Open Module Settings)
-<img src="/images/WabacusProblems/16-04-02-1-open-module-settings.jpg" alt="Open-Module-Settings" /></p>
+<p>问题： 错误警告<code> Deprecated: preg_replace(): The /e modifier is deprecated</code>
+<img src="/images/ecshopproblems/16-04-05-3-preg-replace.JPG" alt="Preg-Replace" /></p>
 
-<p>然后，选择“模块”(Modules)
-<img src="/images/WabacusProblems/16-04-02-2-module.JPG" alt="Module" /></p>
+<p>方案： 打开<code>includes\cls_template.php</code>,跳转到第<code>300</code>行，将</p>
 
-<p>在右侧区域选择“依赖”(Denpencies)
-<img src="/images/WabacusProblems/16-04-02-3-depencies.JPG" alt="Denpencies" /></p>
+<pre><code>return preg_replace("/{([^\}\{\n]*)}/e", "\$this-&gt;select('\\1');", $source); 替换成
 
-<p>最后把下面的依赖包全部删除，只留下Java本地资源包，然后重新导入系统资源依赖包.资源依赖包的路径是<code>/WebRoot/WEB-INF/lib</code>,把全部<code>jar</code>包重新导入就可以了.
-<img src="/images/WabacusProblems/16-04-02-4-add-jars.JPG" alt="Add-Jars" /></p>
+return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this-&gt;select($r[1]); }, $source); 重新访问页面就解决了
+</code></pre>
 
-<h2 id="section-5">致谢</h2>
+<h2 id="strict-standards-only-variables-should-be-passed-by-reference">错误警告：<code>Strict standards: Only variables should be passed by reference</code></h2>
 
-<p>感谢Adam的热心帮助</p>
+<p>安装完成之后，访问前台首台，出现警告信息<code>Strict standards: Only variables should be passed by reference</code></p>
+
+<p>问题：错误警告<code>Strict standards: Only variables should be passed by reference</code>
+<img src="/images/ecshopproblems/16-04-05-4-only-variable.JPG" alt="Only-Variable" /></p>
+
+<p>方案：PHP 5.3以上版本的问题，和配置有关.只要<code>includes\cls_template.php</code>第<code>418</code>行</p>
+
+<pre><code>$tag_sel = array_shift(explode(' ', $tag)); 拆成两句就没有问题了
+
+$tag_arr = explode(' ', $tag);
+$tag_sel = array_shift($tag_arr);
+</code></pre>
+
+<p>或者直接修改PHP配置文件<code>php.ini</code>第<code>451</code>行，将</p>
+
+<pre><code>error_reporting = E_ALL 改成
+
+error_reporting = E_ALL 重新启动服务即可
+</code></pre>
+
+<h2 id="section-1">参考资料</h2>
+
+<p>[1]<a href="http://www.cnblogs.com/thinksasa/archive/2013/03/12/2955922.html">Ecshop安装过程中的的问题：cls_image::gd_version()和不支持JPEG</a><br />
+[2]<a href="http://www.cnblogs.com/wallis0922/archive/2012/12/08/2808199.html">安装Ecshop首页出现报错：Only variables should be passed by referen</a></p>
 
 
         <div id="disqus_thread"></div>

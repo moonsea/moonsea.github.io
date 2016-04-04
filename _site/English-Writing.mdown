@@ -97,6 +97,8 @@
         <h2>Project</h2>
         <ul class="artical-list">
         
+            <li><a href="/Ecshop-Problems">Ecshop 开发问题汇总</a></li>
+        
             <li><a href="/Centos-Php">CentOs搭建Php开发环境</a></li>
         
             <li><a href="/Nodejs-P2pspider">p2pspider(读写文件和Mongodb版)</a></li>

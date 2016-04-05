@@ -7,9 +7,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
 ## 写在前面
 
-[Wabacus][]是目前我接触到的最方便进行进行办公系统，业务管理系统，适合多表单、表格的商务管理系统，同时还具备简单的图表展示，对数据处理、展示不是很复杂的系统也可以考虑使用。其基于Java 的 SSH 框架，在此基础上高度集成化，使用 XML 进行开发组织页面，开发人员可以在不熟悉或者会简单的 Java 编程，就可以迅速掌握并熟练使用的一个框架. 这个系统据学长说他和原作者保持着联系，不过我并没有见过.
-
-这篇文章主要用来记录在开发过程中遇到的问题，以及相应的解决办法，所以本文不介绍如何使用 [Wabacus][] 系统，以及本地部署过程，具体的方法我会在另外一篇文章中介绍.其中很多问题可能仔细查看文档能够自己独立解决，因为现在正在使用 [Wabacus][] 进行开发，所以为了自己的方便，同时也方便和团队其他成员交流分享，所以大小问题都会记录下来，每个问题单独一个小节，有相似问题的可以直接跳到相关部分.
+本文记录在Ecshop开发和使用过程中遇到的各种问题以及解决方法
 
 ## 安装时提示：`gd_version()`
 
@@ -47,9 +45,11 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 方案： 打开`includes\cls_template.php`,跳转到第`300`行，将
 
     return preg_replace("/{([^\}\{\n]*)}/e", "\$this->select('\\1');", $source);
+
 替换成
 
     return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this->select($r[1]); }, $source);
+
 重新访问页面就解决了
 
 ## 错误警告：`Only variables`
@@ -62,6 +62,7 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 方案：PHP 5.3以上版本的问题，和配置有关.只要`includes\cls_template.php`第`418`行
 
     $tag_sel = array_shift(explode(' ', $tag));
+
 拆成两句就没有问题了
 
     $tag_arr = explode(' ', $tag);
@@ -70,10 +71,30 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 或者直接修改PHP配置文件`php.ini`第`451`行，将
 
     error_reporting = E_ALL
+
 改成
 
     error_reporting = E_ALL
+
 重新启动服务即可
+
+## Ecshop后台`mktime()`错误警告
+
+安装完成之后，登录系统后台访问“商店设置”时，系统报错，提示`mktime(): You should be using the time() function instead in`.这是因为PHP版本的问题，`mktime()`不带参数被调用时，会被提示错误.
+
+问题：错误警告`mktime(): You should be using the time() function instead in`
+![Mktime](/images/ecshopproblems/16-04-05-5-mktime.JPG)
+
+方案：根据错误提示找到相应错误所在的文件，并且定位到问题代码，将
+
+    $auth = mktime();
+
+替换成
+
+    $auth = time();
+
+刷新页面就可以了
+
 
 ## 参考资料
 

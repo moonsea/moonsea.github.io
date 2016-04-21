@@ -95,6 +95,43 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
 刷新页面就可以了
 
+## 后台管理各页面功能备注
+
+`templates/index.htm`：后台主界面，通过`<frameset></frameset>`来实现页面分块  
+`common.php`:后台基本显示语言  
+`goods`: 添加`unit`字段作为商品单位  
+`goods`: 添加`goods_bar_code`字段作为商品条形码  
+`goods`: 添加`goods_max_buy`字段作为`限购数量`  
+`goods`: 添加`goods_min_buy`字段作为`最低购买量`  
+`goods`: 添加`goods_bind_type`字段作为`装订类型`  
+`goods`: 添加`goods_composite_page`字段作为`合成图片格式`:0:单页,1:跨页  
+`goods`: 添加`goods_composite_pic`字段作为`合成图片格式`:0:jpg,1:png  
+`goods`: 添加`goods_gray`字段作为`灰度特效`:0:不启用,1:启用  
+`goods`: 添加`goods_composite_pdf`字段作为`合并为pdf`:0:否,1:是  
+`goods`: 添加`goods_album`字段作为`画册选项`:0:硬壳,1:软壳，2:皮革  
+`goods`: 添加`goods_add_page_start`字段作为`起始页数`  
+`goods`: 添加`goods_add_page_max`字段作为`最大页数`  
+`goods`: 添加`goods_add_page_unit`字段作为`加页单位`  
+`goods`: 添加`is_text_on`字段作为`开启文本`  
+`goods`: 添加`is_pic`字段作为`开启用户图片`  
+`goods`: 添加`is_background`字段作为`开启背景`  
+`goods`: 添加`is_gif`字段作为`开启剪贴画`  
+`goods`: 添加`is_border`字段作为`开启边框`  
+`goods`: 添加`is_mask`字段作为`开启蒙版`  
+`goods`: 添加`is_format`字段作为`开启版式`  
+`goods`: 添加`is_textvr`字段作为`开启竖排文字`  
+`goods`: 添加`goods_line_min`字段作为`最小行距`  
+`goods`: 添加`goods_line_max`字段作为`最大行距`  
+`goods`: 添加`goods_line_up_unit`字段作为`行距递增单位`  
+`goods`: 添加`goods_defination`字段作为`分辨率`  
+`goods`: 添加`goods_blood_h`字段作为`普通页水平出血`  
+`goods`: 添加`goods_blood_v`字段作为`普通页垂直出血`  
+`goods`: 添加`goods_safe_line`字段作为`安全线`  
+
+新建`ecs_goods_bind_type`表
+
+>type_id:类型id
+>type_name：类型名称
 
 ## 参考资料
 

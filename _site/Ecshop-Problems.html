@@ -148,7 +148,47 @@ $tag_sel = array_shift($tag_arr);
 
 <p>刷新页面就可以了</p>
 
-<h2 id="section-1">参考资料</h2>
+<h2 id="section-1">后台管理各页面功能备注</h2>
+
+<p><code>templates/index.htm</code>：后台主界面，通过<code>&lt;frameset&gt;&lt;/frameset&gt;</code>来实现页面分块<br />
+<code>common.php</code>:后台基本显示语言<br />
+<code>goods</code>: 添加<code>unit</code>字段作为商品单位<br />
+<code>goods</code>: 添加<code>goods_bar_code</code>字段作为商品条形码<br />
+<code>goods</code>: 添加<code>goods_max_buy</code>字段作为<code>限购数量</code><br />
+<code>goods</code>: 添加<code>goods_min_buy</code>字段作为<code>最低购买量</code><br />
+<code>goods</code>: 添加<code>goods_bind_type</code>字段作为<code>装订类型</code><br />
+<code>goods</code>: 添加<code>goods_composite_page</code>字段作为<code>合成图片格式</code>:0:单页,1:跨页<br />
+<code>goods</code>: 添加<code>goods_composite_pic</code>字段作为<code>合成图片格式</code>:0:jpg,1:png<br />
+<code>goods</code>: 添加<code>goods_gray</code>字段作为<code>灰度特效</code>:0:不启用,1:启用<br />
+<code>goods</code>: 添加<code>goods_composite_pdf</code>字段作为<code>合并为pdf</code>:0:否,1:是<br />
+<code>goods</code>: 添加<code>goods_album</code>字段作为<code>画册选项</code>:0:硬壳,1:软壳，2:皮革<br />
+<code>goods</code>: 添加<code>goods_add_page_start</code>字段作为<code>起始页数</code><br />
+<code>goods</code>: 添加<code>goods_add_page_max</code>字段作为<code>最大页数</code><br />
+<code>goods</code>: 添加<code>goods_add_page_unit</code>字段作为<code>加页单位</code><br />
+<code>goods</code>: 添加<code>is_text_on</code>字段作为<code>开启文本</code><br />
+<code>goods</code>: 添加<code>is_pic</code>字段作为<code>开启用户图片</code><br />
+<code>goods</code>: 添加<code>is_background</code>字段作为<code>开启背景</code><br />
+<code>goods</code>: 添加<code>is_gif</code>字段作为<code>开启剪贴画</code><br />
+<code>goods</code>: 添加<code>is_border</code>字段作为<code>开启边框</code><br />
+<code>goods</code>: 添加<code>is_mask</code>字段作为<code>开启蒙版</code><br />
+<code>goods</code>: 添加<code>is_format</code>字段作为<code>开启版式</code><br />
+<code>goods</code>: 添加<code>is_textvr</code>字段作为<code>开启竖排文字</code><br />
+<code>goods</code>: 添加<code>goods_line_min</code>字段作为<code>最小行距</code><br />
+<code>goods</code>: 添加<code>goods_line_max</code>字段作为<code>最大行距</code><br />
+<code>goods</code>: 添加<code>goods_line_up_unit</code>字段作为<code>行距递增单位</code><br />
+<code>goods</code>: 添加<code>goods_defination</code>字段作为<code>分辨率</code><br />
+<code>goods</code>: 添加<code>goods_blood_h</code>字段作为<code>普通页水平出血</code><br />
+<code>goods</code>: 添加<code>goods_blood_v</code>字段作为<code>普通页垂直出血</code><br />
+<code>goods</code>: 添加<code>goods_safe_line</code>字段作为<code>安全线</code></p>
+
+<p>新建<code>ecs_goods_bind_type</code>表</p>
+
+<blockquote>
+  <p>type_id:类型id
+type_name：类型名称</p>
+</blockquote>
+
+<h2 id="section-2">参考资料</h2>
 
 <p>[1]<a href="http://www.cnblogs.com/thinksasa/archive/2013/03/12/2955922.html">Ecshop安装过程中的的问题：cls_image::gd_version()和不支持JPEG</a><br />
 [2]<a href="http://www.cnblogs.com/wallis0922/archive/2012/12/08/2808199.html">安装Ecshop首页出现报错：Only variables should be passed by referen</a></p>

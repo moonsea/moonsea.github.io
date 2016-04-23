@@ -150,10 +150,19 @@ $tag_sel = array_shift($tag_arr);
 
 <h2 id="section-1">后台管理各页面功能备注</h2>
 
-<p><code>templates/index.htm</code>：后台主界面，通过<code>&lt;frameset&gt;&lt;/frameset&gt;</code>来实现页面分块<br />
-<code>common.php</code>:后台基本显示语言<br />
-<code>goods</code>: 添加<code>unit</code>字段作为商品单位<br />
-<code>goods</code>: 添加<code>goods_bar_code</code>字段作为商品条形码<br />
+<h5 id="htm"><em>htm</em></h5>
+<hr />
+<p><code>templates/index.htm</code>：后台主界面，通过<code>&lt;frameset&gt;&lt;/frameset&gt;</code>来实现页面分块</p>
+
+<h5 id="php"><em>php</em></h5>
+<hr />
+<p><code>common.php</code>:后台基本显示语言</p>
+
+<h5 id="goods"><em>goods</em>表</h5>
+<hr />
+
+<p><code>goods</code>: 添加<code>unit</code>字段作为商品单位<br />
+<code>goods</code>: 添加<code>goods_bar_code</code>字段作为<code>商品条形码</code><br />
 <code>goods</code>: 添加<code>goods_max_buy</code>字段作为<code>限购数量</code><br />
 <code>goods</code>: 添加<code>goods_min_buy</code>字段作为<code>最低购买量</code><br />
 <code>goods</code>: 添加<code>goods_bind_type</code>字段作为<code>装订类型</code><br />
@@ -177,18 +186,51 @@ $tag_sel = array_shift($tag_arr);
 <code>goods</code>: 添加<code>goods_line_max</code>字段作为<code>最大行距</code><br />
 <code>goods</code>: 添加<code>goods_line_up_unit</code>字段作为<code>行距递增单位</code><br />
 <code>goods</code>: 添加<code>goods_defination</code>字段作为<code>分辨率</code><br />
+<code>goods</code>: 添加<code>goods_inner_width</code>字段作为<code>内页设计宽度</code><br />
+<code>goods</code>: 添加<code>goods_inner_height</code>字段作为<code>内页设计高度</code><br />
 <code>goods</code>: 添加<code>goods_blood_h</code>字段作为<code>普通页水平出血</code><br />
 <code>goods</code>: 添加<code>goods_blood_v</code>字段作为<code>普通页垂直出血</code><br />
 <code>goods</code>: 添加<code>goods_safe_line</code>字段作为<code>安全线</code></p>
 
-<p>新建<code>ecs_goods_bind_type</code>表</p>
+<h5 id="ecsgoodsbindtype"><em>ecs_goods_bind_type</em>表</h5>
+<hr />
+
+<p>新建<code>ecs_goods_bind_type</code>表<code>装订类型表</code></p>
 
 <blockquote>
-  <p>type_id:类型id
+  <p>type_id:类型id<br />
 type_name：类型名称</p>
 </blockquote>
 
-<h2 id="section-2">参考资料</h2>
+<h5 id="adminuser"><em>admin_user</em>表</h5>
+<hr />
+
+<p><code>admin_user</code>: 添加<code>invitation_code</code>字段作为<code>邀请码</code><br />
+<code>admin_user</code>: 添加<code>phone</code>字段作为<code>手机号码</code><br />
+<code>admin_user</code>: 添加<code>company</code>字段作为<code>所属部门</code><br />
+<code>admin_user</code>: 添加<code>bank_card</code>字段作为<code>银行卡号</code></p>
+
+<h5 id="orderinfo"><em>order_info</em>表</h5>
+<hr />
+
+<p><code>order_info</code>:添加<code>invitation_code</code>字段作为<code>邀请码</code></p>
+
+<h2 id="section-2">时间戳数据库处理</h2>
+
+<pre><code>/* 添加按照付款时间每日分组 */
+$group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
+
+/* 查询距添加代理用户第几天 */
+$sql = "SELECT TO_DAYS(FROM_UNIXTIME(oi.pay_time)) - TO_DAYS(FROM_UNIXTIME(au.add_time)) AS day_num, ";
+
+/* 查询每日订单数 */
+$sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
+
+/* 查询每日产品数 */
+$sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
+</code></pre>
+
+<h2 id="section-3">参考资料</h2>
 
 <p>[1]<a href="http://www.cnblogs.com/thinksasa/archive/2013/03/12/2955922.html">Ecshop安装过程中的的问题：cls_image::gd_version()和不支持JPEG</a><br />
 [2]<a href="http://www.cnblogs.com/wallis0922/archive/2012/12/08/2808199.html">安装Ecshop首页出现报错：Only variables should be passed by referen</a></p>

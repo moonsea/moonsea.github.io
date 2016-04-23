@@ -97,9 +97,16 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
 ## 后台管理各页面功能备注
 
+##### *htm*
+---
 `templates/index.htm`：后台主界面，通过`<frameset></frameset>`来实现页面分块  
 
+##### *php*
+---
 `common.php`:后台基本显示语言  
+
+##### *goods*表
+---
 
 `goods`: 添加`unit`字段作为商品单位  
 `goods`: 添加`goods_bar_code`字段作为`商品条形码`  
@@ -132,16 +139,42 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `goods`: 添加`goods_blood_v`字段作为`普通页垂直出血`  
 `goods`: 添加`goods_safe_line`字段作为`安全线`  
 
+##### *ecs_goods_bind_type*表
+---
+
+
 新建`ecs_goods_bind_type`表`装订类型表`
 
->type_id:类型id
+>type_id:类型id  
 >type_name：类型名称
+
+##### *admin_user*表
+---
+
 
 `admin_user`: 添加`invitation_code`字段作为`邀请码`  
 `admin_user`: 添加`phone`字段作为`手机号码`  
 `admin_user`: 添加`company`字段作为`所属部门`  
 `admin_user`: 添加`bank_card`字段作为`银行卡号`  
 
+##### *order_info*表
+---
+
+`order_info`:添加`invitation_code`字段作为`邀请码`
+
+## 时间戳数据库处理
+
+    /* 添加按照付款时间每日分组 */
+    $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
+    
+    /* 查询距添加代理用户第几天 */
+    $sql = "SELECT TO_DAYS(FROM_UNIXTIME(oi.pay_time)) - TO_DAYS(FROM_UNIXTIME(au.add_time)) AS day_num, ";
+    
+    /* 查询每日订单数 */
+    $sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
+    
+    /* 查询每日产品数 */
+    $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 
 ## 参考资料
 

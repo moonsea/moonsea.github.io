@@ -142,11 +142,19 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 ##### *ecs_goods_bind_type*表
 ---
 
-
 新建`ecs_goods_bind_type`表`装订类型表`
 
 >type_id:类型id  
 >type_name：类型名称
+
+##### *ecs_material_type*表
+---
+
+新建`ecs_material_type`表`材质类型表`
+
+>type_id:类型id  
+>type_name：类型名称  
+>remark：备注
 
 ##### *admin_user*表
 ---
@@ -160,7 +168,20 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 ##### *order_info*表
 ---
 
-`order_info`:添加`invitation_code`字段作为`邀请码`
+`order_info`:添加`invitation_code`字段作为`邀请码`  
+`order_info`:`order_status`字段作为`印刷厂是否处理`:`0`:未确认，`1`：已确认  
+`order_info`:添加`print_status`字段作为`印刷厂订单是否打印`:`0`:未打印订单，`1`：已打印订单  
+`order_info`:添加`download_status`字段作为`印刷厂订单是否下载`:`0`:未下载订单，`1`：已下载订单  
+
+##### *order_goods*表
+---
+
+`order_goods`:添加`bind_type`字段作为`装订类型`  
+`order_goods`:添加`material_type`字段作为`材质`  
+`order_goods`:添加`goods_height`字段作为`尺寸-长`  
+`order_goods`:添加`goods_width`字段作为`尺寸-宽`  
+`order_goods`:添加`goods_page_count`字段作为`商品页数`  
+`order_goods`:添加`goods_url`字段作为`电子稿下载地址`  
 
 ## 时间戳数据库处理
 

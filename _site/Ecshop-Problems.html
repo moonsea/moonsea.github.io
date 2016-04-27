@@ -202,6 +202,17 @@ $tag_sel = array_shift($tag_arr);
 type_name：类型名称</p>
 </blockquote>
 
+<h5 id="ecsmaterialtype"><em>ecs_material_type</em>表</h5>
+<hr />
+
+<p>新建<code>ecs_material_type</code>表<code>材质类型表</code></p>
+
+<blockquote>
+  <p>type_id:类型id<br />
+type_name：类型名称<br />
+remark：备注</p>
+</blockquote>
+
 <h5 id="adminuser"><em>admin_user</em>表</h5>
 <hr />
 
@@ -213,7 +224,20 @@ type_name：类型名称</p>
 <h5 id="orderinfo"><em>order_info</em>表</h5>
 <hr />
 
-<p><code>order_info</code>:添加<code>invitation_code</code>字段作为<code>邀请码</code></p>
+<p><code>order_info</code>:添加<code>invitation_code</code>字段作为<code>邀请码</code><br />
+<code>order_info</code>:<code>order_status</code>字段作为<code>印刷厂是否处理</code>:<code>0</code>:未确认，<code>1</code>：已确认<br />
+<code>order_info</code>:添加<code>print_status</code>字段作为<code>印刷厂订单是否打印</code>:<code>0</code>:未打印订单，<code>1</code>：已打印订单<br />
+<code>order_info</code>:添加<code>download_status</code>字段作为<code>印刷厂订单是否下载</code>:<code>0</code>:未下载订单，<code>1</code>：已下载订单</p>
+
+<h5 id="ordergoods"><em>order_goods</em>表</h5>
+<hr />
+
+<p><code>order_goods</code>:添加<code>bind_type</code>字段作为<code>装订类型</code><br />
+<code>order_goods</code>:添加<code>material_type</code>字段作为<code>材质</code><br />
+<code>order_goods</code>:添加<code>goods_height</code>字段作为<code>尺寸-长</code><br />
+<code>order_goods</code>:添加<code>goods_width</code>字段作为<code>尺寸-宽</code><br />
+<code>order_goods</code>:添加<code>goods_page_count</code>字段作为<code>商品页数</code><br />
+<code>order_goods</code>:添加<code>goods_url</code>字段作为<code>电子稿下载地址</code></p>
 
 <h2 id="section-2">时间戳数据库处理</h2>
 

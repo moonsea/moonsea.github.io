@@ -163,6 +163,8 @@ $tag_sel = array_shift($tag_arr);
 <hr />
 <p><code class="highlighter-rouge">templates/index.htm</code>：后台主界面，通过<code class="highlighter-rouge">&lt;frameset&gt;&lt;/frameset&gt;</code>来实现页面分块</p>
 
+<h2 id="section-2">数据库修改记录和使用说明</h2>
+
 <h5 id="php"><em>php</em></h5>
 <hr />
 <p><code class="highlighter-rouge">common.php</code>:后台基本显示语言</p>
@@ -199,7 +201,28 @@ $tag_sel = array_shift($tag_arr);
 <code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_inner_height</code>字段作为<code class="highlighter-rouge">内页设计高度</code><br />
 <code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_blood_h</code>字段作为<code class="highlighter-rouge">普通页水平出血</code><br />
 <code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_blood_v</code>字段作为<code class="highlighter-rouge">普通页垂直出血</code><br />
-<code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_safe_line</code>字段作为<code class="highlighter-rouge">安全线</code></p>
+<code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_safe_line</code>字段作为<code class="highlighter-rouge">安全线</code><br />
+<code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_inner_type</code>字段作为<code class="highlighter-rouge">内页材质</code><br />
+<code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_size_width</code>字段作为<code class="highlighter-rouge">尺寸-宽</code><br />
+<code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_size_length</code>字段作为<code class="highlighter-rouge">尺寸-长</code></p>
+
+<h4 id="section-3">2016-04-28整理商品（规格）管理所需要字段</h4>
+<hr />
+
+<p><code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_sn</code>字段作为<code class="highlighter-rouge">商品编号</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_name</code>字段作为<code class="highlighter-rouge">商品名称</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_brief</code>字段作为<code class="highlighter-rouge">商品简介</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_bind_type</code>字段作为<code class="highlighter-rouge">装订类型</code>:取自<code class="highlighter-rouge">goods_bind_type</code>表<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">shop_price</code>字段作为<code class="highlighter-rouge">商品价格</code>
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_thumb</code>字段作为<code class="highlighter-rouge">商品相册</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_add_page_max</code>字段作为<code class="highlighter-rouge">商品最大页数</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_composite_page</code>字段作为<code class="highlighter-rouge">合成图片格式</code>:0:单页,1:跨页<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_composite_pic</code>字段作为<code class="highlighter-rouge">合成图片格式</code>:0:jpg,1:png<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_gray</code>字段作为<code class="highlighter-rouge">灰度特效</code>:0:不启用,1:启用<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_composite_pdf</code>字段作为<code class="highlighter-rouge">合并为pdf</code>:0:不启用,1:启用<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_inner_type</code>字段作为<code class="highlighter-rouge">内页材质</code>：取自<code class="highlighter-rouge">material_type</code>表<br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_size_width</code>字段作为<code class="highlighter-rouge">尺寸-宽</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_size_length</code>字段作为<code class="highlighter-rouge">尺寸-长</code></p>
 
 <h5 id="ecsgoodsbindtype"><em>ecs_goods_bind_type</em>表</h5>
 <hr />
@@ -248,7 +271,7 @@ remark：备注</p>
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_page_count</code>字段作为<code class="highlighter-rouge">商品页数</code><br />
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_url</code>字段作为<code class="highlighter-rouge">电子稿下载地址</code></p>
 
-<h2 id="section-2">时间戳数据库处理</h2>
+<h2 id="section-4">时间戳数据库处理</h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>/* 添加按照付款时间每日分组 */
 $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
@@ -264,7 +287,7 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 </code></pre>
 </div>
 
-<h2 id="section-3">参考资料</h2>
+<h2 id="section-5">参考资料</h2>
 
 <p>[1]<a href="http://www.cnblogs.com/thinksasa/archive/2013/03/12/2955922.html">Ecshop安装过程中的的问题：cls_image::gd_version()和不支持JPEG</a><br />
 [2]<a href="http://www.cnblogs.com/wallis0922/archive/2012/12/08/2808199.html">安装Ecshop首页出现报错：Only variables should be passed by referen</a></p>

@@ -209,11 +209,12 @@ $tag_sel = array_shift($tag_arr);
 <h4 id="section-3">2016-04-28整理商品（规格）管理所需要字段</h4>
 <hr />
 
-<p><code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_sn</code>字段作为<code class="highlighter-rouge">商品编号</code><br />
+<p><code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_id</code>字段作为<code class="highlighter-rouge">商品id</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_sn</code>字段作为<code class="highlighter-rouge">商品编号</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_name</code>字段作为<code class="highlighter-rouge">商品名称</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_brief</code>字段作为<code class="highlighter-rouge">商品简介</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_bind_type</code>字段作为<code class="highlighter-rouge">装订类型</code>:取自<code class="highlighter-rouge">goods_bind_type</code>表<br />
-<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">shop_price</code>字段作为<code class="highlighter-rouge">商品价格</code>
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">shop_price</code>字段作为<code class="highlighter-rouge">商品价格</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_thumb</code>字段作为<code class="highlighter-rouge">商品相册</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_add_page_max</code>字段作为<code class="highlighter-rouge">商品最大页数</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_composite_page</code>字段作为<code class="highlighter-rouge">合成图片格式</code>:0:单页,1:跨页<br />
@@ -222,7 +223,9 @@ $tag_sel = array_shift($tag_arr);
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_composite_pdf</code>字段作为<code class="highlighter-rouge">合并为pdf</code>:0:不启用,1:启用<br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_inner_type</code>字段作为<code class="highlighter-rouge">内页材质</code>：取自<code class="highlighter-rouge">material_type</code>表<br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_size_width</code>字段作为<code class="highlighter-rouge">尺寸-宽</code><br />
-<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_size_length</code>字段作为<code class="highlighter-rouge">尺寸-长</code></p>
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_size_length</code>字段作为<code class="highlighter-rouge">尺寸-长</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">add_time</code>字段作为<code class="highlighter-rouge">商品添加时间</code><br />
+<code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">last_update</code>字段作为<code class="highlighter-rouge">最后更新时间</code></p>
 
 <h5 id="ecsgoodsbindtype"><em>ecs_goods_bind_type</em>表</h5>
 <hr />

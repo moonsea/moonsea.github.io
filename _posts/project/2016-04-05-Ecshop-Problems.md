@@ -147,11 +147,12 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 #### 2016-04-28整理商品（规格）管理所需要字段
 ---
 
+`goods`:`goods_id`字段作为`商品id`  
 `goods`:`goods_sn`字段作为`商品编号`  
 `goods`:`goods_name`字段作为`商品名称`  
 `goods`:`goods_brief`字段作为`商品简介`  
 `goods`:`goods_bind_type`字段作为`装订类型`:取自`goods_bind_type`表  
-`goods`:`shop_price`字段作为`商品价格`
+`goods`:`shop_price`字段作为`商品价格`  
 `goods`:`goods_thumb`字段作为`商品相册`  
 `goods`:`goods_add_page_max`字段作为`商品最大页数`  
 `goods`:`goods_composite_page`字段作为`合成图片格式`:0:单页,1:跨页  
@@ -161,6 +162,8 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `goods`:`goods_inner_type`字段作为`内页材质`：取自`material_type`表  
 `goods`:`goods_size_width`字段作为`尺寸-宽`  
 `goods`:`goods_size_length`字段作为`尺寸-长`  
+`goods`:`add_time`字段作为`商品添加时间`  
+`goods`:`last_update`字段作为`最后更新时间`  
 
 ##### *ecs_goods_bind_type*表
 ---

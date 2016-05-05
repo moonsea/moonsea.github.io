@@ -198,6 +198,9 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `order_info`:`order_status`字段作为`印刷厂是否处理`:`0`:未确认，`1`：已确认  
 `order_info`:添加`print_status`字段作为`印刷厂订单是否打印`:`0`:未打印订单，`1`：已打印订单  
 `order_info`:添加`download_status`字段作为`印刷厂订单是否下载`:`0`:未下载订单，`1`：已下载订单  
+`order_info`:`pay_status`字段作为`用户付款状态`:`0`:未付款:`2`：已付款  
+`order_info`:`user_id`字段作为`用户名称`:用户下单时存入当前登录用户名称
+`order_info`:`invoice_no`字段作为`快递单号`
 
 ##### *order_goods*表
 ---
@@ -214,13 +217,13 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 
     /* 添加按照付款时间每日分组 */
     $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
-    
+
     /* 查询距添加代理用户第几天 */
     $sql = "SELECT TO_DAYS(FROM_UNIXTIME(oi.pay_time)) - TO_DAYS(FROM_UNIXTIME(au.add_time)) AS day_num, ";
-    
+
     /* 查询每日订单数 */
     $sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
-    
+
     /* 查询每日产品数 */
     $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 

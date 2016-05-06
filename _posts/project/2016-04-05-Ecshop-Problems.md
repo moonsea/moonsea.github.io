@@ -101,11 +101,11 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 ---
 `templates/index.htm`：后台主界面，通过`<frameset></frameset>`来实现页面分块  
 
-## 数据库修改记录和使用说明
-
 ##### *php*
 ---
 `common.php`:后台基本显示语言  
+
+## 数据库修改记录和使用说明
 
 ##### *goods*表
 ---
@@ -212,6 +212,21 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `order_goods`:添加`goods_page_count`字段作为`商品页数`  
 `order_goods`:添加`goods_url`字段作为`电子稿下载地址`  
 
+##### *ecs_product_yzldiy*表
+
+`product_yzldiy`:`pid`字段作为`模板编号`  
+`product_yzldiy`:`cid`字段作为`类别`:`product_category_yzldiy`表中的`id`  
+`product_yzldiy`:`preview`字段作为`预览图`  
+`product_yzldiy`:`mbDes`字段作为`模板描述`  
+`product_yzldiy`:`name`字段作为`模板名称`  
+`product_yzldiy`:`status`字段值为`1`  
+`product_yzldiy`:`tid`字段值为`00001`  
+
+##### *ecs_product_category_yzldiy*表
+
+`product_category_yzldiy`:`id`字段作为`模板类别编号`  
+`product_category_yzldiy`:`name`字段作为`模板类别名称`  
+`product_category_yzldiy`:`info`字段作为`类别说明`  
 
 ## 时间戳数据库处理
 

@@ -163,11 +163,11 @@ $tag_sel = array_shift($tag_arr);
 <hr />
 <p><code class="highlighter-rouge">templates/index.htm</code>：后台主界面，通过<code class="highlighter-rouge">&lt;frameset&gt;&lt;/frameset&gt;</code>来实现页面分块</p>
 
-<h2 id="section-2">数据库修改记录和使用说明</h2>
-
 <h5 id="php"><em>php</em></h5>
 <hr />
 <p><code class="highlighter-rouge">common.php</code>:后台基本显示语言</p>
+
+<h2 id="section-2">数据库修改记录和使用说明</h2>
 
 <h5 id="goods"><em>goods</em>表</h5>
 <hr />
@@ -276,6 +276,22 @@ remark：备注</p>
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_width</code>字段作为<code class="highlighter-rouge">尺寸-宽</code><br />
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_page_count</code>字段作为<code class="highlighter-rouge">商品页数</code><br />
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_url</code>字段作为<code class="highlighter-rouge">电子稿下载地址</code></p>
+
+<h5 id="ecsproductyzldiy"><em>ecs_product_yzldiy</em>表</h5>
+
+<p><code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">pid</code>字段作为<code class="highlighter-rouge">模板编号</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">cid</code>字段作为<code class="highlighter-rouge">类别</code>:<code class="highlighter-rouge">product_category_yzldiy</code>表中的<code class="highlighter-rouge">id</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">preview</code>字段作为<code class="highlighter-rouge">预览图</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">mbDes</code>字段作为<code class="highlighter-rouge">模板描述</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">name</code>字段作为<code class="highlighter-rouge">模板名称</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">status</code>字段值为<code class="highlighter-rouge">1</code><br />
+<code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">tid</code>字段值为<code class="highlighter-rouge">00001</code></p>
+
+<h5 id="ecsproductcategoryyzldiy"><em>ecs_product_category_yzldiy</em>表</h5>
+
+<p><code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">id</code>字段作为<code class="highlighter-rouge">模板类别编号</code><br />
+<code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">name</code>字段作为<code class="highlighter-rouge">模板类别名称</code><br />
+<code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">info</code>字段作为<code class="highlighter-rouge">类别说明</code></p>
 
 <h2 id="section-4">时间戳数据库处理</h2>
 

@@ -265,7 +265,8 @@ remark：备注</p>
 <code class="highlighter-rouge">order_info</code>:添加<code class="highlighter-rouge">download_status</code>字段作为<code class="highlighter-rouge">印刷厂订单是否下载</code>:<code class="highlighter-rouge">0</code>:未下载订单，<code class="highlighter-rouge">1</code>：已下载订单<br />
 <code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">pay_status</code>字段作为<code class="highlighter-rouge">用户付款状态</code>:<code class="highlighter-rouge">0</code>:未付款:<code class="highlighter-rouge">2</code>：已付款<br />
 <code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">user_id</code>字段作为<code class="highlighter-rouge">用户名称</code>:用户下单时存入当前登录用户名称
-<code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">invoice_no</code>字段作为<code class="highlighter-rouge">快递单号</code></p>
+<code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">invoice_no</code>字段作为<code class="highlighter-rouge">快递单号</code><br />
+<code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">user_name</code>字段作为<code class="highlighter-rouge">下单用户姓名</code>:用户下单时写入</p>
 
 <h5 id="ordergoods"><em>order_goods</em>表</h5>
 <hr />
@@ -341,6 +342,10 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/p7-bohara">English Writing</a></li>
+        
+            <li><a href="/English-Writing">English Writing</a></li>
         
             <li><a href="/Review-Survey">如何写一篇Survey的Review</a></li>
         

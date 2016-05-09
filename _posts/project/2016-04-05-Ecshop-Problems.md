@@ -200,7 +200,8 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `order_info`:添加`download_status`字段作为`印刷厂订单是否下载`:`0`:未下载订单，`1`：已下载订单  
 `order_info`:`pay_status`字段作为`用户付款状态`:`0`:未付款:`2`：已付款  
 `order_info`:`user_id`字段作为`用户名称`:用户下单时存入当前登录用户名称
-`order_info`:`invoice_no`字段作为`快递单号`
+`order_info`:`invoice_no`字段作为`快递单号`  
+`order_info`:`user_name`字段作为`下单用户姓名`:用户下单时写入  
 
 ##### *order_goods*表
 ---

@@ -41,10 +41,15 @@ description: 主要整理安全，人工智能，软件工程方向的会议及�
 ===
 
 ### *ICDSC*([International Conference on Distributed Smart Cameras][])&nbsp;&nbsp;&nbsp;&nbsp;2016-05-11&nbsp;&nbsp;&nbsp;&nbsp;Paris.France
+
 ### *BigR&I*([International Symposium on Big Data Research and Innovation][])&nbsp;&nbsp;&nbsp;&nbsp;2016-05-12&nbsp;&nbsp;&nbsp;&nbsp;Vienna.Austria
+
 ### *SETTA*([Symposium on Dependable Software Engineering: Theories, Tools and Applications][])&nbsp;&nbsp;&nbsp;&nbsp;2016-05-12&nbsp;&nbsp;&nbsp;&nbsp;Beijing.China
+
 ### *ITHET*([International Conference on Information Technology Based Higher Education and Training][])&nbsp;&nbsp;&nbsp;&nbsp;[CORE-C]&nbsp;&nbsp;&nbsp;&nbsp;2016-05-13&nbsp;&nbsp;&nbsp;&nbsp;Istanbul.Turkey
+
 ### *ICCAC*([IEEE International Conference on Cloud and Autonomic Computing][])&nbsp;&nbsp;&nbsp;&nbsp;2016-05-13&nbsp;&nbsp;&nbsp;&nbsp;Augsburg.Germany
+
 ### *ALT*([International Conference on Algorithmic Learning Theory][])&nbsp;&nbsp;&nbsp;&nbsp;[CCF-C]&nbsp;&nbsp;[CORE-B]&nbsp;&nbsp;&nbsp;&nbsp;2016-05-13&nbsp;&nbsp;&nbsp;&nbsp;Bari.Italy
 
 ## 致谢

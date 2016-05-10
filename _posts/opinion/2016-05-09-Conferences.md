@@ -72,4 +72,5 @@ description: 主要整理安全，人工智能，软件工程方向的会议及�
 [Symposium on Dependable Software Engineering: Theories, Tools and Applications]:http://lcs.ios.ac.cn/setta/
 [International Conference on Information Technology Based Higher Education and Training]:http://www.ithet.boun.edu.tr/
 [IEEE International Conference on Cloud and Autonomic Computing]:http://iccac2016.se.rit.edu/index.html
+[International Conference on Algorithmic Learning Theory]: http://www.comp.nus.edu.sg/~fstephan/alt/alt2016/index.html 
 [1]: http://www.myhuiban.com/?lang=zh_cn

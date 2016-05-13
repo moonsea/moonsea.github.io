@@ -49,11 +49,24 @@
 
 <p>这篇文章是自己在阅读<a href="http://moonsea.github.io/files/Reading/Usenix/p7-bohara.pdf">Intrusion Detection in Enterprise Systems by Combining and Clustering Diverse Monitor Data</a>这篇文章进行整理的内容，以及自己follow的过程.</p>
 
+<h2 id="dbscan"><em>DBSCAN</em></h2>
+<hr />
+
+<ul>
+  <li><code class="highlighter-rouge">silhouette values</code>:剪影值.数据集中每个数据点的距离值，即每个样本与同一类别中其他样本点的不相似度与其他类别中样本的不相似度的一个关系值，数值越大说明分类结果越好</li>
+  <li>the value of ${minPts}$ should be at least $D+1$, where $D$ is the number of dimensions of the dataset used for clustering</li>
+</ul>
+
 <h2 id="section-1">致谢</h2>
 
 <p>谢谢老板</p>
 
 <h2 id="references">References</h2>
+
+<p>[1]<a href="http://www.cnblogs.com/chaosimple/archive/2013/07/01/3164775.html">常用聚类算法（一） DBSCAN算法</a><br />
+[2]<a href="http://www.tuicool.com/articles/euAZneu">DBSCAN聚类算法原理及其实现</a><br />
+[3]<a href="http://blog.csdn.net/sandyzhs/article/details/46773731">DBSCAN - 基于密度的聚类算法</a><br />
+[4]<a href="简单易学的机器学习算法——基于密度的聚类算法DBSCAN">简单易学的机器学习算法——基于密度的聚类算法DBSCAN</a></p>
 
 
         <div id="disqus_thread"></div>
@@ -111,6 +124,8 @@
 </div>
 
 <script src="/js/post.js" type="text/javascript"></script>
+<a id="scrollTop" href="javascript:scroll(0,0)">&#8657;</a>
+
     
 
     <script type="text/javascript">

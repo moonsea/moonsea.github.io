@@ -185,7 +185,6 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 ##### *admin_user*表
 ---
 
-
 `admin_user`: 添加`invitation_code`字段作为`邀请码`  
 `admin_user`: 添加`phone`字段作为`手机号码`  
 `admin_user`: 添加`company`字段作为`所属部门`  
@@ -228,6 +227,16 @@ description: 在使用 Ecshop 开发过程中，遇到的各种各样的问题�
 `product_category_yzldiy`:`id`字段作为`模板类别编号`  
 `product_category_yzldiy`:`name`字段作为`模板类别名称`  
 `product_category_yzldiy`:`info`字段作为`类别说明`  
+
+##### *ecs_product_yzldiy_gallery*表
+---
+
+新建`ecs_product_gallery`表`材质类型表`
+
+>img_id:图片id  
+>pid：模板id:`ecs_product_yzldiy`中的`pid`  
+>img_url：图片url
+
 
 ## 时间戳数据库处理
 

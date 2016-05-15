@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * Author:         Moonsea
+    -->
+    <meta charset="utf-8" />
+    <title>基于CDN平台的DDoS攻击防护 | Moonsea's Blog</title>
+    <meta name="author" content="Moonsea" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Moonsea's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="shortcut icon" href="https://help.github.com/assets/images/site/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    
+</head>
+<body>
+
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Moonsea</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="https://github.com/moonsea/" target="_blank" style="margin-left:-5px;"><img src="https://www.icinga.org/wp-content/uploads/2014/07/github_logo.png" alt="" width="25"/></a>
+            <a href="http://www.cnblogs.com/moonseazj/" target="_blank" style="margin-left:5px;"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQpVif04zTTXD3oM8ZSWaJUfxVoiZMb2C9gQQxpdq4AsRxOiU08" alt="" width="25"/></a>
+            <a href="Mailto:seainsight@126.com" target="_blank" style="margin-left:5px;"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgzheMdNlWeo7lx4-Tj95yGSJ9bHbSasD8A3BIiMFTutf2SasVaQ" alt="" width="25"/></a>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/js/prettify/prettify.css" />
+<style type="text/css">
+    body { background:#e8e8e8; }
+    @media screen and (max-width: 750px){
+        body { background:#fff; }
+    }
+    @media screen and (max-width: 1020px){
+        body { background:#fff; }
+    }
+</style>
+
+<div id="content">
+    <div class="entry">
+        <h1 class="entry-title"><a href="/CDN-DDoS" title="基于CDN平台的DDoS攻击防护">基于CDN平台的DDoS攻击防护</a></h1>
+        <p class="entry-date">2016-05-12</p>
+        <h2 id="ddos">DDoS</h2>
+
+<p><a href="http://www.leiphone.com/news/201509/9zGlIDvLhwguqOtg.html?utm_source=tuicool">漫画告诉你什么是DDoS攻击？</a></p>
+
+<h2 id="ddos-1">DDoS攻击趋势</h2>
+
+<ul>
+  <li>每月几百次</li>
+  <li>多起攻击超过1T</li>
+  <li>全年瞬时流量超过97T</li>
+  <li>UDP攻击和SYN攻击是主流</li>
+</ul>
+
+<blockquote>
+  <p>UDP多使用大包攻击<br />
+syn多使用小包：三次握手，包小量大</p>
+</blockquote>
+
+<p><img src="/images/CDNDDoS/2016-05-12-type.jpg" alt="Type" /></p>
+
+<h2 id="section">如何防御</h2>
+
+<p>针对DDoS攻击，目前采用的传统防御措施有以下几种</p>
+
+<h3 id="section-1">防火墙</h3>
+
+<ul>
+  <li>功能太强，性能不够好，无法应对大流量攻击</li>
+</ul>
+
+<h3 id="adsanti-ddos-system">ADS(Anti-DDoS System)</h3>
+
+<p>目前各公司的ADS产品防御能力不同，绿盟的ADS目前达到了40G，有些公司比如山石的产品小型机器最高达到了160G，但是一般单台机器很难起到抗DDoS攻击的效果，需要ADS集群才能够真正发挥效用。尽管如此，还存在一些问题</p>
+
+<ul>
+  <li>带宽问题. DDoS攻击的目的就是消耗带宽，如果一个攻击30G，而公司的带宽只有20G，那么攻击一般做法就是增加带宽，这就需要带宽成本。当下一轮攻击达到公司带宽上限，公司又增加带宽，这样一来就形成一个循环，无法有效防御</li>
+</ul>
+
+<h3 id="section-2">采取的措施</h3>
+
+<ul>
+  <li>程序设计</li>
+</ul>
+
+<blockquote>
+  <p>页面静态化<br />
+加入刷新频率限制，减少页面刷新</p>
+</blockquote>
+
+<ul>
+  <li>主机和系统</li>
+</ul>
+
+<blockquote>
+  <p>开启服务器syn cookie 防护小流量syn flood<br />
+firewall 丢弃恶意IP</p>
+</blockquote>
+
+<ul>
+  <li>网络设备</li>
+</ul>
+
+<blockquote>
+  <p>交换机/路由器，过滤不需要流量：WEB: UDP/ICMP
+防DDoS的ADS</p>
+</blockquote>
+
+<ul>
+  <li>网络环境</li>
+</ul>
+
+<blockquote>
+  <p>网络出口<br />
+网络带宽</p>
+</blockquote>
+
+<h3 id="why">WHY</h3>
+
+<p>尽管采取了上述种种措施，可是依然无法防御DDoS，这是因为DDoS攻击具有多样性，是一种游击攻击</p>
+
+<ul>
+  <li>攻击游击</li>
+</ul>
+
+<h2 id="cdn">CDN</h2>
+
+<p>内容分发网络</p>
+
+<ul>
+  <li>隐藏source地址，外围简历保护墙</li>
+  <li>监控结点可用性，提高稳定性，风险从本地-&gt;云端</li>
+</ul>
+
+<h3 id="section-3">防护</h3>
+
+<ul>
+  <li>ISP,近源清洗</li>
+  <li>CDN冗余带宽清洗攻击</li>
+  <li>IDC 清洗，专业防护</li>
+  <li>APP细化防护
+<img src="/images/CDNDDoS/2016-05-12-cdn.jpg" alt="CDN" /></li>
+</ul>
+
+<h3 id="section-4">优点</h3>
+
+<ul>
+  <li>平时加速，战时防御</li>
+  <li>冗余带宽和资源进行防御</li>
+  <li>专业运维</li>
+</ul>
+
+<h2 id="ddos-2">云加速DDoS防护方案</h2>
+
+<h3 id="problem">Problem</h3>
+
+<ul>
+  <li>
+    <p>多点防御统筹</p>
+  </li>
+  <li>
+    <p>混合型攻击</p>
+  </li>
+  <li>
+    <p>攻击点分散</p>
+  </li>
+  <li>
+    <p>被攻击服务站点多</p>
+  </li>
+</ul>
+
+<h3 id="solution">Solution</h3>
+
+<p>一个完整的防御体系，而不是一个简单的防御产品
+<img src="/images/CDNDDoS/protection.jpg" alt="protection" /></p>
+
+<h4 id="section-5">分散的网络环境</h4>
+
+<p>具有国内、国外两个网络环境的云。国内的网络又分为多个小结点和一个大的清洗网络</p>
+
+<ul>
+  <li>国内</li>
+</ul>
+
+<blockquote>
+  <p>小站点平时加速
+大站点战时防御，T级
+防不住扔到国外Global结点</p>
+</blockquote>
+
+<ul>
+  <li>国外</li>
+</ul>
+
+<blockquote>
+  <p>公司合作
+成本低</p>
+</blockquote>
+
+<h4 id="section-6">统一决策系统</h4>
+
+<ul>
+  <li>实时统计全球结点</li>
+  <li>蜜罐</li>
+  <li>威胁情报中心
+<img src="/images/CDNDDoS/unit.jpg" alt="unit" /></li>
+</ul>
+
+<blockquote>
+  <p>合作共享
+黑名单</p>
+</blockquote>
+
+<h4 id="section-7">全能监控设备</h4>
+
+<p>核心交换机进行镜像</p>
+
+<ul>
+  <li>性能分析</li>
+  <li>网络问题定位</li>
+  <li>流量组成分析
+<img src="/images/CDNDDoS/monitor.jpg" alt="monitor" /></li>
+</ul>
+
+<h4 id="tcpflow">TCPFLOW+</h4>
+
+<h4 id="section-8">攻击发现策略</h4>
+
+<ul>
+  <li>四层</li>
+  <li>分析线上流量比例</li>
+</ul>
+
+<blockquote>
+  <p>syn &gt; 10:syn flood,noaml:3:正常访问syn比例占到访问流量的3%，如果比例超过了10%，说明很可能发生了syn flood
+udp,icmp &gt; 5：访问流量udp，icmp比例超过了5%，说明很可能发生攻击
+rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻击</p>
+</blockquote>
+
+<p>通过对线上流量比例的分析，能够及早发现攻击</p>
+
+<h4 id="dns">传统DNS调度</h4>
+
+<p>一般CDN网络，客户端进行网络服务访问，需要先访问DNS缓存，然后没有命中，再去访问本地的DNS缓存，没有命中的话，继续访问服务器的DNS。</p>
+
+<ul>
+  <li>noaml cdn : 50g，正常情况下CDN网络能够抵抗50g流量的DDoS攻击</li>
+  <li>调度: ttl : time to live</li>
+</ul>
+
+<p>传统CDN网络采用TTL的方法来更新DNS缓存，这样需要修改权威DNS，需要等待本地缓存失败，等待本地缓存失效才能够进行更新，这样周期比较长，可能在源站已经被攻击DOWN掉，DNS还没有更新</p>
+
+<blockquote>
+  <p>DNS缓存 -&gt; 本地DNS -&gt; server DNS
+修改权威dns
+等待本地缓存失效
+等待local dns 缓存失效</p>
+</blockquote>
+
+<h4 id="section-9">无损调度</h4>
+
+<ul>
+  <li>电信网络合作</li>
+  <li>攻击ip在高防结点，改变路由结构，直接牵引流量</li>
+</ul>
+
+<h4 id="section-10">多样防护策略</h4>
+
+<ul>
+  <li>syn cookie/syn proxy</li>
+  <li>safe reset</li>
+  <li>syn 重传</li>
+  <li>智能分析
+<img src="/images/CDNDDoS/multi.jpg" alt="multi" /></li>
+</ul>
+
+<h3 id="cc">CC防御</h3>
+
+<p>应用层攻击，不在tcp，ip，udp层进行攻击，直接攻击应用层</p>
+
+<h4 id="section-11">开始阶段</h4>
+
+<ul>
+  <li>web服务瞬时链接数量急剧增多</li>
+  <li>ip数量增多</li>
+</ul>
+
+<h4 id="section-12">定位阶段</h4>
+
+<ul>
+  <li>部分IP,UA,REFER访问频率非常快</li>
+  <li>请求url单一或规律性明显</li>
+</ul>
+
+<h4 id="section-13">触发阶段</h4>
+
+<ul>
+  <li>服务器和客户端相应请求降低</li>
+  <li>服务器性能下降，相应变慢甚至停止</li>
+</ul>
+
+<h4 id="section-14">回顾</h4>
+
+<ul>
+  <li>IP信誉积累，为下一次防御收集信息</li>
+</ul>
+
+<h3 id="section-15">手段和难点</h3>
+
+<ul>
+  <li>特征多</li>
+  <li>绕过技术高</li>
+  <li>网络木马攻击</li>
+  <li>突发攻击导致源站直接down</li>
+</ul>
+
+<h4 id="section-16">创新防御</h4>
+
+<ul>
+  <li>源站保护</li>
+</ul>
+
+<blockquote>
+  <p>不同优先级队列请求源站
+感知源站响应能力，适当放行</p>
+</blockquote>
+
+<ul>
+  <li>结点分析</li>
+</ul>
+
+<blockquote>
+  <p>可疑ip
+被攻击url
+筛选IP,优先拦截
+辅助COOKIE</p>
+</blockquote>
+
+<h2 id="section-17">致谢</h2>
+
+<p>谢谢<a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#119;&#117;&#104;&#097;&#111;&#116;&#105;&#110;&#103;&#064;&#098;&#097;&#105;&#100;&#117;&#046;&#099;&#111;&#109;">吴昊挺</a></p>
+
+<h2 id="references">References</h2>
+
+<p>[1]<a href="http://www.mrhaoting.com/?p=259">基于CDN平台的DDOS安全防护</a><br />
+[2]<a href="http://edu.aqniu.com/course/341/lesson/list">DDoS攻击防护</a></p>
+
+
+        <div id="disqus_thread"></div>
+        <script>
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+
+            s.src = '//httpmoonseagithubio.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+
+    <div class="sidenav">
+        <h2>Blog</h2>
+        <ul class="artical-list">
+        
+            <li><a href="/Build-Github-Pages">使用 Github 搭建自己的博客</a></li>
+        
+            <li><a href="/My-Fisrt-Blog">我的第一篇 Blog</a></li>
+        
+        </ul>
+
+        <h2>Opinion</h2>
+        <ul class="artical-list">
+        
+            <li><a href="/Programming">Amazing Programming</a></li>
+        
+            <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
+        
+            <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
+        
+            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
+        
+            <li><a href="/English-Writing">English Writing</a></li>
+        
+            <li><a href="/Review-Survey">如何写一篇Survey的Review</a></li>
+        
+        </ul>
+
+        <h2>Project</h2>
+        <ul class="artical-list">
+        
+            <li><a href="/Ecshop-Problems">Ecshop 开发问题汇总</a></li>
+        
+            <li><a href="/Centos-Php">CentOs搭建Php开发环境</a></li>
+        
+            <li><a href="/Nodejs-P2pspider">p2pspider(读写文件和Mongodb版)</a></li>
+        
+            <li><a href="/CentOs-aria2">CentOs 安装多线程下载工具</a></li>
+        
+            <li><a href="/Wabacus-Problems">Wabacus 开发问题汇总</a></li>
+        
+        </ul>
+    </div>
+</div>
+
+<script src="/js/post.js" type="text/javascript"></script>
+<a id="scrollTop" href="javascript:scroll(0,0)">&#8657;</a>
+
+    
+
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74981935-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+</body>
+</html>

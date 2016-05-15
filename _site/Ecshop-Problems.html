@@ -294,6 +294,17 @@ remark：备注</p>
 <code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">name</code>字段作为<code class="highlighter-rouge">模板类别名称</code><br />
 <code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">info</code>字段作为<code class="highlighter-rouge">类别说明</code></p>
 
+<h5 id="ecsproductyzldiygallery"><em>ecs_product_yzldiy_gallery</em>表</h5>
+<hr />
+
+<p>新建<code class="highlighter-rouge">ecs_product_gallery</code>表<code class="highlighter-rouge">材质类型表</code></p>
+
+<blockquote>
+  <p>img_id:图片id<br />
+pid：模板id:<code class="highlighter-rouge">ecs_product_yzldiy</code>中的<code class="highlighter-rouge">pid</code><br />
+img_url：图片url</p>
+</blockquote>
+
 <h2 id="section-4">时间戳数据库处理</h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>/* 添加按照付款时间每日分组 */
@@ -342,6 +353,10 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Programming">Amazing Programming</a></li>
+        
+            <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
         

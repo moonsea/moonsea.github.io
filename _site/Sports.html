@@ -120,8 +120,9 @@
 <code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">last_time</code>字段: <code class="highlighter-rouge">视频最后时间</code>: VARCHAR 32: UNIXTIMESTAMP <br />
 <code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">desc</code>字段: <code class="highlighter-rouge">视频简介</code>: VARCHAR 100 <br />
 <code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">source_id</code>字段: <code class="highlighter-rouge">视频来源</code>: INT 32 <br />
-<code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">class_id</code>字段: <code class="highlighter-rouge">冗余</code> <br />
-<code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">video_path</code>字段: <code class="highlighter-rouge">视频存放路径</code>: VARCHAR 255</p>
+<code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">class</code>字段: <code class="highlighter-rouge">精选视频</code>: <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">非精选</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">精选</code>: 默认为<code class="highlighter-rouge">0</code> <br />
+<code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">video_path</code>字段: <code class="highlighter-rouge">视频存放路径</code>: VARCHAR 255 <br />
+<code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">video_cover</code>字段: <code class="highlighter-rouge">视频封面</code>: VARCHAR 255</p>
 
 <h3 id="user"><em>user</em>表</h3>
 <hr />
@@ -170,6 +171,7 @@
 <p><code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">wiki_id</code>字段: <code class="highlighter-rouge">百科id</code>: INT 32,自增,主键<br />
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">wiki_name</code>字段: <code class="highlighter-rouge">百科名称</code>: VARCHAR 100<br />
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">video_id</code>字段: <code class="highlighter-rouge">视频id</code>: INT 32: <code class="highlighter-rouge">video</code>-&gt;<code class="highlighter-rouge">video_id</code><br />
+<code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">user_id</code>字段: <code class="highlighter-rouge">用户id</code>: INT 32: <code class="highlighter-rouge">user</code>-&gt;<code class="highlighter-rouge">user_id</code><br />
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">type</code>字段: <code class="highlighter-rouge">百科分类</code>: TINYINT 2: <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">标准动作</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">原创动作</code><br />
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">remark</code>字段: <code class="highlighter-rouge">百科备注</code>: VARCHAR 255</p>
 

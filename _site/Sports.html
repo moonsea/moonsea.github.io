@@ -250,6 +250,13 @@
 <code class="highlighter-rouge">get_game_list</code>:获取比赛列表
 <code class="highlighter-rouge">get_game_id</code>:<code class="highlighter-rouge">获取比赛id</code></p>
 
+<h3 id="admininfo"><em>admininfo</em>表</h3>
+<hr />
+
+<p><code class="highlighter-rouge">admininfo</code>: <code class="highlighter-rouge">admin_id</code>字段：<code class="highlighter-rouge">管理员id</code>： INT 32, 自增，主键<br />
+<code class="highlighter-rouge">admininfo</code>: <code class="highlighter-rouge">admin_name</code>字段: <code class="highlighter-rouge">管理员名称</code>: VARCHAR 32<br />
+<code class="highlighter-rouge">admininfo</code>: <code class="highlighter-rouge">admin_name</code>字段: <code class="highlighter-rouge">管理员名称</code>: VARCHAR 32</p>
+
 <h2 id="section-3">时间戳数据库处理</h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>/* mysql:当前时间戳 */
@@ -291,6 +298,8 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
     <div class="sidenav">
         <h2>Blog</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Analyse-Trojan">记一次木马的分析</a></li>
         
             <li><a href="/Build-Github-Pages">使用 Github 搭建自己的博客</a></li>
         

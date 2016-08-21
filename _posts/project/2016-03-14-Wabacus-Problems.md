@@ -13,8 +13,8 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 
 ## 固定前2列
 
-    <report id="epd601_report1" title="" type="editablelist2" 
-    dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px" 
+    <report id="epd601_report1" title="" type="editablelist2"
+    dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px"
     scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single">
     ...
     </report>
@@ -72,7 +72,9 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 ---
 `2016-04-02`
 
-## 开发环境Stream Closed
+## 开发环境搭建问题
+
+### Stream Closed
 
 在初始搭建Wabacus项目开发环境时，需要配置好本地环境`Tomcat 7`和`Java 1.7`,但是只有这些还是不够，因为在运行程序的时候，会发现系统报错，提示`Stream Closed`,具体原因不知道，可能是因为导入依赖包时，系统无法完全识别，所以需要重新导入.
 
@@ -80,7 +82,7 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 方案：项目配置中重新导入资源依赖包
 
 首先，选择项目点击右键，选择"打开模块设置"(Open Module Settings)
-![Open-Module-Settings](/images/WabacusProblems/16-04-02-1-open-module-settings.jpg)
+![Open-Module-Settings](/images/WabacusProblems/16-04-02-1-open-module-settings.JPG)
 
 然后，选择“模块”(Modules)
 ![Module](/images/WabacusProblems/16-04-02-2-module.JPG)
@@ -91,8 +93,33 @@ description: 在使用 Wabacus 发过程中，遇到的各种各样的问题，�
 最后把下面的依赖包全部删除，只留下Java本地资源包，然后重新导入系统资源依赖包.资源依赖包的路径是`/WebRoot/WEB-INF/lib`,把全部`jar`包重新导入就可以了.
 ![Add-Jars](/images/WabacusProblems/16-04-02-4-add-jars.JPG)
 
+### ClassNotFoundException
+
+在搭建环境的过程中，可能会遇到这样的问题：虽然已经在`Modules`的`Denpencies`中加入了依赖包，但是在启动服务器部署的时候，控制台还是会提示`java.lang.ClassNotFoundException: com.wabacus.WabacusServlet`。虽然还是不太清楚具体什么原因，依赖包没有添加进去，根据控制台报错信息，`See Servlet Spec 3.0, section 10.7.2`,查阅过相关资料[1]后，说是有重复的`lib`，但是在尝试删掉提示的`jar`包之后，问题依然存在，于是开始寻找其他解决方法。折腾了一下午，终于找到了解决方法，如下：
+
+首先，依然是打开`Module Settings`，选择左侧的`Artifacts`
+![ClassNotFound-1](/images/WabacusProblems/2016-08-21-ClassNotFound-1.jpg)
+
+然后，添加一个`Web Application:Exploded`,并选择`From Modules...`
+![ClassNotFound-2](/images/WabacusProblems/2016-08-21-ClassNotFound-2.jpg)
+
+会弹出提示，选择要添加的`Module`，选择之后，点击`OK`就好了
+![ClassNotFound-3](/images/WabacusProblems/2016-08-21-ClassNotFound-3.jpg))
+
+自定义名称(`Name`)和`Output directory`,并勾选`Build on make`，之后进行**最关键**的一步,将右侧`Avaliable Elements`下的`lib`,点击右键，选择`Extract Into /WEB-INF/classes`,之后点击左侧的`WEB-INF`-`classes`就会看到`Extracted xxxxxxx`  (因为在中间操作过程中，不能截图，就只放上了最后的结果图)
+![ClassNotFound-4](/images/WabacusProblems/2016-08-21-ClassNotFound-4.jpg)
+
+最后，在`Tomcat`服务器中，配置`Deployment`,添加选择`Artifact`,配置相应的部署目录就可以了
+![ClassNotFound-5](/images/WabacusProblems/2016-08-21-ClassNotFound-5.jpg)
+
+![ClassNotFound-6](/images/WabacusProblems/2016-08-21-ClassNotFound-6.jpg)
+
+启动`Tomcat`,就可以成功运行访问了
+![ClassNotFound-7](/images/WabacusProblems/2016-08-21-ClassNotFound-7.jpg)
+
 ## 致谢
 
 感谢Adam的热心帮助
 
 [Wabacus]: http://www.wabacus.org/
+[1]: http://blog.csdn.net/roxliu/article/details/20161011

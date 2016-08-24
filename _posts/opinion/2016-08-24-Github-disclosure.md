@@ -9,24 +9,24 @@ description: Records of a tool to detect github
 
 > https://api.github.com/repos/moonsea/ecshop
 
-* `name`: `ecshop`
-* `owner`:
- - `login`
- - `repos_url`: `https://api.github.com/users/moonsea/repos`
- - `followers_url`: `https://api.github.com/users/moonsea/followers`
- - `following_url`: `https://api.github.com/users/moonsea/following{/other_user}`
- - `starred_url`: `https://api.github.com/users/moonsea/starred{/owner}{/repo}`
- - `subscriptions_url`: `https://api.github.com/users/moonsea/subscriptions`
-* `description`: `Ecshop`
-* `branches_url`: `https://api.github.com/repos/moonsea/ecshop/branches{/branch}`
-* `contents_url`: `https://api.github.com/repos/moonsea/ecshop/contents/{+path}`
-* `languages_url`: `https://api.github.com/repos/moonsea/ecshop/languages`
-* `merges_url`: `https://api.github.com/repos/moonsea/ecshop/merges`
-* `git_url`: `git://github.com/moonsea/ecshop.git`
-* `stargazers_count`: `1`
-* `watchers_count`: `1`
-* `language`: `PHP`
-* `default_branch`: `master`
+- `name`: `ecshop`
+- `owner`:
+  - `login`: `moonsea`
+  - `repos_url`: `https://api.github.com/users/moonsea/repos`
+  - `followers_url`: `https://api.github.com/users/moonsea/followers`
+  - `following_url`: `https://api.github.com/users/moonsea/following{/other_user}`
+  - `starred_url`: `https://api.github.com/users/moonsea/starred{/owner}{/repo}`
+  - `subscriptions_url`: `https://api.github.com/users/moonsea/subscriptions`
+- `description`: `Ecshop`
+- `branches_url`: `https://api.github.com/repos/moonsea/ecshop/branches{/branch}`
+- `contents_url`: `https://api.github.com/repos/moonsea/ecshop/contents/{+path}`
+- `languages_url`: `https://api.github.com/repos/moonsea/ecshop/languages`
+- `merges_url`: `https://api.github.com/repos/moonsea/ecshop/merges`
+- `git_url`: `git://github.com/moonsea/ecshop.git`
+- `stargazers_count`: `1`
+- `watchers_count`: `1`
+- `language`: `PHP`
+- `default_branch`: `master`
 
 > https://api.github.com/repos/moonsea/ecshop/contents
 

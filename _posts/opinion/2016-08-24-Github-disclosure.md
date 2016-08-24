@@ -8,7 +8,6 @@ description: Records of a tool to detect github
 ## Github API
 
 > https://api.github.com/repos/moonsea/ecshop
----
 
 * `name`: `ecshop`
 * `owner`:
@@ -30,7 +29,6 @@ description: Records of a tool to detect github
 * `default_branch`: `master`
 
 > https://api.github.com/repos/moonsea/ecshop/contents
----
 
 * `name`: `activity.php`
 * `path`: `activity.php`
@@ -41,7 +39,6 @@ description: Records of a tool to detect github
 * `type`: `file`/`dir`
 
 > https://api.github.com/repos/moonsea/ecshop/contents/activity.php?ref=master
----
 
 * `name`: `activity.php`
 * `path`: `activity.php`

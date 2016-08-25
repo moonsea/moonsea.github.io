@@ -36,6 +36,8 @@ description: Records of a tool to detect github
 
 > https://api.github.com/repos/moonsea/ecshop/contents
 
+---
+
 * `name`: `activity.php`
 * `path`: `activity.php`
 * `size`: `4902`
@@ -47,6 +49,8 @@ description: Records of a tool to detect github
 ### Repo Content Page
 
 > https://api.github.com/repos/moonsea/ecshop/contents/activity.php?ref=master
+
+---
 
 * `name`: `activity.php`
 * `path`: `activity.php`
@@ -120,11 +124,27 @@ Get请求
 
     print content
 
+### 创建文件夹/目录
+
+    import os
+
+    # 创建单级目录
+    os.mkdir('/home/moonsea/codes/test') # 在 `/home/moonsea/codes`目录下，创建`test`文件夹,`/home/moonsea/codes`目录已经存在
+
+    #  创建多级目录
+    os.makedirs('/home/moonsea/codes/test') # 在`/home/moonsea`目录下，创建`codes`文件夹，并在`codes`文件夹下创建`test`文件夹，`/home/moonsea`目录已经存在，`codes`和`test`文件夹不存在
+
+## Acknowledgement
+
+感谢老板给我机会做这个事情，希望能够把这件事情做好
+
 ## References
 
 \[1\][用python实现接口测试][1]  
-\[2\][ Python中进行Base64编码和解码][2]  
+\[2\][Python中进行Base64编码和解码][2]  
+\[3\][Python教程：\[61\]创建文件夹/目录][3]  
 
 
 [1]: http://www.tuicool.com/articles/fyayueV
 [2]: http://blog.csdn.net/lxdcyh/article/details/4021476
+[3]: http://jingyan.baidu.com/article/f3ad7d0ffe8b1409c2345b43.html

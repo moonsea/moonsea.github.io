@@ -213,6 +213,7 @@ Get请求
 \[3\][Python教程：\[61\]创建文件夹/目录][3]  
 \[4\][raw_input() 与 input() __ Python][4]  
 \[5\][shutil.rmtree fails on Windows with 'Access is denied'][5]  
+\[6\][python 遍历文件夹 文件][6]  
 
 
 [1]: http://www.tuicool.com/articles/fyayueV
@@ -220,3 +221,4 @@ Get请求
 [3]: http://jingyan.baidu.com/article/f3ad7d0ffe8b1409c2345b43.html
 [4]: http://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html
 [5]: http://stackoverflow.com/questions/2656322/shutil-rmtree-fails-on-windows-with-access-is-denied
+[6]: http://www.cnblogs.com/kaituorensheng/archive/2012/08/14/2638935.html

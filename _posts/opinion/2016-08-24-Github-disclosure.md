@@ -201,6 +201,13 @@ Get请求
     　　　　  print "filename is:" + filename
     　　     print "the full name of the file is:" + os.path.join(parent,filename) #输出文件路径信息
 
+在使用`os.walk()`遍历文件夹时，可能需要忽略某个文件夹，或者某些文件夹，这种情况下，可以**重置遍历过程中的文件夹参数**来实现
+
+    for parent,dirnames,filenames in os.walk(rootdir):
+        dirnames[:] = []  # 重置文件夹，只输出根目录文件信息
+
+需要注意的是，在重置文件夹时，需要使用`dirnames[:] = []`来重置，这样操作的是原变量，而使用`dir = []`操作并没有改变原有变量
+
 
 ## Acknowledgement
 
@@ -214,7 +221,7 @@ Get请求
 \[4\][raw_input() 与 input() __ Python][4]  
 \[5\][shutil.rmtree fails on Windows with 'Access is denied'][5]  
 \[6\][python 遍历文件夹 文件][6]  
-
+\[7\][os.walk 忽略某个目录下的子目录][7]  
 
 [1]: http://www.tuicool.com/articles/fyayueV
 [2]: http://blog.csdn.net/lxdcyh/article/details/4021476
@@ -222,3 +229,4 @@ Get请求
 [4]: http://www.cnblogs.com/way_testlife/archive/2011/03/29/1999283.html
 [5]: http://stackoverflow.com/questions/2656322/shutil-rmtree-fails-on-windows-with-access-is-denied
 [6]: http://www.cnblogs.com/kaituorensheng/archive/2012/08/14/2638935.html
+[7]: http://www.cnblogs.com/mozillazg/archive/2011/06/04/os-walk-ignore-subdirectories.html

@@ -19,7 +19,12 @@ PHP
 
 交
 
+    # method 1 #
     print list(set(a).intersection(set(b)))  # a & b
+
+    # method 2 #
+    val = [val for val in a if val in b]
+
 
 并
 

@@ -16,7 +16,7 @@ Given the data set and do not told what to do with it and do not told what each 
 Two people talking at the same time in a small room, where put two microphones. Because these two microphones are at two different positions with different distance from two speakers, each microphone records a different combination of these two speakers voices. Maybe speaker one is a little louder in microphone one and speaker two is a little louder in microphone two, but each microphone would cause an overlapping combination of both speakers' voices.
 
 Cocktail party algorithm is used to separate these two records recorded by two microphones.
-!(cocktail party problem)[/images/mlandrew/cocktail_party_problem.jpg]
+![cocktail party problem](/images/mlandrew/cocktail_party_problem.jpg)
 
 ## 致谢
 

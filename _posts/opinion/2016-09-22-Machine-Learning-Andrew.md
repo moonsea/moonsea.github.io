@@ -1,3 +1,4 @@
+
 ---
 layout:     post
 title:      Machine Learning of Andrew
@@ -6,6 +7,14 @@ description: Machine Leaning 学习笔记
 ---
 
 ## Supervised Learning
+
+### Classification
+
+predict distinct value
+
+### Regression
+
+predict continuous value
 
 ## Unsupervised Learning
 
@@ -17,6 +26,22 @@ Two people talking at the same time in a small room, where put two microphones. 
 
 Cocktail party algorithm is used to separate these two records recorded by two microphones.
 ![cocktail party problem](/images/mlandrew/cocktail_party_problem.jpg)
+
+## Model & Cost Function
+
+$$ D+1 $$
+
+```flow
+op1=>operation: 手动导入导出
+op2=>operation: 自动导入导出
+op3=>operation: 自动分析
+op4=>operation: 产出识别的僵尸网络的数据
+
+op1(right)->op2
+op2(right)->op3
+op3(right)->op4
+```
+
 
 ## 致谢
 

@@ -212,7 +212,7 @@ Get请求
 
 ### PHP
 
-> #**native**#  
+### native
 
 - pdo
 
@@ -298,7 +298,7 @@ Get请求
         echo "连接成功";
     ?>
 
-> modify
+### modify
 
 - DEDECMS
 

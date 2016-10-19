@@ -222,6 +222,23 @@ Get请求
         $dbh = new PDO('mysql:host=localhost;dbname=test', $user, $pass);
     ?>
 
+PDO驱动接口列表
+
+|驱动名称      | 支持的数据库                                |
+|-------------|-------------------------------------------|
+|PDO_CUBRID   |Cubrid                                     |
+|PDO_DBLIB    |FreeTDS / Microsoft SQL Server / Sybase    |
+|PDO_FIREBIRD | Firebird/Interbase 6                      |
+|PDO_IBM      |IBM DB2                                    |
+|PDO_INFORMIX |IBM Informix Dynamic Server                |
+|PDO_MYSQL    |MySQL 3.x/4.x/5.x                          |
+|PDO_OCI      |Oracle Call Interface                      |
+|PDO_ODBC     |ODBC v3 (IBM DB2, unixODBC and win32 ODBC) |
+|PDO_PGSQL    |PostgreSQL                                 |
+|PDO_SQLITE   |SQLite 3 及 SQLite 2                       |
+|PDO_SQLSRV   |Microsoft SQL Server / SQL Azure           |
+|PDO_4D       |4D                                         |
+
 示例
 
     <?php

@@ -237,4 +237,4 @@ Get请求
 [6]: http://www.cnblogs.com/kaituorensheng/archive/2012/08/14/2638935.html
 [7]: http://www.cnblogs.com/mozillazg/archive/2011/06/04/os-walk-ignore-subdirectories.html
 [8]: http://m.jb51.net/article/16715.htm
-[Github Disclosure -- PHP]: http://blog.moonsea.ac.cn/Github-disclosure
+[Github Disclosure -- PHP]: http://blog.moonsea.ac.cn/Github-PHP

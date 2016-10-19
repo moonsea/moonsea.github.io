@@ -224,7 +224,7 @@ Get请求
 
 PDO驱动接口列表
 
-|驱动名称         | 支持的数据库                                |
+|*驱动名称*       | *支持的数据库*                                |
 |----------------|-------------------------------------------|
 |PDO_CUBRID      |Cubrid                                     |
 |PDO_DBLIB       |FreeTDS / Microsoft SQL Server / Sybase    |
@@ -239,17 +239,6 @@ PDO驱动接口列表
 |PDO_SQLSRV      |Microsoft SQL Server / SQL Azure           |
 |PDO_4D          |4D                                         |
 
-
-<table class="table table-bordered table-striped table-condensed">
-    <tr>
-        <td>北京</td>
-	<td>雾霾</td>
-    </tr>
-    <tr>
-        <td>深圳</td>
-	<td>暴雨</td>
-    </tr>
-</table>
 
 示例
 

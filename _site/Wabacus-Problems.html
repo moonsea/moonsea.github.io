@@ -11,7 +11,7 @@
     <meta name="description" content="Moonsea's Blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="/css/default.css" type="text/css" />
-    <link rel="shortcut icon" href="https://help.github.com/assets/images/site/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
     <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
 
@@ -86,8 +86,8 @@
 
 <h2 id="section-1">固定前2列</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;report id="epd601_report1" title="" type="editablelist2" 
-dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px" 
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;report id="epd601_report1" title="" type="editablelist2"
+dataexport="richexcel" align="center" scrollwidth="1000px" width="1200px"
 scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
 ...
 &lt;/report&gt;
@@ -151,7 +151,9 @@ scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
 <hr />
 <p><code class="highlighter-rouge">2016-04-02</code></p>
 
-<h2 id="stream-closed">开发环境Stream Closed</h2>
+<h2 id="section-5">开发环境搭建问题</h2>
+
+<h3 id="stream-closed">Stream Closed</h3>
 
 <p>在初始搭建Wabacus项目开发环境时，需要配置好本地环境<code class="highlighter-rouge">Tomcat 7</code>和<code class="highlighter-rouge">Java 1.7</code>,但是只有这些还是不够，因为在运行程序的时候，会发现系统报错，提示<code class="highlighter-rouge">Stream Closed</code>,具体原因不知道，可能是因为导入依赖包时，系统无法完全识别，所以需要重新导入.</p>
 
@@ -159,7 +161,7 @@ scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
 方案：项目配置中重新导入资源依赖包</p>
 
 <p>首先，选择项目点击右键，选择”打开模块设置”(Open Module Settings)
-<img src="/images/WabacusProblems/16-04-02-1-open-module-settings.jpg" alt="Open-Module-Settings" /></p>
+<img src="/images/WabacusProblems/16-04-02-1-open-module-settings.JPG" alt="Open-Module-Settings" /></p>
 
 <p>然后，选择“模块”(Modules)
 <img src="/images/WabacusProblems/16-04-02-2-module.JPG" alt="Module" /></p>
@@ -170,23 +172,35 @@ scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
 <p>最后把下面的依赖包全部删除，只留下Java本地资源包，然后重新导入系统资源依赖包.资源依赖包的路径是<code class="highlighter-rouge">/WebRoot/WEB-INF/lib</code>,把全部<code class="highlighter-rouge">jar</code>包重新导入就可以了.
 <img src="/images/WabacusProblems/16-04-02-4-add-jars.JPG" alt="Add-Jars" /></p>
 
-<h2 id="section-5">致谢</h2>
+<h3 id="classnotfoundexception">ClassNotFoundException</h3>
+
+<p>在搭建环境的过程中，可能会遇到这样的问题：虽然已经在<code class="highlighter-rouge">Modules</code>的<code class="highlighter-rouge">Denpencies</code>中加入了依赖包，但是在启动服务器部署的时候，控制台还是会提示<code class="highlighter-rouge">java.lang.ClassNotFoundException: com.wabacus.WabacusServlet</code>。虽然还是不太清楚具体什么原因，依赖包没有添加进去，根据控制台报错信息，<code class="highlighter-rouge">See Servlet Spec 3.0, section 10.7.2</code>,查阅过相关资料<a href="http://blog.csdn.net/roxliu/article/details/20161011">1</a>后，说是有重复的<code class="highlighter-rouge">lib</code>，但是在尝试删掉提示的<code class="highlighter-rouge">jar</code>包之后，问题依然存在，于是开始寻找其他解决方法。折腾了一下午，终于找到了解决方法，如下：</p>
+
+<p>首先，依然是打开<code class="highlighter-rouge">Module Settings</code>，选择左侧的<code class="highlighter-rouge">Artifacts</code>
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-1.jpg" alt="ClassNotFound-1" /></p>
+
+<p>然后，添加一个<code class="highlighter-rouge">Web Application:Exploded</code>,并选择<code class="highlighter-rouge">From Modules...</code>
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-2.jpg" alt="ClassNotFound-2" /></p>
+
+<p>会弹出提示，选择要添加的<code class="highlighter-rouge">Module</code>，选择之后，点击<code class="highlighter-rouge">OK</code>就好了
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-3.jpg" alt="ClassNotFound-3" />)</p>
+
+<p>自定义名称(<code class="highlighter-rouge">Name</code>)和<code class="highlighter-rouge">Output directory</code>,并勾选<code class="highlighter-rouge">Build on make</code>，之后进行<strong>最关键</strong>的一步,将右侧<code class="highlighter-rouge">Avaliable Elements</code>下的<code class="highlighter-rouge">lib</code>,点击右键，选择<code class="highlighter-rouge">Extract Into /WEB-INF/classes</code>,之后点击左侧的<code class="highlighter-rouge">WEB-INF</code>-<code class="highlighter-rouge">classes</code>就会看到<code class="highlighter-rouge">Extracted xxxxxxx</code>  (因为在中间操作过程中，不能截图，就只放上了最后的结果图)
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-4.jpg" alt="ClassNotFound-4" /></p>
+
+<p>最后，在<code class="highlighter-rouge">Tomcat</code>服务器中，配置<code class="highlighter-rouge">Deployment</code>,添加选择<code class="highlighter-rouge">Artifact</code>,配置相应的部署目录就可以了
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-5.jpg" alt="ClassNotFound-5" /></p>
+
+<p><img src="/images/WabacusProblems/2016-08-21-ClassNotFound-6.jpg" alt="ClassNotFound-6" /></p>
+
+<p>启动<code class="highlighter-rouge">Tomcat</code>,就可以成功运行访问了
+<img src="/images/WabacusProblems/2016-08-21-ClassNotFound-7.jpg" alt="ClassNotFound-7" /></p>
+
+<h2 id="section-6">致谢</h2>
 
 <p>感谢Adam的热心帮助</p>
 
 
-        <div id="disqus_thread"></div>
-        <script>
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-
-            s.src = '//httpmoonseagithubio.disqus.com/embed.js';
-
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
     </div>
 
     <div class="sidenav">
@@ -203,6 +217,8 @@ scrollheight="200px" fixedcols="2" fixedrows="title" rowselect="single"&gt;
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Github-disclosure">Github Disclosure</a></li>
         
             <li><a href="/KCon-West">KCon West西部黑客大会</a></li>
         

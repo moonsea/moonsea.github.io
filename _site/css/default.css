@@ -9,7 +9,18 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
 body,button,input,select,textarea{font-size:12px/1.5;}
 input,select,textarea{font-size:100%;}
-table{border-collapse:collapse;border-spacing:0;}
+table{border-collapse:collapse;border-spacing:0;border:1px solid #dedede;margin:auto;margin-bottom: 20px;width:inherit;}
+table th{
+  height: 35px; /*统一每一行的默认高度*/
+  border: 1px solid #dedede; /*内部边框样式*/
+  padding: 0 10px; /*内边距*/
+  background-color: #e8e8e8;
+}
+table td {
+  height: 35px; /*统一每一行的默认高度*/
+  border: 1px solid #dedede; /*内部边框样式*/
+  padding: 0 10px; /*内边距*/
+}
 th{text-align:inherit;}
 fieldset,img,a img{border:0;}
 iframe{display:block;}

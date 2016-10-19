@@ -11,7 +11,7 @@
     <meta name="description" content="Moonsea's Blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="/css/default.css" type="text/css" />
-    <link rel="shortcut icon" href="https://help.github.com/assets/images/site/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
     <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
 
@@ -92,18 +92,30 @@
 </code></pre>
 </div>
 
-        <div id="disqus_thread"></div>
-        <script>
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
+<h2 id="python-list">Python list交并补</h2>
 
-            s.src = '//httpmoonseagithubio.disqus.com/embed.js';
+<p>交</p>
 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<div class="highlighter-rouge"><pre class="highlight"><code># method 1 #
+print list(set(a).intersection(set(b)))  # a &amp; b
+
+# method 2 #
+val = [val for val in a if val in b]
+</code></pre>
+</div>
+
+<p>并</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>print list(set(a).union(set(b)))  # a + b
+</code></pre>
+</div>
+
+<p>补</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>print list(set(b).difference(set(a))) # b-a
+</code></pre>
+</div>
+
     </div>
 
     <div class="sidenav">
@@ -120,6 +132,8 @@
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Github-disclosure">Github Disclosure</a></li>
         
             <li><a href="/KCon-West">KCon West西部黑客大会</a></li>
         

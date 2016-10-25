@@ -9,27 +9,31 @@ description: Connection config in PHP
 
 ### pdo
 
+---
+
 连接是通过创建 PDO 基类的实例而建立的。不管使用哪种驱动程序，都是用 PDO 类名。构造函数接收用于指定数据库源（所谓的 DSN）以及可能还包括用户名和密码（如果有的话）的参数。
 
     <?php
         $dbh = new PDO(string $dsn [, string $username [, string $password [, array $driver_options ]]]);
     ?>
 
-**dsn**
+- dsn
 
 > 数据源名称或叫做 DSN，包含了请求连接到数据库的信息。通常，一个 DSN 由 PDO 驱动名、紧随其后的冒号、以及具体 PDO 驱动的连接语法组成。更深入的信息能从 PDO 具体驱动文档找到。
 
-**username**
+- username
 
 > DSN字符串中的用户名。对于某些PDO驱动，此参数为可选项。
 
-**password**
+- password
 
 > DSN字符串中的密码。对于某些PDO驱动，此参数为可选项。
 
-**driver_options**
+- driver_options
 
 > 一个具体驱动的连接选项的键=>值数组。
+
+#### **PDO驱动接口**
 
 PDO驱动接口列表
 
@@ -48,25 +52,231 @@ PDO驱动接口列表
 |PDO_SQLSRV      |Microsoft SQL Server / SQL Azure           |
 |PDO_4D          |4D                                         |
 
+- [PDO_CUBRID][]
+
+> PDO_CUBRID是PHP对CUBRID数据库进行访问的PHP数据对象接口驱动。目前PDO_CUBRID不支持继续进行连接。
 
 示例
 
     <?php
-        $servername = "localhost";
-        $username = "username";
-        $password = "password";
+        $conn_str ="cubrid:dbname=demodb;host=localhost;port=33000";
+        $cubrid_pdo = new PDO($conn_str, 'dba', '');
 
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
-            echo "连接成功";
-        }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
-        }
+        $cubrid_pdo->exec("DROP TABLE if exists test_tbl");
+        $cubrid_pdo->exec("CREATE TABLE test_tbl (col_1 SET(VARCHAR))");
+
+        $sql_stmt_insert = "INSERT INTO test_tbl VALUES (?);";
+        $stmt = $cubrid_pdo->prepare($sql_stmt_insert);
+        $data = array("abc","def","ghi");
+        $ret = $stmt->bindParam(1, $data, PDO::PARAM_NULL);
+        $ret = $stmt->execute();
+        var_Dump($ret);
+    ?>
+
+- [PDO_DBLIB][]
+
+> PDO_DBLIB是PHP对Microsoft SQL Server和Sybase数据库进行访问的PHP数据对象接口驱动,访问通过FreeTDS库来实现.该扩展目前在Windows平台上PHP 5.3及以后版本不再支持.
+
+dsn前缀
+
+    mssql:host=localhost;dbname=testdb
+    sybase:host=localhost;dbname=testdb
+    dblib:host=localhost;dbname=testdb
+
+- [PDO_FIREBIRD][]
+
+> PDO_FIREBIRD是PHP对Firebird数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    firebird:dbname=hostname/port:/path/to/DATABASE.FDB
+
+示例
+
+    $str_conn = "firebird:dbname=C:\db\banco.gdb;host=localhost";
+
+    $dbh = new PDO($str_conn, "SYSDBA", "masterkey");
+
+- [PDO_IBM][]
+
+> PDO_IBM是PHP对IBM数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    ibm
+
+dsn连接分为3种
+
+- 配置文件
+> db2cli.ini or odbc.ini
+
+示例
+
+    $db = new PDO("ibm:DSN=DB2_9", "", "");
+
+    [DB2_9]
+    Database=testdb
+    Protocol=tcpip
+    Hostname=11.22.33.444
+    Servicename=56789
+
+- 数据库登记名称
+> db2客户端登记册中的数据库别名
+
+- 完全连接字符串
+> DRIVER={IBM DB2 ODBC DRIVER};DATABASE=database;HOSTNAME=hostname;
+    PORT=port;PROTOCOL=TCPIP;UID=username;PWD=password;
+
+示例
+
+    $db = new PDO("ibm:DRIVER={IBM DB2 ODBC DRIVER};DATABASE=testdb;" .
+      "HOSTNAME=11.22.33.444;PORT=56789;PROTOCOL=TCPIP;", "testuser", "tespass");
+
+- [PDO_INFORMIX][]
+
+> PDO_IBM是PHP对Informix数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    informix
+
+dsn连接分为2种
+
+- 配置文件
+> odbc.ini
+
+示例
+
+    $db = new PDO("informix:DSN=Infdrv33", "", "");
+    [ODBC Data Sources]
+    Infdrv33=INFORMIX 3.3 32-BIT
+
+    [Infdrv33]
+    Driver=/opt/informix/csdk_2.81.UC1G2/lib/cli/iclis09b.so
+    Description=INFORMIX 3.3 32-BIT
+    Database=common_db
+    LogonID=testuser
+    pwd=testpass
+    Servername=ids_server
+    DB_LOCALE=en_US.819
+    OPTIMIZEAUTOCOMMIT=1
+    ENABLESCROLLABLECURSORS=1
+
+- 完全连接字符串(complete connection string)
+
+示例
+
+    $db = new PDO("informix:host=host.domain.com; service=9800;
+        database=common_db; server=ids_server; protocol=onsoctcp;
+        EnableScrollableCursors=1", "testuser", "tespass");
+
+- [PDO_MYSQL][]
+
+> PDO_MYSQL是PHP对MYSQL 3.x,4.x,5.x数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    mysql
+
+示例
+
+    mysql:host=localhost;dbname=testdb
+    mysql:host=localhost;port=3307;dbname=testdb
+    mysql:unix_socket=/tmp/mysql.sock;dbname=testdb
+
+- [PDO_OCI][]
+
+> PDO_OCI是PHP对ORACLE数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    oci
+
+dbname分为2种
+
+- 直接连接Oracle数据库
+
+> dbname=//hostname:port-number/database
+
+    // Connect using the Oracle Instant Client
+    oci:dbname=//localhost:1521/mydb
+
+- `tnsnames.ora`中定义的数据库
+
+> dbname=database  
+> `tnsnames.ora` in `%ORACLE_HOME%\network\admin`
+
+    // Connect to a database defined in tnsnames.ora
+    oci:dbname=mydb
+
+示例
+
+    <?php
+        $dbc = new PDO('oci:dbname=192.168.10.145/orcl;charset=CL8MSWIN1251', 'username', 'password');
+    ?>
+
+- [PDO_ODBC][]
+
+> PDO_ODBC是PHP通过ODBC驱动或者IBM DB2调用层接口库来对数据库进行访问的PHP数据对象接口驱动.
+
+PDO_ODBC分为3种类型
+
+- ibm-db2
+> 支持通过`free DB2`客户端访问`IBM DB2 Universal Database`,`Cloudscape`和`Apache Derby servers`
+
+- unixODBC
+> 支持通过`unixODBC`驱动管理器和数据库自带ODBC驱动来访问数据库
+
+- generic
+> 为ODBC驱动管理器提供编译选项，但是`PDO_ODBC`不明确支持
+
+dsn前缀
+
+    odbc
+
+示例
+
+- 连接注册ODBC驱动
+
+>
+
+    // connect to an ODBC database cataloged as testdb in the ODBC driver manager
+
+    odbc:testdb
+
+- 连接ibm-db2
+
+>
+
+    // connect to an IBM DB2 database named SAMPLE using the full ODBC DSN
+
+    odbc:DRIVER={IBM DB2 ODBC DRIVER};HOSTNAME=localhost;PORT=50000;DATABASE=SAMPLE;PROTOCOL=TCPIP;UID=db2inst1;PWD=ibmdb2;
+
+- 连接Microsoft Access
+
+>
+
+    // connect to a Microsoft Access database stored at C:\db.mdb using the full ODBC DSN
+
+    odbc:Driver={Microsoft Access Driver (\*.mdb)};Dbq=C:\\db.mdb;Uid=Admin
+
+- [PDO_PGSQL][]
+
+> PDO_PGSQL是PHP通过对PostgreSQL数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    pgsql
+
+示例
+
+    <?php
+        $dbh = new PDO(pgsql:host=localhost;port=5432;dbname=testdb;user=bruce;password=mypass);
     ?>
 
 ### mysqli
+
+---
 
 语法
 
@@ -215,3 +425,12 @@ Destoon B2B网站管理系统是一套完善的B2B(电子商务)行业门户解�
 \[1\][十二个常见的PHP+MySql类免费CMS系统][1]  
 
 [1]: http://m.jb51.net/article/16715.htm
+[PDO_CUBRID]: http://php.net/manual/zh/ref.pdo-cubrid.php
+[PDO_DBLIB]: http://php.net/manual/zh/ref.pdo-dblib.php
+[PDO_FIREBIRD]: http://php.net/manual/zh/ref.pdo-firebird.php
+[PDO_IBM]: http://php.net/manual/zh/ref.pdo-ibm.php
+[PDO_INFORMIX]: http://php.net/manual/zh/ref.pdo-informix.php
+[PDO_MYSQL]: http://php.net/manual/zh/ref.pdo-mysql.php
+[PDO_OCI]: http://php.net/manual/zh/ref.pdo-oci.php
+[PDO_ODBC]: http://php.net/manual/zh/ref.pdo-odbc.php
+[PDO_PGSQL]: http://php.net/manual/zh/ref.pdo-pgsql.php

@@ -274,6 +274,79 @@ dsn前缀
         $dbh = new PDO(pgsql:host=localhost;port=5432;dbname=testdb;user=bruce;password=mypass);
     ?>
 
+- [PDO_SQLITE][]
+
+> PDO_SQLITE是PHP通过对SQLite 3数据库进行访问的PHP数据对象接口驱动.
+
+dsn前缀
+
+    # sqlite 3
+    sqlite:
+
+    # sqlite 2
+    sqlite2:
+
+两种类型
+
+- 访问磁盘上的数据库
+
+> 使用数据库在系统中的绝对路径
+
+示例
+
+    # sqlite 3
+    sqlite:/opt/databases/mydb.sq3
+
+    # sqlite 2
+    sqlite2:/opt/databases/mydb.sq2
+- 在内存中创建数据库
+
+> `:memory:`
+
+示例
+
+    # sqlite 3
+    sqlite::memory:
+
+    # sqlite 2
+    sqlite2::memory:
+
+- [PDO_SQLSRV][]
+
+> PDO_SQLSRV是PHP通过对MS SQL Server(server 2005及其以后版本)和SQL Azure数据库进行访问的PHP数据对象接口驱动.  
+> PDO_SQLSRV扩展仅对Windows平台PHP兼容。Linux平台可以参考`[ODBC][]`和`[Microsoft's SQL Server ODBC Driver for Linux][]`
+
+dsn前缀
+
+    sqlsrv:
+
+示例
+
+- 连接特定MS SQL Server数据库
+
+    $c = new PDO("sqlsrv:Server=localhost;Database=testdb", "UserName", "Password");
+
+- 连接特定端口MS SQL Server
+
+    $c = new PDO("sqlsrv:Server=localhost,1521;Database=testdb", "UserName", "Password");
+
+- 连接SQL Azure数据库
+
+    $c = new PDO("sqlsrv:Server=12345abcde.database.windows.net;Database=testdb", "UserName@12345abcde", "Password");
+
+- [PDO_4D][]
+
+> PDO_4D是PHP通过对4D数据库进行访问的PHP数据对象接口驱动.  
+> PDO_4D是PHP实验性功能  
+
+dsn前缀
+
+    4D:
+
+示例
+
+    4D:host=localhost;charset=UTF-8
+
 ### mysqli
 
 ---
@@ -433,4 +506,9 @@ Destoon B2B网站管理系统是一套完善的B2B(电子商务)行业门户解�
 [PDO_MYSQL]: http://php.net/manual/zh/ref.pdo-mysql.php
 [PDO_OCI]: http://php.net/manual/zh/ref.pdo-oci.php
 [PDO_ODBC]: http://php.net/manual/zh/ref.pdo-odbc.php
+[ODBC]: http://php.net/manual/zh/ref.pdo-odbc.php
 [PDO_PGSQL]: http://php.net/manual/zh/ref.pdo-pgsql.php
+[PDO_SQLITE]: http://php.net/manual/zh/ref.pdo-sqlite.php
+[PDO_SQLSRV]: http://php.net/manual/zh/ref.pdo-sqlsrv.php
+[Microsoft's SQL Server ODBC Driver for Linux]: https://www.microsoft.com/en-us/download/details.aspx?id=28160
+[PDO_4D]: http://php.net/manual/zh/ref.pdo-4d.php

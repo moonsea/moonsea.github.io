@@ -91,7 +91,7 @@ Terminator是Linuxi平台下的一款终端工具，支持横向分屏、纵向�
 
 ## References
 
-\[1\] [terminator 的常用快捷键][1]
+\[1\] [terminator 的常用快捷键][1]  
 \[2\] [使用Terminator增强你的终端][2]
 
 [1]: http://www.cnblogs.com/xiazh/articles/2407328.html

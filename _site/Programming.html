@@ -80,13 +80,13 @@
         <p class="entry-date">2016-05-12</p>
         <h2 id="ab">一句话交换变量a,b</h2>
 
-<p>C</p>
+<h3 id="c">C</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>a = (a+b) - (b=a)
 </code></pre>
 </div>
 
-<p>PHP</p>
+<h3 id="php">PHP</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>list($a,$b) = array($b,$a);
 </code></pre>
@@ -94,7 +94,7 @@
 
 <h2 id="python-list">Python list交并补</h2>
 
-<p>交</p>
+<h3 id="section">交</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code># method 1 #
 print list(set(a).intersection(set(b)))  # a &amp; b
@@ -104,15 +104,40 @@ val = [val for val in a if val in b]
 </code></pre>
 </div>
 
-<p>并</p>
+<h3 id="section-1">并</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>print list(set(a).union(set(b)))  # a + b
 </code></pre>
 </div>
 
-<p>补</p>
+<h3 id="section-2">补</h3>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>print list(set(b).difference(set(a))) # b-a
+</code></pre>
+</div>
+
+<h2 id="flag">提交参数输出Flag</h2>
+
+<h3 id="indexphp">index.php</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;?php
+
+    $str = intval($_GET['id']);
+    $reg = preg_match('/\d/is', $_GET['id']);
+    if(!is_numeric($_GET['id']) and $reg !== 1 and $str === 1){
+    	echo 'Flag';
+    }else{
+    	echo "Img";
+    }
+
+?&gt;
+</code></pre>
+</div>
+
+<h3 id="solution">Solution</h3>
+
+<p>虽然PHP手册中介绍<code class="highlighter-rouge">intval()</code>不能对<code class="highlighter-rouge">array</code>和<code class="highlighter-rouge">object</code>进行整数化，但是通过实践发现<code class="highlighter-rouge">intval()</code>可以将非空数组转成<code class="highlighter-rouge">1</code>，将空数组转成<code class="highlighter-rouge">0</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>index.php?id[]=a
 </code></pre>
 </div>
 

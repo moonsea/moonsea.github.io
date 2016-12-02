@@ -79,6 +79,8 @@ tmp = result.find('input', {'type': 'hidden'}, {
 
 另外，推荐一个下载学术资源的网站[Academic Torrents][]，提供了很多数据，最初我下载的`virus collection`([VX Heaven Virus Collection 2010-05-18][3])也是在上面找到的.
 
+备注： 在接下来的恶意代码检测，以及恶意代码反汇编提取操作码（OpCode）的实验中，皆使用`virus collection subset`数据集。
+
 ## [ZeuS Tracker][]
 
 这也是一个提供了恶意代码资源的网站，除了有恶意代码资源，同时还有一些IP的blocklist，都可以用作参考。因为要做恶意代码分类的研究，所以重点关注恶意代码资源的下载.
@@ -110,7 +112,9 @@ for result in results:
 
 ## Virus Detection
 
-先记录几个常用的恶意程序检测网站
+在得到数据之后，首先需要对数据进行检测，确定数据是否是恶意样本。对恶意样本检测可以通过杀软进行检测，如Kaspersky，或者在线进行检测，通过检测结果可以确定数据是否是恶意样本，同时也能够得到恶意样本的类型，为接下来的研究做好基础准备。
+
+以下是常用的恶意代码在线检测网站
 
 * [Virus Total][]
 
@@ -119,6 +123,44 @@ for result in results:
 * [Viruscan][]
 
 * [Malwr][]
+
+## Virus Disassembly
+
+对数据检测之后，确定数据为恶意样本之后，接下来对恶意样本分析。因为要提取恶意样本的操作码(OpCode)，那么就需要恶意样本是二进制可执行文件。通过对数据集文件类型进行分析，发现数据集中不仅包含可执行文件（加壳，不加壳），同时也含有大量文本文件，如HTML、XML等，对于该部分文件，没有操作码（OpCode）的概念，所以在本研究中暂时不作考虑。也正是基于此原因，需要首先对数据的文件类型进行分析。
+
+### 文件类型
+
+在Windows系统中，通常根据文件后缀名来判断文件类型，暂不考虑在类Unix系统中没有后缀名这种概念，单纯在Windows系统中，根据文件后缀来判断文件类型也存在很大问题，是一种很不准确的方法。通常来说，识别文件类型一般是通过识别文件头信息，也叫做魔数（magic number），比如常见的`exe`文件头为`4D 5A 50`。在类Unix系统中，通常使用`file`命令来查看文件类型，而`file`命令的本质也是根据`magic number`进行判断。
+
+本实验中，通过分析`file`命令的源码，定位出识别文件类型的核心代码[python-magic][],安装之后就可以引入`magic`模块对文件类型进行识别
+
+```
+def filetype(filename):
+
+    ms = magic.open(magic.NONE)
+    ms.load()
+
+    file_type = ms.file(filename)
+
+    ms.close()
+
+    return file_type
+```
+
+### 反汇编
+
+挑选出可执行二进制文件之后，接下来就是要对这些文件进行反汇编。
+
+通常反汇编两种常见的算法：
+
+* 梯度下降法
+
+代表工具 `IDA Pro`
+
+* 线性扫描反汇编
+
+代表工具 `Ndisasm`
+
 
 [1]: http://vxheaven.org/src.php?show=all
 [2]: http://vxheaven.org/vl.php
@@ -132,3 +174,4 @@ for result in results:
 [Virus Total]: https://www.virustotal.com/en/
 [Viruscan]: http://www.virscan.org/
 [Malwr]: https://malwr.com/
+[python-magic]: https://github.com/moonsea/python-magic

@@ -147,20 +147,96 @@ def filetype(filename):
     return file_type
 ```
 
-### 反汇编
+### 反汇编工具
 
-挑选出可执行二进制文件之后，接下来就是要对这些文件进行反汇编。
+挑选出可执行二进制文件之后，接下来就是要对这些文件进行反汇编。在进行反汇编恶意样本之前，需要首先选定进行反汇编的工具，因为不同的反汇编工具采用不同的反汇编算法，不同的反汇编算法得到的结果也不尽相同。
 
-通常反汇编两种常见的算法：
+常用的反汇编算法可以分为以下几种：
 
 * 梯度下降法
+
+梯度下降法钱强调控制流的概念，根据一条指令是否被另一条指令引用来决定是否对其进行反汇编
 
 代表工具 `IDA Pro`
 
 * 线性扫描反汇编
 
-代表工具 `Ndisasm`
+线性扫描反汇编算法采用一种非常简单的方法来确定需要反汇编的指令位置：指令开始和结束的位置。从代码段的第一个字节开始，以线性模式扫描整个代码段，逐条反汇编每条指令，直到完成整个代码段
 
+代表工具 `Windbg`、`Ndisasm`
+
+通过对几个恶意样本的以及上一步对恶意样本的分类结果进行分析，可以发现数据集中恶意样本种类繁多，而且`16`位、`32`位恶意程序都有，如果使用`ndisasm`进行反汇编，需要人工分析不同种类样本的入口地址，以确定代码段起始位置，否则反汇编得到的结果不准确，而且`ndisasm`工具不提供自动分析功能，想比较而言，`IDA Pro`虽然比较繁琐，分析比较慢，但是结果比较准确，而且可以自动选择合适的处理器型号、文件类型等参数，对恶意样本进行自动分析，并将结果保存到`idb`数据库，可以使用`IDA Pro`直接打开继续上一次分析。
+
+选定反汇编工具`IDA Pro`之后，接下来对恶意样本进行反汇编处理。
+
+### 批量反汇编
+
+虽然`IDA Pro`是一款非常好用的静态反汇编工具，但是并不能一次性打开多个文件进行自动分析，所以考虑使用脚本调用`IDA Pro`的接口进行分析，并将分析结果，及反汇编代码进行保存。`IDAPython`是`IDA Pro`的一种扩展脚本，可以实现很多`IDA Pro`本身不具有的功能。在这种思路下， 很自然想到使用`IDAPython`编写脚本来对恶意样本逐一进行分析，并保存结果。
+
+原本是按照编写`IDAPython`脚本的思路对恶意样本进行分析，偶然发现看雪论坛上一篇文章[IDA批量模式][]，发现`IDA Pro`还可以命令行模式运行(`idal -A -Sscript.idc input_file`)，而且功能和GUI界面相同，也能够根据参数对文件分析，此外还可以加载后期处理脚本，这无疑是一种处理恶意样本更好的方法。
+
+> 这里要说明一下，查阅相关资料都是`idag`命令，但是我使用的版本中没有`idag`，只有`idal`，这应该是不同版本的问题，使用过程中和相关资料中`idag`功能相同，所以没有深究原因，感兴趣的可以分析一下  
+> `Windows`平台使用`idaw`启动，`Mac`系统使用`idal`命令启动
+
+下面对分析过程中使用到的参数进行简单说明：
+
+* `-A` 让ida自动运行，不需要人工干预。也就是在处理的过程中不会弹出交互窗口，但是如果从来没有使用过ida那么许可协议的窗口无论你是否使用这个参数都将会显示。
+* `-c` 参数会删除所有与参数中指定的文件相关的数据库，并且生成一个新的数据库。
+* `-S` 参数用于指定ida在分析完数据之后执行的idc脚本，该选项和参数之间没有空格，并且搜索目录为ida目录下的idc文件夹。
+* `-B` 参数指定批量模式，等效于-A –c  –Sanylysis.idc.在分析完成后会自动生成相关的数据库和asm代码。并且在最后关闭ida，以保存新的数据库。
+* `-h` 显示ida的帮助文档
+
+默认情况下，`IDA`分析完文件之后，会自动在文件目录下生成一个`idb`数据库文件，数据库文件以输入进行分析文件去掉后缀之后的文件名进行命名。但是因为本次实验中使用的数据集很多文件只是后缀有区别，前面文件名相同，所以要以完整文件名保存相应的分析结果。这种情况下，自定义`idc`脚本来完成分析后期工作比较方便。
+
+下面是使用到的`analysis_fullname.idc`脚本，保存在ida目录下的idc文件夹：
+
+```
+#include <idc.idc>
+
+static main()
+{
+  // turn on coagulation of data in the final pass of analysis
+  SetShortPrm(INF_AF2, GetShortPrm(INF_AF2) | AF2_DODATA);
+
+  Message("Waiting for the end of the auto analysis...\n");
+  Wait();
+  Message("\n\n------ Creating the output file.... --------\n");
+  auto file = GetInputFilePath();
+  auto asmfile = file + ".asm";
+  auto idbfile = file + ".idb";
+  WriteTxt(asmfile, 0, BADADDR);           // create the assembler file
+  SaveBase(idbfile, 0);                   // save the idb database
+  Message("All done, exiting...\n");
+  Exit(0);                              // exit to OS, error code 0 - success
+}
+```
+
+接下来就可以通过python脚本遍历数据集的恶意样本，调用`idal`来对样本进行分析，并保存反汇编结果了。完整代码可以参考[wingenasm.py][],核心代码如下：
+
+```
+idalPath = "//usr//local//src//ida-pro-6.4//idal"
+idcPath = "//usr//local//src//ida-pro-6.4//idc//analysis_fullname.idc"
+
+
+def traveseFile(path):
+    for parent, dirnames, filenames in os.walk(path):
+
+        for filename in filenames:
+            filepath = os.path.join(parent, filename)
+
+            filepath = filepath.replace(' ', '\ ').replace('(', '\(').replace(')', '\)')
+
+            genAsm(filepath)
+
+
+def genAsm(filepath):
+    ExecStr = idalPath + " -c -A -S" + idcPath + " " + filepath
+    os.system(ExecStr)
+```
+
+## References
+
+\[1\] [IDA批量模式][]
 
 [1]: http://vxheaven.org/src.php?show=all
 [2]: http://vxheaven.org/vl.php
@@ -175,3 +251,5 @@ def filetype(filename):
 [Viruscan]: http://www.virscan.org/
 [Malwr]: https://malwr.com/
 [python-magic]: https://github.com/moonsea/python-magic
+[IDA批量模式]: http://bbs.pediy.com/showthread.php?t=147777
+[wingenasm.py]: https://github.com/moonsea/malcode/blob/master/wingenasm.py

@@ -58,3 +58,15 @@ description: 简洁、高效、奇葩、难懂、好玩的Code
 ```
 index.php?id[]=a
 ```
+
+## Python精确除法
+
+总是会返回真实的商，不管操作数是整形还是浮点型
+
+```
+>>>from __future__ import division
+>>>1/2
+0.5
+>>>1.0/2.0
+0.5
+```

@@ -82,7 +82,7 @@
 
 <p><a href="http://www.leiphone.com/news/201509/9zGlIDvLhwguqOtg.html?utm_source=tuicool">漫画告诉你什么是DDoS攻击？</a></p>
 
-<h2 id="ddos-1">DDoS攻击趋势</h2>
+<h2 id="ddos攻击趋势">DDoS攻击趋势</h2>
 
 <ul>
   <li>每月几百次</li>
@@ -98,11 +98,11 @@ syn多使用小包：三次握手，包小量大</p>
 
 <p><img src="/images/CDNDDoS/2016-05-12-type.jpg" alt="Type" /></p>
 
-<h2 id="section">如何防御</h2>
+<h2 id="如何防御">如何防御</h2>
 
 <p>针对DDoS攻击，目前采用的传统防御措施有以下几种</p>
 
-<h3 id="section-1">防火墙</h3>
+<h3 id="防火墙">防火墙</h3>
 
 <ul>
   <li>功能太强，性能不够好，无法应对大流量攻击</li>
@@ -116,7 +116,7 @@ syn多使用小包：三次握手，包小量大</p>
   <li>带宽问题. DDoS攻击的目的就是消耗带宽，如果一个攻击30G，而公司的带宽只有20G，那么攻击一般做法就是增加带宽，这就需要带宽成本。当下一轮攻击达到公司带宽上限，公司又增加带宽，这样一来就形成一个循环，无法有效防御</li>
 </ul>
 
-<h3 id="section-2">采取的措施</h3>
+<h3 id="采取的措施">采取的措施</h3>
 
 <ul>
   <li>程序设计</li>
@@ -171,7 +171,7 @@ firewall 丢弃恶意IP</p>
   <li>监控结点可用性，提高稳定性，风险从本地-&gt;云端</li>
 </ul>
 
-<h3 id="section-3">防护</h3>
+<h3 id="防护">防护</h3>
 
 <ul>
   <li>ISP,近源清洗</li>
@@ -181,7 +181,7 @@ firewall 丢弃恶意IP</p>
 <img src="/images/CDNDDoS/2016-05-12-cdn.jpg" alt="CDN" /></li>
 </ul>
 
-<h3 id="section-4">优点</h3>
+<h3 id="优点">优点</h3>
 
 <ul>
   <li>平时加速，战时防御</li>
@@ -189,7 +189,7 @@ firewall 丢弃恶意IP</p>
   <li>专业运维</li>
 </ul>
 
-<h2 id="ddos-2">云加速DDoS防护方案</h2>
+<h2 id="云加速ddos防护方案">云加速DDoS防护方案</h2>
 
 <h3 id="problem">Problem</h3>
 
@@ -213,7 +213,7 @@ firewall 丢弃恶意IP</p>
 <p>一个完整的防御体系，而不是一个简单的防御产品
 <img src="/images/CDNDDoS/protection.jpg" alt="protection" /></p>
 
-<h4 id="section-5">分散的网络环境</h4>
+<h4 id="分散的网络环境">分散的网络环境</h4>
 
 <p>具有国内、国外两个网络环境的云。国内的网络又分为多个小结点和一个大的清洗网络</p>
 
@@ -236,7 +236,7 @@ firewall 丢弃恶意IP</p>
 成本低</p>
 </blockquote>
 
-<h4 id="section-6">统一决策系统</h4>
+<h4 id="统一决策系统">统一决策系统</h4>
 
 <ul>
   <li>实时统计全球结点</li>
@@ -250,7 +250,7 @@ firewall 丢弃恶意IP</p>
 黑名单</p>
 </blockquote>
 
-<h4 id="section-7">全能监控设备</h4>
+<h4 id="全能监控设备">全能监控设备</h4>
 
 <p>核心交换机进行镜像</p>
 
@@ -263,7 +263,7 @@ firewall 丢弃恶意IP</p>
 
 <h4 id="tcpflow">TCPFLOW+</h4>
 
-<h4 id="section-8">攻击发现策略</h4>
+<h4 id="攻击发现策略">攻击发现策略</h4>
 
 <ul>
   <li>四层</li>
@@ -278,7 +278,7 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
 
 <p>通过对线上流量比例的分析，能够及早发现攻击</p>
 
-<h4 id="dns">传统DNS调度</h4>
+<h4 id="传统dns调度">传统DNS调度</h4>
 
 <p>一般CDN网络，客户端进行网络服务访问，需要先访问DNS缓存，然后没有命中，再去访问本地的DNS缓存，没有命中的话，继续访问服务器的DNS。</p>
 
@@ -296,14 +296,14 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
 等待local dns 缓存失效</p>
 </blockquote>
 
-<h4 id="section-9">无损调度</h4>
+<h4 id="无损调度">无损调度</h4>
 
 <ul>
   <li>电信网络合作</li>
   <li>攻击ip在高防结点，改变路由结构，直接牵引流量</li>
 </ul>
 
-<h4 id="section-10">多样防护策略</h4>
+<h4 id="多样防护策略">多样防护策略</h4>
 
 <ul>
   <li>syn cookie/syn proxy</li>
@@ -313,38 +313,38 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
 <img src="/images/CDNDDoS/multi.jpg" alt="multi" /></li>
 </ul>
 
-<h3 id="cc">CC防御</h3>
+<h3 id="cc防御">CC防御</h3>
 
 <p>应用层攻击，不在tcp，ip，udp层进行攻击，直接攻击应用层</p>
 
-<h4 id="section-11">开始阶段</h4>
+<h4 id="开始阶段">开始阶段</h4>
 
 <ul>
   <li>web服务瞬时链接数量急剧增多</li>
   <li>ip数量增多</li>
 </ul>
 
-<h4 id="section-12">定位阶段</h4>
+<h4 id="定位阶段">定位阶段</h4>
 
 <ul>
   <li>部分IP,UA,REFER访问频率非常快</li>
   <li>请求url单一或规律性明显</li>
 </ul>
 
-<h4 id="section-13">触发阶段</h4>
+<h4 id="触发阶段">触发阶段</h4>
 
 <ul>
   <li>服务器和客户端相应请求降低</li>
   <li>服务器性能下降，相应变慢甚至停止</li>
 </ul>
 
-<h4 id="section-14">回顾</h4>
+<h4 id="回顾">回顾</h4>
 
 <ul>
   <li>IP信誉积累，为下一次防御收集信息</li>
 </ul>
 
-<h3 id="section-15">手段和难点</h3>
+<h3 id="手段和难点">手段和难点</h3>
 
 <ul>
   <li>特征多</li>
@@ -353,7 +353,7 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
   <li>突发攻击导致源站直接down</li>
 </ul>
 
-<h4 id="section-16">创新防御</h4>
+<h4 id="创新防御">创新防御</h4>
 
 <ul>
   <li>源站保护</li>
@@ -375,7 +375,7 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
 辅助COOKIE</p>
 </blockquote>
 
-<h2 id="section-17">致谢</h2>
+<h2 id="致谢">致谢</h2>
 
 <p>谢谢<a href="mailto:wuhaoting@baidu.com">吴昊挺</a></p>
 
@@ -391,6 +391,8 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
         <h2>Blog</h2>
         <ul class="artical-list">
         
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
+        
             <li><a href="/Terminator">Terminator</a></li>
         
             <li><a href="/Analyse-Trojan">记一次木马的分析</a></li>
@@ -403,6 +405,8 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -421,8 +425,6 @@ rst &gt; 10 : ack flood：rst比例超过了10%，很可能发生了ack flood攻
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

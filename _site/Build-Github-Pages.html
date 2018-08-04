@@ -78,7 +78,7 @@
     <div class="entry">
         <h1 class="entry-title"><a href="/Build-Github-Pages" title="使用 Github 搭建自己的博客">使用 Github 搭建自己的博客</a></h1>
         <p class="entry-date">2016-03-13</p>
-        <h2 id="section">写在前面</h2>
+        <h2 id="写在前面">写在前面</h2>
 
 <p>这篇文章主要介绍如何通过 GitHub 来搭建属于自己的 Blog ,在这次搭建 Blog 的过程中主要会用到以下几种技术：</p>
 
@@ -90,7 +90,7 @@
 
 <p>其中, <a href="http://pages.github.com/" title="Github Pages">Github Pages</a>是<a href="https://github.com">Github</a>上用来搭建项目展示，做自己 Blog 的一个平台.<a href="https://github.com/mojombo/jekyll">Jekyll</a>是[Github][]上的一个开源项目，是一种博客的解析引擎，[Github][]使用<a href="https://github.com/mojombo/jekyll">Jekyll</a>来实现Github pages的解析.<a href="http://disqus.com" title="Disqus">Disqus</a>是一个评论的插件，用来实现网页的评论功能.</p>
 
-<h2 id="section-1">动手搭建</h2>
+<h2 id="动手搭建">动手搭建</h2>
 
 <h3 id="github-pages">Github Pages</h3>
 
@@ -106,7 +106,7 @@
   <li>在这里说明一下,很多Blog会介绍不使用<code class="highlighter-rouge">automatic page generator</code>,而是通过自己新建一个<code class="highlighter-rouge">index.html</code>来初始化项目，或者使用<code class="highlighter-rouge">gh-pages</code>分支来创建Jekyll.以上两种方法不建议使用，因为在我自己搭建的过程中，使用上述两种方法都没有成功，不是创建更新之后，页面并没有更新，或者是无法访问到<code class="highlighter-rouge">username.github.io</code>.相比上述两种方法，直接使用<code class="highlighter-rouge">automatic page generator</code>创建页面，不仅能够很快<code class="highlighter-rouge">username.github.io</code>访问，而且可以直接使用<code class="highlighter-rouge">master</code>分支来更更新项目，减少后续工作的麻烦.</li>
 </ul>
 
-<h3 id="jekyll">Jekyll模板系统</h3>
+<h3 id="jekyll模板系统">Jekyll模板系统</h3>
 
 <blockquote>
   <p><strong>搭建本地的Jekyll环境</strong></p>
@@ -114,22 +114,19 @@
 
 <p>下载<a href="http://rubyinstaller.org/downloads/">RubyInstaller</a>,根据自己的系统选择下载，我下载的是<code class="highlighter-rouge">Ruby 2.2.4 (x64)</code>,下载到本地之后进行安装，并加入系统的<code class="highlighter-rouge">PATH</code>.完成之后运行如下命令验证是否成功</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ruby -v
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby -v
+</code></pre></div></div>
 
 <p>更新Ruby的Gem资源</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem update --system
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem update --system
+</code></pre></div></div>
 
 <p>这时候系统可能会提示<code class="highlighter-rouge">Connection refused</code>之类的错误，这是因为天朝的墙太厚了，可以通过如下方法改成国内江浙沪包邮的源.如果没有提示错误，可以直接略过此步骤，直接跳到“安装Devkit”.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem sources --remove https://rubygems.org/
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem sources --remove https://rubygems.org/
 gem sources -a https://ruby.taobao.org/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这个时候，如果没有错误，可以再次略过此步骤，进入“安装Devkit”，如果提示问题<code class="highlighter-rouge">server certificate B: certificate verify failed</code>,这是因为要想江浙沪包邮也是需要先提供证明的，那么可以通过如下方法让他相信你</p>
 
@@ -152,10 +149,9 @@ gem sources -a https://ruby.taobao.org/
 <img src="/images/githubpages/16-04-02-3-devkit.JPG" alt="devkit" />
 运行，选择解压路径。解压完成后，CMD进入Devkit相应解压路径，运行如下命令</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ruby dk.rb init
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby dk.rb init
 ruby db.rk install
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>提示完成安装就可以了</p>
 
@@ -165,21 +161,18 @@ ruby db.rk install
 
 <p>在CMD窗口中运行如下命令</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem install jekyll
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install jekyll
+</code></pre></div></div>
 
 <p>验证是否安装成功</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll --version
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll --version
+</code></pre></div></div>
 
 <p>安装Rdiscount，用来解析Markdown</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gem install rdiscount
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem install rdiscount
+</code></pre></div></div>
 
 <p>至此，Jekyll就安装完成了.</p>
 
@@ -189,9 +182,8 @@ ruby db.rk install
 
 <p>使用git命令将项目源码同步到本地</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/moonsea/moonsea.github.io.git
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/moonsea/moonsea.github.io.git
+</code></pre></div></div>
 
 <p>进入项目文件夹，删除所有文件</p>
 
@@ -199,21 +191,19 @@ ruby db.rk install
 
 <p>使用CMD窗口，进入自己的项目的文件夹，现在本地运行查看效果</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jekyll serve
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll serve
+</code></pre></div></div>
 
 <p>根据自己的需要进行修改，修改之后提交到Github查看</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git add --all
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add --all
 git commit -m "Init"
 git push
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>至此，一个Jekyll模板系统就已经搭建完成了.</p>
 
-<h2 id="section-2">致谢</h2>
+<h2 id="致谢">致谢</h2>
 
 <p>本文主要参考了以下Blog</p>
 
@@ -229,6 +219,8 @@ git push
         <h2>Blog</h2>
         <ul class="artical-list">
         
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
+        
             <li><a href="/Terminator">Terminator</a></li>
         
             <li><a href="/Analyse-Trojan">记一次木马的分析</a></li>
@@ -241,6 +233,8 @@ git push
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -259,8 +253,6 @@ git push
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

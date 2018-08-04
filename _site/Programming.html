@@ -78,74 +78,80 @@
     <div class="entry">
         <h1 class="entry-title"><a href="/Programming" title="Amazing Programming">Amazing Programming</a></h1>
         <p class="entry-date">2016-05-12</p>
-        <h2 id="ab">一句话交换变量a,b</h2>
+        <h2 id="一句话交换变量ab">一句话交换变量a,b</h2>
 
 <h3 id="c">C</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>a = (a+b) - (b=a)
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = (a+b) - (b=a)
+</code></pre></div></div>
 
 <h3 id="php">PHP</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>list($a,$b) = array($b,$a);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>list($a,$b) = array($b,$a);
+</code></pre></div></div>
 
-<h2 id="python-list">Python list交并补</h2>
+<h2 id="python-list交并补">Python list交并补</h2>
 
-<h3 id="section">交</h3>
+<h3 id="交">交</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code># method 1 #
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># method 1 #
 print list(set(a).intersection(set(b)))  # a &amp; b
 
 # method 2 #
 val = [val for val in a if val in b]
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h3 id="section-1">并</h3>
+<h3 id="并">并</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>print list(set(a).union(set(b)))  # a + b
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print list(set(a).union(set(b)))  # a + b
+</code></pre></div></div>
 
-<h3 id="section-2">补</h3>
+<h3 id="补">补</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>print list(set(b).difference(set(a))) # b-a
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print list(set(b).difference(set(a))) # b-a
+</code></pre></div></div>
 
-<h2 id="flag">提交参数输出Flag</h2>
+<h2 id="提交参数输出flag">提交参数输出Flag</h2>
 
 <h3 id="indexphp">index.php</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;?php
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-    $str = intval($_GET['id']);
-    $reg = preg_match('/\d/is', $_GET['id']);
-    if(!is_numeric($_GET['id']) and $reg !== 1 and $str === 1){
-    	echo 'Flag';
-    }else{
-    	echo "Img";
-    }
+    <span class="nv">$str</span> <span class="o">=</span> <span class="nb">intval</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]);</span>
+    <span class="nv">$reg</span> <span class="o">=</span> <span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/\d/is'</span><span class="p">,</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">is_numeric</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'id'</span><span class="p">])</span> <span class="k">and</span> <span class="nv">$reg</span> <span class="o">!==</span> <span class="mi">1</span> <span class="k">and</span> <span class="nv">$str</span> <span class="o">===</span> <span class="mi">1</span><span class="p">){</span>
+    	<span class="k">echo</span> <span class="s1">'Flag'</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    	<span class="k">echo</span> <span class="s2">"Img"</span><span class="p">;</span>
+    <span class="p">}</span>
 
-?&gt;
-</code></pre>
-</div>
+<span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <h3 id="solution">Solution</h3>
 
 <p>虽然PHP手册中介绍<code class="highlighter-rouge">intval()</code>不能对<code class="highlighter-rouge">array</code>和<code class="highlighter-rouge">object</code>进行整数化，但是通过实践发现<code class="highlighter-rouge">intval()</code>可以将非空数组转成<code class="highlighter-rouge">1</code>，将空数组转成<code class="highlighter-rouge">0</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>index.php?id[]=a
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.php?id[]=a
+</code></pre></div></div>
+
+<h2 id="python精确除法">Python精确除法</h2>
+
+<p>总是会返回真实的商，不管操作数是整形还是浮点型</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt;from __future__ import division
+&gt;&gt;&gt;1/2
+0.5
+&gt;&gt;&gt;1.0/2.0
+0.5
+</code></pre></div></div>
 
     </div>
 
     <div class="sidenav">
         <h2>Blog</h2>
         <ul class="artical-list">
+        
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
         
             <li><a href="/Terminator">Terminator</a></li>
         
@@ -159,6 +165,8 @@ val = [val for val in a if val in b]
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -177,8 +185,6 @@ val = [val for val in a if val in b]
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

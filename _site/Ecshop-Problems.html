@@ -78,11 +78,11 @@
     <div class="entry">
         <h1 class="entry-title"><a href="/Ecshop-Problems" title="Ecshop 开发问题汇总">Ecshop 开发问题汇总</a></h1>
         <p class="entry-date">2016-04-05</p>
-        <h2 id="section">写在前面</h2>
+        <h2 id="写在前面">写在前面</h2>
 
 <p>本文记录在Ecshop开发和使用过程中遇到的各种问题以及解决方法</p>
 
-<h2 id="gdversion">安装时提示：<code class="highlighter-rouge">gd_version()</code></h2>
+<h2 id="安装时提示gd_version">安装时提示：<code class="highlighter-rouge">gd_version()</code></h2>
 
 <p>找到install/includes/lib_installer.php中的第31行<code class="highlighter-rouge">return ls_image::gd_version();</code>然后在找到include/cls_image.php中的678行，发现<code class="highlighter-rouge">gd_version()</code>方法未声明静态static，所以会出错</p>
 
@@ -101,7 +101,7 @@
    return $p-&gt;gd_version();</p>
 </blockquote>
 
-<h2 id="jepg">JEPG显示不支持</h2>
+<h2 id="jepg显示不支持">JEPG显示不支持</h2>
 
 <p>查看发现有libjpeg.lib库，GD2库也有，都加载了，也都正常。查看ecshop源代码发现install/includes/lib_installer.php中第98行,JPEG写成了JPG</p>
 
@@ -110,11 +110,10 @@
 
 <p>方案：将第98行代码改成如下形式</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$jpeg_enabled = ($gd_info['JPEG Support']        === true) ? $_LANG['support'] : $_LANG['not_support'];
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$jpeg_enabled = ($gd_info['JPEG Support']        === true) ? $_LANG['support'] : $_LANG['not_support'];
+</code></pre></div></div>
 
-<h2 id="pregreplace">错误警告<code class="highlighter-rouge">preg_replace()</code></h2>
+<h2 id="错误警告preg_replace">错误警告<code class="highlighter-rouge">preg_replace()</code></h2>
 
 <p>安装Ecshop完成之后，访问前台页面，会提示警告信息<code class="highlighter-rouge"> Deprecated: preg_replace(): The /e modifier is deprecated</code></p>
 
@@ -123,19 +122,17 @@
 
 <p>方案： 打开<code class="highlighter-rouge">includes\cls_template.php</code>,跳转到第<code class="highlighter-rouge">300</code>行，将</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>return preg_replace("/{([^\}\{\n]*)}/e", "\$this-&gt;select('\\1');", $source);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return preg_replace("/{([^\}\{\n]*)}/e", "\$this-&gt;select('\\1');", $source);
+</code></pre></div></div>
 
 <p>替换成</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this-&gt;select($r[1]); }, $source);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return preg_replace_callback("/{([^\}\{\n]*)}/", function($r) { return $this-&gt;select($r[1]); }, $source);
+</code></pre></div></div>
 
 <p>重新访问页面就解决了</p>
 
-<h2 id="only-variables">错误警告：<code class="highlighter-rouge">Only variables</code></h2>
+<h2 id="错误警告only-variables">错误警告：<code class="highlighter-rouge">Only variables</code></h2>
 
 <p>安装完成之后，访问前台首台，出现警告信息<code class="highlighter-rouge">Strict standards: Only variables should be passed by reference</code></p>
 
@@ -144,32 +141,28 @@
 
 <p>方案：PHP 5.3以上版本的问题，和配置有关.只要<code class="highlighter-rouge">includes\cls_template.php</code>第<code class="highlighter-rouge">418</code>行</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$tag_sel = array_shift(explode(' ', $tag));
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$tag_sel = array_shift(explode(' ', $tag));
+</code></pre></div></div>
 
 <p>拆成两句就没有问题了</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$tag_arr = explode(' ', $tag);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$tag_arr = explode(' ', $tag);
 $tag_sel = array_shift($tag_arr);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>或者直接修改PHP配置文件<code class="highlighter-rouge">php.ini</code>第<code class="highlighter-rouge">451</code>行，将</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>error_reporting = E_ALL
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error_reporting = E_ALL
+</code></pre></div></div>
 
 <p>改成</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>error_reporting = E_ALL
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>error_reporting = E_ALL
+</code></pre></div></div>
 
 <p>重新启动服务即可</p>
 
-<h2 id="ecshopmktime">Ecshop后台<code class="highlighter-rouge">mktime()</code>错误警告</h2>
+<h2 id="ecshop后台mktime错误警告">Ecshop后台<code class="highlighter-rouge">mktime()</code>错误警告</h2>
 
 <p>安装完成之后，登录系统后台访问“商店设置”时，系统报错，提示<code class="highlighter-rouge">mktime(): You should be using the time() function instead in</code>.这是因为PHP版本的问题，<code class="highlighter-rouge">mktime()</code>不带参数被调用时，会被提示错误.</p>
 
@@ -178,19 +171,17 @@ $tag_sel = array_shift($tag_arr);
 
 <p>方案：根据错误提示找到相应错误所在的文件，并且定位到问题代码，将</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$auth = mktime();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$auth = mktime();
+</code></pre></div></div>
 
 <p>替换成</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$auth = time();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$auth = time();
+</code></pre></div></div>
 
 <p>刷新页面就可以了</p>
 
-<h2 id="section-1">后台管理各页面功能备注</h2>
+<h2 id="后台管理各页面功能备注">后台管理各页面功能备注</h2>
 
 <h5 id="htm"><em>htm</em></h5>
 <hr />
@@ -200,9 +191,9 @@ $tag_sel = array_shift($tag_arr);
 <hr />
 <p><code class="highlighter-rouge">common.php</code>:后台基本显示语言</p>
 
-<h2 id="section-2">数据库修改记录和使用说明</h2>
+<h2 id="数据库修改记录和使用说明">数据库修改记录和使用说明</h2>
 
-<h5 id="goods"><em>goods</em>表</h5>
+<h5 id="goods表"><em>goods</em>表</h5>
 <hr />
 
 <p><code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">unit</code>字段作为商品单位<br />
@@ -239,7 +230,7 @@ $tag_sel = array_shift($tag_arr);
 <code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_size_width</code>字段作为<code class="highlighter-rouge">尺寸-宽</code><br />
 <code class="highlighter-rouge">goods</code>: 添加<code class="highlighter-rouge">goods_size_length</code>字段作为<code class="highlighter-rouge">尺寸-长</code></p>
 
-<h4 id="section-3">2016-04-28整理商品（规格）管理所需要字段</h4>
+<h4 id="2016-04-28整理商品规格管理所需要字段">2016-04-28整理商品（规格）管理所需要字段</h4>
 <hr />
 
 <p><code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">goods_id</code>字段作为<code class="highlighter-rouge">商品id</code><br />
@@ -260,7 +251,7 @@ $tag_sel = array_shift($tag_arr);
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">add_time</code>字段作为<code class="highlighter-rouge">商品添加时间</code><br />
 <code class="highlighter-rouge">goods</code>:<code class="highlighter-rouge">last_update</code>字段作为<code class="highlighter-rouge">最后更新时间</code></p>
 
-<h5 id="ecsgoodsbindtype"><em>ecs_goods_bind_type</em>表</h5>
+<h5 id="ecs_goods_bind_type表"><em>ecs_goods_bind_type</em>表</h5>
 <hr />
 
 <p>新建<code class="highlighter-rouge">ecs_goods_bind_type</code>表<code class="highlighter-rouge">装订类型表</code></p>
@@ -270,7 +261,7 @@ $tag_sel = array_shift($tag_arr);
 type_name：类型名称</p>
 </blockquote>
 
-<h5 id="ecsmaterialtype"><em>ecs_material_type</em>表</h5>
+<h5 id="ecs_material_type表"><em>ecs_material_type</em>表</h5>
 <hr />
 
 <p>新建<code class="highlighter-rouge">ecs_material_type</code>表<code class="highlighter-rouge">材质类型表</code></p>
@@ -281,7 +272,7 @@ type_name：类型名称<br />
 remark：备注</p>
 </blockquote>
 
-<h5 id="adminuser"><em>admin_user</em>表</h5>
+<h5 id="admin_user表"><em>admin_user</em>表</h5>
 <hr />
 
 <p><code class="highlighter-rouge">admin_user</code>: 添加<code class="highlighter-rouge">invitation_code</code>字段作为<code class="highlighter-rouge">邀请码</code><br />
@@ -289,7 +280,7 @@ remark：备注</p>
 <code class="highlighter-rouge">admin_user</code>: 添加<code class="highlighter-rouge">company</code>字段作为<code class="highlighter-rouge">所属部门</code><br />
 <code class="highlighter-rouge">admin_user</code>: 添加<code class="highlighter-rouge">bank_card</code>字段作为<code class="highlighter-rouge">银行卡号</code></p>
 
-<h5 id="orderinfo"><em>order_info</em>表</h5>
+<h5 id="order_info表"><em>order_info</em>表</h5>
 <hr />
 
 <p><code class="highlighter-rouge">order_info</code>:添加<code class="highlighter-rouge">invitation_code</code>字段作为<code class="highlighter-rouge">邀请码</code><br />
@@ -301,7 +292,7 @@ remark：备注</p>
 <code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">invoice_no</code>字段作为<code class="highlighter-rouge">快递单号</code><br />
 <code class="highlighter-rouge">order_info</code>:<code class="highlighter-rouge">user_name</code>字段作为<code class="highlighter-rouge">下单用户姓名</code>:用户下单时写入</p>
 
-<h5 id="ordergoods"><em>order_goods</em>表</h5>
+<h5 id="order_goods表"><em>order_goods</em>表</h5>
 <hr />
 
 <p><code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">bind_type</code>字段作为<code class="highlighter-rouge">装订类型</code><br />
@@ -311,7 +302,7 @@ remark：备注</p>
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_page_count</code>字段作为<code class="highlighter-rouge">商品页数</code><br />
 <code class="highlighter-rouge">order_goods</code>:添加<code class="highlighter-rouge">goods_url</code>字段作为<code class="highlighter-rouge">电子稿下载地址</code></p>
 
-<h5 id="ecsproductyzldiy"><em>ecs_product_yzldiy</em>表</h5>
+<h5 id="ecs_product_yzldiy表"><em>ecs_product_yzldiy</em>表</h5>
 
 <p><code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">pid</code>字段作为<code class="highlighter-rouge">模板编号</code><br />
 <code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">cid</code>字段作为<code class="highlighter-rouge">类别</code>:<code class="highlighter-rouge">product_category_yzldiy</code>表中的<code class="highlighter-rouge">id</code><br />
@@ -321,13 +312,13 @@ remark：备注</p>
 <code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">status</code>字段值为<code class="highlighter-rouge">1</code><br />
 <code class="highlighter-rouge">product_yzldiy</code>:<code class="highlighter-rouge">tid</code>字段值为<code class="highlighter-rouge">00001</code></p>
 
-<h5 id="ecsproductcategoryyzldiy"><em>ecs_product_category_yzldiy</em>表</h5>
+<h5 id="ecs_product_category_yzldiy表"><em>ecs_product_category_yzldiy</em>表</h5>
 
 <p><code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">id</code>字段作为<code class="highlighter-rouge">模板类别编号</code><br />
 <code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">name</code>字段作为<code class="highlighter-rouge">模板类别名称</code><br />
 <code class="highlighter-rouge">product_category_yzldiy</code>:<code class="highlighter-rouge">info</code>字段作为<code class="highlighter-rouge">类别说明</code></p>
 
-<h5 id="ecsproductyzldiygallery"><em>ecs_product_yzldiy_gallery</em>表</h5>
+<h5 id="ecs_product_yzldiy_gallery表"><em>ecs_product_yzldiy_gallery</em>表</h5>
 <hr />
 
 <p>新建<code class="highlighter-rouge">ecs_product_gallery</code>表<code class="highlighter-rouge">材质类型表</code></p>
@@ -338,9 +329,9 @@ pid：模板id:<code class="highlighter-rouge">ecs_product_yzldiy</code>中的<c
 img_url：图片url</p>
 </blockquote>
 
-<h2 id="section-4">时间戳数据库处理</h2>
+<h2 id="时间戳数据库处理">时间戳数据库处理</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>/* 添加按照付款时间每日分组 */
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* 添加按照付款时间每日分组 */
 $group = " GROUP BY FROM_UNIXTIME(oi.pay_time,'%y-%m-%d')";
 
 /* 查询距添加代理用户第几天 */
@@ -351,10 +342,9 @@ $sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
 
 /* 查询每日产品数 */
 $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h2 id="section-5">参考资料</h2>
+<h2 id="参考资料">参考资料</h2>
 
 <p>[1]<a href="http://www.cnblogs.com/thinksasa/archive/2013/03/12/2955922.html">Ecshop安装过程中的的问题：cls_image::gd_version()和不支持JPEG</a><br />
 [2]<a href="http://www.cnblogs.com/wallis0922/archive/2012/12/08/2808199.html">安装Ecshop首页出现报错：Only variables should be passed by referen</a></p>
@@ -365,6 +355,8 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
     <div class="sidenav">
         <h2>Blog</h2>
         <ul class="artical-list">
+        
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
         
             <li><a href="/Terminator">Terminator</a></li>
         
@@ -378,6 +370,8 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -396,8 +390,6 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

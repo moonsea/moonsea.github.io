@@ -78,134 +78,117 @@
     <div class="entry">
         <h1 class="entry-title"><a href="/Centos-Php" title="CentOs搭建Php开发环境">CentOs搭建Php开发环境</a></h1>
         <p class="entry-date">2016-03-21</p>
-        <h2 id="section">写在前面</h2>
+        <h2 id="写在前面">写在前面</h2>
 
 <p>今天需要搭建一个WikiMedia，然后找到了一个目前觉得最高大上的Web FTP，叫<a href="http://www.kalcaddle.com/">KODExplorer</a>,是一个在线版的文件管理器，官方说法支持在线解压缩，支持在线预览，在线编辑等等。</p>
 
-<h2 id="section-1">动手搭建</h2>
+<h2 id="动手搭建">动手搭建</h2>
 
-<h3 id="apache">安装Apache</h3>
+<h3 id="安装apache">安装Apache</h3>
 
 <p>使用 <code class="highlighter-rouge">yum</code> 进行安装</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo yum install httpd httpd-devel 
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install httpd httpd-devel 
+</code></pre></div></div>
 
 <p>安装完成之后，启动<code class="highlighter-rouge">apache</code>服务器</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo systemctl start httpd.service
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl start httpd.service
+</code></pre></div></div>
 
 <p>除了上面这条命令可以启动<code class="highlighter-rouge">apache</code>服务器之外，还可以使用<code class="highlighter-rouge">sudo service httpd start</code>,也会重定向到<code class="highlighter-rouge">httpd.service</code>.</p>
 
 <p>启动之后，可以使用浏览器访问服务器的<code class="highlighter-rouge">IP</code>地址，<code class="highlighter-rouge">apache</code>默认端口为<code class="highlighter-rouge">80</code>，所以直接<code class="highlighter-rouge">http://$IP$</code>就可以了</p>
 
-<h3 id="mysql">安装Mysql</h3>
+<h3 id="安装mysql">安装Mysql</h3>
 
 <p>CentOs 7 系统yum源不自带<code class="highlighter-rouge">server</code>端的<code class="highlighter-rouge">mysql</code>，所以需要自己从官方下载<a href="http://dev.mysql.com/downloads/repo/yum/">Repository</a>,进入页面之后选择自己相应的版本.我的服务器是<code class="highlighter-rouge">CentOs 7</code>,如果和我的机器相同，也可以直接使用下面的命令进行下载安装</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget http://repo.mysql.com//mysql57-community-release-el7-7.noarch.rpm
 sudo rpm -ivh mysql57-community-release-el7-7.noarch.rpm
 sudo yum install mysql-community-server mysql mysql-devel
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>启动<code class="highlighter-rouge">mysql</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo systemctl start mysqld.service
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl start mysqld.service
+</code></pre></div></div>
 
 <p>这时候如果你尝试登录<code class="highlighter-rouge">mysql -uroot -p</code>的话，会发现无法登录，而且你也不知道密码，因为<code class="highlighter-rouge">mysql</code>默认是没有密码的，这时候需要强制修改密码</p>
 
 <p>首先，关闭<code class="highlighter-rouge">mysql</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo service mysqld stop
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service mysqld stop
+</code></pre></div></div>
 
 <p>刚才说过，和<code class="highlighter-rouge">systemctl</code>命令相同，用哪一种方式都行.然后打开<code class="highlighter-rouge">my.cnf</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo vi /etc/my.cnf
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo vi /etc/my.cnf
+</code></pre></div></div>
 
 <p>在文件中最后一行添加<code class="highlighter-rouge">skip-grant-tables</code>,然后<code class="highlighter-rouge">:wq</code>保存并退出.之后重启<code class="highlighter-rouge">mysql</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo service mysqld restart
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service mysqld restart
+</code></pre></div></div>
 
 <p>强制登录<code class="highlighter-rouge">mysql</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mysql
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mysql
+</code></pre></div></div>
 
 <p>登录之后，分别执行以下命令，修改数据库登录密码为<code class="highlighter-rouge">123456</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>use mysql;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use mysql;
 update user set authentication_string=password('123456') where user='root';
 exit;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>退出之后，再次编辑<code class="highlighter-rouge">my.cnf</code>,删除刚才添加的最后一行<code class="highlighter-rouge">skip-grant-tables</code>,保存退出，之后重新启动<code class="highlighter-rouge">mysql</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo service mysqld restart
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service mysqld restart
+</code></pre></div></div>
 
 <p>再次登录,输入密码<code class="highlighter-rouge">123456</code>就可以正常登录了</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>msyql -uroot -p
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>msyql -uroot -p
+</code></pre></div></div>
 
-<h3 id="php">安装Php</h3>
+<h3 id="安装php">安装Php</h3>
 
 <p>使用<code class="highlighter-rouge">yum</code>源进行安装</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> sudo yum install php php-devel
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> sudo yum install php php-devel
+</code></pre></div></div>
 
 <p>重新启动<code class="highlighter-rouge">apache</code>，使得<code class="highlighter-rouge">php</code>生效</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo systemctl restart httpd.service
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart httpd.service
+</code></pre></div></div>
 
 <p>进入<code class="highlighter-rouge">\var\www\html</code>，新建一个测试文件</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd \var\www\html
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd \var\www\html
 sudo vi test.php
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>文件内容如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;?php phpinfo(); ?&gt;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span> <span class="cp">?&gt;</span>
+</code></pre></div></div>
 
 <p>通过浏览器访问该文件，会得到php版本信息，说明安装成功</p>
 
-<h3 id="php-1">安装php扩展</h3>
+<h3 id="安装php扩展">安装php扩展</h3>
 
 <p>使用<code class="highlighter-rouge">yum</code>源进行安装</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo yum install php-mysql php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring
+</code></pre></div></div>
 
 <p>重新启动<code class="highlighter-rouge">apache</code>，使得安装生效</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo systemctl restart httpd.service
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl restart httpd.service
+</code></pre></div></div>
 
 
     </div>
@@ -213,6 +196,8 @@ sudo vi test.php
     <div class="sidenav">
         <h2>Blog</h2>
         <ul class="artical-list">
+        
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
         
             <li><a href="/Terminator">Terminator</a></li>
         
@@ -226,6 +211,8 @@ sudo vi test.php
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -244,8 +231,6 @@ sudo vi test.php
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

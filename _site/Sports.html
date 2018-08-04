@@ -78,11 +78,11 @@
     <div class="entry">
         <h1 class="entry-title"><a href="/Sports" title="Sports 开发问题汇总">Sports 开发问题汇总</a></h1>
         <p class="entry-date">2016-05-30</p>
-        <h2 id="section">写在前面</h2>
+        <h2 id="写在前面">写在前面</h2>
 
 <p>本文记录在Sports开发和使用过程中遇到的各种问题以及解决方法</p>
 
-<h2 id="ezsql"><code class="highlighter-rouge">ezsql</code>语法说明</h2>
+<h2 id="ezsql语法说明"><code class="highlighter-rouge">ezsql</code>语法说明</h2>
 
 <p><code class="highlighter-rouge">$db-&gt;get_results</code> – <code class="highlighter-rouge">从数据库中读取数据集</code> <br />
 <code class="highlighter-rouge">$db-&gt;get_row</code> – <code class="highlighter-rouge">从数据库中读取一行数据</code><br />
@@ -96,9 +96,9 @@
 <code class="highlighter-rouge">$db-&gt;hide_errors</code> – <code class="highlighter-rouge">隐藏错误</code><br />
 <code class="highlighter-rouge">$db-&gt;show_errors</code> – <code class="highlighter-rouge">显示错误</code></p>
 
-<h2 id="section-1">数据库字段说明</h2>
+<h2 id="数据库字段说明">数据库字段说明</h2>
 
-<h3 id="apply"><em>apply</em>表</h3>
+<h3 id="apply表"><em>apply</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">apply</code>: <code class="highlighter-rouge">applyt_id</code>字段:<code class="highlighter-rouge">申请id</code>:INT 32,自增,主键<br />
@@ -107,7 +107,7 @@
 <code class="highlighter-rouge">apply</code>: <code class="highlighter-rouge">card_img</code>字段:<code class="highlighter-rouge">用户身份证照片</code>:VARCHAR 255<br />
 <code class="highlighter-rouge">apply</code>: <code class="highlighter-rouge">event</code>字段:<code class="highlighter-rouge">申请项目</code>:<code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">申请教练</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">申请俱乐部</code>:INT 32</p>
 
-<h3 id="video"><em>video</em>表</h3>
+<h3 id="video表"><em>video</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">id</code>字段: <code class="highlighter-rouge">视频id</code>: INT 32,自增,主键<br />
@@ -124,7 +124,7 @@
 <code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">video_path</code>字段: <code class="highlighter-rouge">视频存放路径</code>: VARCHAR 255 <br />
 <code class="highlighter-rouge">video</code>: <code class="highlighter-rouge">video_cover</code>字段: <code class="highlighter-rouge">视频封面</code>: VARCHAR 255</p>
 
-<h3 id="user"><em>user</em>表</h3>
+<h3 id="user表"><em>user</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">user</code>: <code class="highlighter-rouge">user_id</code>字段: <code class="highlighter-rouge">用户id</code>: INT 32,自增,主键<br />
@@ -151,14 +151,14 @@
 <code class="highlighter-rouge">2</code>: 俱乐部会员</p>
 </blockquote>
 
-<h3 id="role"><em>role</em>表</h3>
+<h3 id="role表"><em>role</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">role</code>: <code class="highlighter-rouge">role_id</code>字段: <code class="highlighter-rouge">角色id</code>: INT 32,自增,主键<br />
 <code class="highlighter-rouge">role</code>: <code class="highlighter-rouge">role_name</code>字段: <code class="highlighter-rouge">角色名称</code>: VARCHAR 100<br />
 <code class="highlighter-rouge">role</code>: <code class="highlighter-rouge">remark</code>字段: <code class="highlighter-rouge">备注</code>: VARCHAR 100</p>
 
-<h3 id="club"><em>club</em>表</h3>
+<h3 id="club表"><em>club</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">club</code>: <code class="highlighter-rouge">club_id</code>字段: <code class="highlighter-rouge">俱乐部id</code>: INT 32,自增,主键<br />
@@ -173,7 +173,7 @@
   <p><code class="highlighter-rouge">0</code>:赛体育：后台管理员发布比赛</p>
 </blockquote>
 
-<h3 id="wiki"><em>wiki</em>表</h3>
+<h3 id="wiki表"><em>wiki</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">wiki_id</code>字段: <code class="highlighter-rouge">百科id</code>: INT 32,自增,主键<br />
@@ -183,7 +183,7 @@
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">type</code>字段: <code class="highlighter-rouge">百科分类</code>: TINYINT 2: <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">标准动作</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">原创动作</code><br />
 <code class="highlighter-rouge">wiki</code>: <code class="highlighter-rouge">remark</code>字段: <code class="highlighter-rouge">百科备注</code>: VARCHAR 255</p>
 
-<h3 id="club-1"><em>club</em>表</h3>
+<h3 id="club表-1"><em>club</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">club</code>: <code class="highlighter-rouge">club_id</code>字段: <code class="highlighter-rouge">俱乐部id</code>: INT 32,自增,主键<br />
@@ -196,7 +196,7 @@
 
 <p><code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">赛体育</code></p>
 
-<h3 id="joinclub"><em>join_club</em>表</h3>
+<h3 id="join_club表"><em>join_club</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">join_club</code>: <code class="highlighter-rouge">join_id</code>字段: <code class="highlighter-rouge">参加俱乐部ＩＤ</code>: INT 32<br />
@@ -204,7 +204,7 @@
 <code class="highlighter-rouge">join_club</code>: <code class="highlighter-rouge">club_id</code>字段: <code class="highlighter-rouge">俱乐部ＩＤ</code>: INT 32: <code class="highlighter-rouge">club</code> -&gt; <code class="highlighter-rouge">club_id</code><br />
 <code class="highlighter-rouge">join_club</code>: <code class="highlighter-rouge">remark</code>字段: <code class="highlighter-rouge">备注</code></p>
 
-<h3 id="game"><em>game</em>表</h3>
+<h3 id="game表"><em>game</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">game</code>: <code class="highlighter-rouge">game_id</code>字段: <code class="highlighter-rouge">比赛id</code>: INT 32,自增,主键<br />
@@ -216,7 +216,7 @@
 <code class="highlighter-rouge">game</code>: <code class="highlighter-rouge">is_pub</code>字段: <code class="highlighter-rouge">是否发布</code>: TINYINT 2: <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">否</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">是</code>  <br />
 <code class="highlighter-rouge">game</code>: <code class="highlighter-rouge">game_desc</code>字段: <code class="highlighter-rouge">比赛简介</code>: VARCHAR 500</p>
 
-<h3 id="gametype"><em>game_type</em>表</h3>
+<h3 id="game_type表"><em>game_type</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">game_type</code>: <code class="highlighter-rouge">type_id</code>字段: <code class="highlighter-rouge">比赛类型id</code>: INT 32,自增,主键<br />
@@ -229,7 +229,7 @@
 <code class="highlighter-rouge">1</code>: <code class="highlighter-rouge">兵乓球</code></p>
 </blockquote>
 
-<h3 id="gamevideo"><em>game_video</em>表</h3>
+<h3 id="game_video表"><em>game_video</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">game_video</code>: <code class="highlighter-rouge">id</code>字段: <code class="highlighter-rouge">比赛视频id</code>: INT 32,自增,主键<br />
@@ -237,7 +237,7 @@
 <code class="highlighter-rouge">game_video</code>: <code class="highlighter-rouge">game_id</code>字段: <code class="highlighter-rouge">比赛id</code>: VARCHAR 32: <code class="highlighter-rouge">game</code>-&gt;<code class="highlighter-rouge">game_id</code><br />
 <code class="highlighter-rouge">game_video</code>: <code class="highlighter-rouge">video_type</code>字段: <code class="highlighter-rouge">比赛视频类型</code>: VARCHAR 32: <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">训练视频</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">参赛视频</code></p>
 
-<h3 id="joinedgame"><em>joined_game</em>表</h3>
+<h3 id="joined_game表"><em>joined_game</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">joined_game</code>: <code class="highlighter-rouge">joined_id</code>字段: <code class="highlighter-rouge">参赛id</code>: INT 32,自增,主键<br />
@@ -245,7 +245,7 @@
 <code class="highlighter-rouge">joined_game</code>: <code class="highlighter-rouge">game_id</code>字段: <code class="highlighter-rouge">比赛id</code>: VARCHAR 32: <code class="highlighter-rouge">game</code>-&gt;<code class="highlighter-rouge">game_id</code>  <br />
 <code class="highlighter-rouge">joined_game</code>: <code class="highlighter-rouge">remark</code>字段: <code class="highlighter-rouge">比赛备注</code>: VARCHAR 100</p>
 
-<h3 id="searchrecord"><em>search_record</em>表</h3>
+<h3 id="search_record表"><em>search_record</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">search_record</code>: <code class="highlighter-rouge">search_id</code>字段: <code class="highlighter-rouge">搜索id</code>: INT 32,自增,主键<br />
@@ -253,7 +253,7 @@
 <code class="highlighter-rouge">search_record</code>: <code class="highlighter-rouge">search_user</code>字段: <code class="highlighter-rouge">搜索用户</code>: VARCHAR 32: <code class="highlighter-rouge">user</code>-&gt;<code class="highlighter-rouge">user_id</code>: <code class="highlighter-rouge">-1</code>:<code class="highlighter-rouge">匿名用户</code><br />
 <code class="highlighter-rouge">search_record</code>: <code class="highlighter-rouge">search_time</code>字段: <code class="highlighter-rouge">初次搜索时间</code>: VARCHAR 32</p>
 
-<h3 id="comment"><em>comment</em>表</h3>
+<h3 id="comment表"><em>comment</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">comment</code>: <code class="highlighter-rouge">comment_id</code>字段: <code class="highlighter-rouge">评论id</code>: INT 32,自增,主键<br />
@@ -262,7 +262,7 @@
 <code class="highlighter-rouge">comment</code>: <code class="highlighter-rouge">content</code>字段: <code class="highlighter-rouge">评论内容</code>: TEXT<br />
 <code class="highlighter-rouge">comment</code>: <code class="highlighter-rouge">create_time</code>字段: <code class="highlighter-rouge">评论时间</code>: VARCHAR 32:UNIXTIMESTAMP</p>
 
-<h3 id="admininfo"><em>admininfo</em>表</h3>
+<h3 id="admininfo表"><em>admininfo</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">admininfo</code>: <code class="highlighter-rouge">admin_id</code>字段：<code class="highlighter-rouge">管理员id</code>： INT 32, 自增，主键<br />
@@ -277,7 +277,7 @@
   <p>后台超级管理员<code class="highlighter-rouge">admin_club_id</code>:<code class="highlighter-rouge">0</code></p>
 </blockquote>
 
-<h3 id="ad"><em>ad</em>表</h3>
+<h3 id="ad表"><em>ad</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">ad</code>: <code class="highlighter-rouge">ad_id</code>字段：<code class="highlighter-rouge">广告id</code>： INT 32, 自增，主键<br />
@@ -285,13 +285,13 @@
 <code class="highlighter-rouge">ad</code>: <code class="highlighter-rouge">ad_content</code>字段：<code class="highlighter-rouge">广告内容</code>： TEXT<br />
 <code class="highlighter-rouge">ad</code>: <code class="highlighter-rouge">adverr_id</code>字段：<code class="highlighter-rouge">广告商id</code>： INT 32:<code class="highlighter-rouge">advertiser</code>:<code class="highlighter-rouge">adver_id</code></p>
 
-<h3 id="advertiser"><em>advertiser</em>表</h3>
+<h3 id="advertiser表"><em>advertiser</em>表</h3>
 <hr />
 <p>l
 <code class="highlighter-rouge">advertiser</code>: <code class="highlighter-rouge">adver_id</code>字段：<code class="highlighter-rouge">广告商id</code>： INT 32, 自增，主键<br />
 <code class="highlighter-rouge">advertiser</code>: <code class="highlighter-rouge">adver_name</code>字段：<code class="highlighter-rouge">广告商名称</code>： VARCHAR 100</p>
 
-<h3 id="renzheng"><em>renzheng</em>表</h3>
+<h3 id="renzheng表"><em>renzheng</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">renzheng</code>: <code class="highlighter-rouge">id</code>字段：<code class="highlighter-rouge">认证id</code>： INT 32, 自增，主键<br />
@@ -302,7 +302,7 @@
 <code class="highlighter-rouge">renzheng</code>: <code class="highlighter-rouge">add_time</code>字段：<code class="highlighter-rouge">时间戳</code>
 <code class="highlighter-rouge">renzheng</code>: <code class="highlighter-rouge">status</code>字段：<code class="highlighter-rouge">审核状态</code>:<code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">申请</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">通过</code>,<code class="highlighter-rouge">2</code>:<code class="highlighter-rouge">拒绝</code></p>
 
-<h3 id="report"><em>report</em>表</h3>
+<h3 id="report表"><em>report</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">report</code>: <code class="highlighter-rouge">id</code>字段：<code class="highlighter-rouge">举报id</code>： INT 32, 自增，主键<br />
@@ -310,7 +310,7 @@
 <code class="highlighter-rouge">report</code>: <code class="highlighter-rouge">add_time</code>字段：<code class="highlighter-rouge">举报时间</code>： UNIX_TIMESTAMP<br />
 <code class="highlighter-rouge">report</code>: <code class="highlighter-rouge">status</code>字段：<code class="highlighter-rouge">举报状态</code>： <code class="highlighter-rouge">0</code>:<code class="highlighter-rouge">未处理</code>,<code class="highlighter-rouge">1</code>:<code class="highlighter-rouge">已处理</code></p>
 
-<h3 id="feedback"><em>feedback</em>表</h3>
+<h3 id="feedback表"><em>feedback</em>表</h3>
 <hr />
 
 <p><code class="highlighter-rouge">feedback</code>: <code class="highlighter-rouge">feedback_id</code>字段：<code class="highlighter-rouge">反馈id</code>： INT 32, 自增，主键<br />
@@ -321,7 +321,7 @@
 
 <p>时间戳数据库处理</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>/* mysql:当前时间戳 */
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* mysql:当前时间戳 */
 SELECT UNIX_TIMESTAMP(NOW());
 
 /* 添加按照付款时间每日分组 */
@@ -335,10 +335,9 @@ $sql = $sql . " COUNT(oi.order_id) AS order_sum_day, ";
 
 /* 查询每日产品数 */
 $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h2 id="section-2">参考资料</h2>
+<h2 id="参考资料">参考资料</h2>
 
 <p>[1]<a href="http://www.3lian.com/edu/2013/07-08/79310.html">最好用的PHP数据库操作类-ezSQL</a></p>
 
@@ -348,6 +347,8 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
     <div class="sidenav">
         <h2>Blog</h2>
         <ul class="artical-list">
+        
+            <li><a href="/dvwa-exec">Command Injection{DVWA}</a></li>
         
             <li><a href="/Terminator">Terminator</a></li>
         
@@ -361,6 +362,8 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
 
         <h2>Opinion</h2>
         <ul class="artical-list">
+        
+            <li><a href="/Malcode-ngram-opcode-classify">恶意代码分类训练预测篇</a></li>
         
             <li><a href="/Malcode-ngram-opcode">恶意代码分类数据篇</a></li>
         
@@ -379,8 +382,6 @@ $sql = $sql . " COUNT(og.goods_id) AS product_sum_day ";
             <li><a href="/CDN-DDoS">基于CDN平台的DDoS攻击防护</a></li>
         
             <li><a href="/p7-bohara">Clustering Monitor Data</a></li>
-        
-            <li><a href="/Conferences">Coming Conferences and Activities</a></li>
         
             <li><a href="/English-Writing">English Writing</a></li>
         

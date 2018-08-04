@@ -7,7 +7,7 @@ description: malcode classification training&test part
 
 ## 写在前面
 
-在上一篇[“恶意代码分类数据篇”][]的基础之上，已经得到了数据集样本的opcode，接下来需要根据opcode生成n-gram的opcode。
+在上一篇[恶意代码分类数据篇][]的基础之上，已经得到了数据集样本的opcode，接下来需要根据opcode生成n-gram的opcode。
 
 在开始之前，需要说明一下，算是填上一篇的坑，上一篇中只提到了针对恶意样本进行反汇编，提取opcode，没有说明对良性文件(benign file)进行处理，这也是自己在实际操作过程中遇到的问题。我们不仅仅要对数据集中的恶意样本进行处理，同时还需要对benign文件进行处理，这样我们才能够得到一个统一的数据集。这部分数据集中，包含用来训练的训练数据集(training dataset)，和用来进行测试预测的测试数据集(test dataset)。其中，训练数据集(training dataset)根据自己需要，还可以再分成实际用来训练的训练数据集(training dataset)和用来在训练过程中进行校验的数据集(validation dataset)。对于训练数据集的划分不是必须的，主要是看自己的需求。
 
@@ -256,7 +256,7 @@ def analyse(filepath):
 
 最后，新年快乐。
 
-["恶意代码分类数据篇"]: http://blog.moonsea.ac.cn/Malcode-ngram-opcode
+[恶意代码分类数据篇]: http://blog.moonsea.ac.cn/Malcode-ngram-opcode
 [gengram.py]: https://github.com/moonsea/malcode/blob/master/gengram.py
 [gramfreq.py]: https://github.com/moonsea/malcode/blob/master/gramfreq.py
 [creatematrix.py]: https://github.com/moonsea/malcode/blob/master/creatematrix.py
